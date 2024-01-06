@@ -1,9 +1,13 @@
 package befaster.solutions.CHK;
 
-import befaster.runner.SolutionNotImplementedException;
+import java.util.Map;
 
 public class CheckoutSolution {
-    public Integer checkout(String skus) {
 
+    private Map<String, Integer> priceTable;
+
+    public Integer checkout(String skus) {
+        Char basketList = skus.
     }
 }
+
