@@ -5,15 +5,29 @@ import java.util.Map;
 
 public class CheckoutSolution {
 
-    private Map<String, Integer> priceTable;
+    private Map<String, Integer> pricesTable;
 
     public CheckoutSolution(){
-        priceTable = new HashMap<>();
+        pricesTable = new HashMap<>();
+        populatePriceTable();
     }
 
     public Integer checkout(String skus) {
         Char basketList = skus.
     }
+
+    private void populatePriceTable(){
+        pricesTable.put("A", 50);
+        pricesTable.put("B", 30);
+        pricesTable.put("C", 20);
+        pricesTable.put("D", 15);
+    }
+
+    private void populateSpecialOffersTable(){
+        specialOffersTable.put("A", 130);
+        specialOffersTable.put("B", 45);
+    }
 }
+
 
 
