@@ -1,14 +1,17 @@
 package befaster.solutions.CHK;
 
+import befaster.entity.Item;
+
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class CheckoutSolution {
 
-    private Map<Character, Integer> pricesTable;
+    private List<Item> itemsList;
 
     public CheckoutSolution(){
-        pricesTable = new HashMap<>();
+        itemsList = new ArrayList<>();
         populatePriceTable();
     }
 
@@ -28,9 +31,10 @@ public class CheckoutSolution {
     }
 
     private void populatePriceTable(){
-        pricesTable.put('A', 50);
+        itemsList.add('A', 50);
         pricesTable.put('B', 30);
         pricesTable.put('C', 20);
         pricesTable.put('D', 15);
     }
 }
+
