@@ -1,9 +1,9 @@
 package befaster.solutions.CHK;
 
 import befaster.entity.Item;
+import befaster.entity.SpecialOffer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class CheckoutSolution {
@@ -12,7 +12,7 @@ public class CheckoutSolution {
 
     public CheckoutSolution(){
         itemsList = new ArrayList<>();
-        populatePriceTable();
+        populateItemsList();
     }
 
     public Integer checkout(String skus) {
@@ -30,11 +30,12 @@ public class CheckoutSolution {
         return checkoutValue;
     }
 
-    private void populatePriceTable(){
-        itemsList.add('A', 50);
-        pricesTable.put('B', 30);
-        pricesTable.put('C', 20);
-        pricesTable.put('D', 15);
+    private void populateItemsList(){
+        itemsList.add(new Item('A', 50, new SpecialOffer(3, 130)));
+        itemsList.add(new Item('B', 30, new SpecialOffer(2, 45)));
+        itemsList.add(new Item('C', 20));
+        itemsList.add(new Item('D', 15));
     }
 }
+
 
