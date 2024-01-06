@@ -34,9 +34,3 @@ public class CheckoutSolution {
         pricesTable.put('D', 15);
     }
 }
-
-
-
-
-
-
