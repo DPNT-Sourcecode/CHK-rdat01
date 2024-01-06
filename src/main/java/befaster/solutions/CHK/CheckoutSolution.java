@@ -22,12 +22,8 @@ public class CheckoutSolution {
         pricesTable.put("C", 20);
         pricesTable.put("D", 15);
     }
-
-    private void populateSpecialOffersTable(){
-        specialOffersTable.put("A", 130);
-        specialOffersTable.put("B", 45);
-    }
 }
+
 
 
 
