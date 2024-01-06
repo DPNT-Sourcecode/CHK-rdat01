@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CheckoutSolution {
 
-    private Map<String, Integer> pricesTable;
+    private Map<Character, Integer> pricesTable;
 
     public CheckoutSolution(){
         pricesTable = new HashMap<>();
@@ -28,12 +28,13 @@ public class CheckoutSolution {
     }
 
     private void populatePriceTable(){
-        pricesTable.put("A", 50);
-        pricesTable.put("B", 30);
-        pricesTable.put("C", 20);
-        pricesTable.put("D", 15);
+        pricesTable.put('A', 50);
+        pricesTable.put('B', 30);
+        pricesTable.put('C', 20);
+        pricesTable.put('D', 15);
     }
 }
+
 
 
 
