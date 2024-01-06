@@ -4,14 +4,16 @@ import befaster.entity.Item;
 import befaster.entity.SpecialOffer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class CheckoutSolution {
 
-    private List<Item> itemsList;
+    private HashMap<Character, Item> itemsList;
 
     public CheckoutSolution(){
-        itemsList = new ArrayList<>();
+        itemsList = new HashMap<>();
         populateItemsList();
     }
 
@@ -20,22 +22,23 @@ public class CheckoutSolution {
         char[] basketList = skus.toCharArray();
 
         for (char sku : basketList) {
-            if(!pricesTable.containsKey(sku)){
+            if(!itemsList.containsKey(sku)){
                 return -1;
             }
 
-            checkoutValue += pricesTable.get(sku);
+            checkoutValue += itemsList.get(sku);
         }
 
         return checkoutValue;
     }
 
     private void populateItemsList(){
-        itemsList.add(new Item('A', 50, new SpecialOffer(3, 130)));
-        itemsList.add(new Item('B', 30, new SpecialOffer(2, 45)));
-        itemsList.add(new Item('C', 20));
-        itemsList.add(new Item('D', 15));
+        itemsList.put('A', new Item('A', 50, new SpecialOffer(3, 130)));
+        itemsList.put('B', new Item('B', 30, new SpecialOffer(2, 45)));
+        itemsList.put('C', new Item('C', 20));
+        itemsList.put('D', new Item('D', 15));
     }
 }
+
 
 
