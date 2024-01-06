@@ -23,9 +23,20 @@ public class Item {
         return specialOffer;
     }
 
-    public Integer getDiscountedPrice() {
-        return price;
+    public boolean hasSpecialOffer(int quantity){
+        
+    }
+
+    public Integer getDiscountedPrice(int quantity) {
+        if(specialOffer == null){
+            return 0;
+        }
+
+        return quantity == specialOffer.getQuantity() ?
+                specialOffer.getFixedPrice() :
+                0;
     }
 }
+
 
 
