@@ -16,7 +16,7 @@ public class HelloSolutionTest {
     }
 
     @Test
-    public void compute_sum() {
+    public void helloMethodShouldReturnSentText() {
         String text = "hello";
 
         assertThat(helloSolution.hello(text), equalTo(text));
