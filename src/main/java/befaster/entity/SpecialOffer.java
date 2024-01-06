@@ -4,14 +4,9 @@ public class SpecialOffer {
     private Integer quantity;
     private Integer fixedPrice;
 
-    public SpecialOffer(Character sku, Integer quantity, Integer fixedPrice) {
-        this.sku = sku;
+    public SpecialOffer(Integer quantity, Integer fixedPrice) {
         this.quantity = quantity;
         this.fixedPrice = fixedPrice;
-    }
-
-    public Character getSku() {
-        return sku;
     }
 
     public Integer getQuantity() {
@@ -22,4 +17,5 @@ public class SpecialOffer {
         return fixedPrice;
     }
 }
+
 

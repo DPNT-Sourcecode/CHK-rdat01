@@ -22,5 +22,10 @@ public class Item {
     public SpecialOffer getSpecialOffer() {
         return specialOffer;
     }
+
+    public Integer getDiscountedPrice() {
+        return price;
+    }
 }
+
 
