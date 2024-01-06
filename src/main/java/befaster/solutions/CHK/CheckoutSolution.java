@@ -13,7 +13,18 @@ public class CheckoutSolution {
     }
 
     public Integer checkout(String skus) {
-        Char basketList = skus.
+        Integer checkoutValue = 0;
+        char[] basketList = skus.toCharArray();
+
+        for (char sku : basketList) {
+            if(!pricesTable.containsKey(sku)){
+                return -1;
+            }
+
+            checkoutValue += pricesTable.get(sku);
+        }
+
+        return checkoutValue;
     }
 
     private void populatePriceTable(){
@@ -23,6 +34,7 @@ public class CheckoutSolution {
         pricesTable.put("D", 15);
     }
 }
+
 
 
 
