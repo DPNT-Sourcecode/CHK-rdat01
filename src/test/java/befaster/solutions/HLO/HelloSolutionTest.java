@@ -16,8 +16,18 @@ public class HelloSolutionTest {
     }
 
     @Test
-    public void helloMethodShouldReturnHelloWorld() {
-        assertThat(helloSolution.hello("Some friend name"), equalTo("Hello, World!"));
+    public void helloMethodShouldReturnHelloWithTheSentString() {
+        final String friendName = "John";
+
+        assertThat(helloSolution.hello(friendName), equalTo("Hello, " + friendName + "!"));
+    }
+
+    @Test
+    public void helloMethodShouldReturnHelloWithTheSentStringTrimmed() {
+        final String friendName = " John ";
+
+        assertThat(helloSolution.hello(friendName), equalTo("Hello, " + friendName.trim() + "!"));
     }
 }
+
 
