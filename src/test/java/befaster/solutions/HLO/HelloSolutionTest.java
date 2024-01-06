@@ -16,9 +16,8 @@ public class HelloSolutionTest {
     }
 
     @Test
-    public void helloMethodShouldReturnSentText() {
-        String text = "hello";
-
-        assertThat(helloSolution.hello(text), equalTo(text));
+    public void helloMethodShouldReturnHelloWorld() {
+        assertThat(helloSolution.hello("Some friend name"), equalTo("Hello, World!"));
     }
 }
+
