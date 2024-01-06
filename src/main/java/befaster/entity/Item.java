@@ -5,6 +5,11 @@ public class Item {
     private Integer price;
     private SpecialOffer specialOffer;
 
+    public Item(Character sku, Integer price) {
+        this.sku = sku;
+        this.price = price;
+    }
+
     public Item(Character sku, Integer price, SpecialOffer specialOffer) {
         this.sku = sku;
         this.price = price;
@@ -19,6 +24,18 @@ public class Item {
         return price;
     }
 
+    public void setSku(Character sku) {
+        this.sku = sku;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public void setSpecialOffer(SpecialOffer specialOffer) {
+        this.specialOffer = specialOffer;
+    }
+
     public SpecialOffer getSpecialOffer() {
         return specialOffer;
     }
@@ -28,9 +45,14 @@ public class Item {
     }
 
     public Integer getFinalPrice(int quantity) {
+        if (hasSpecialOffer() && specialOffer.getQuantity() == quantity) {
+           return specialOffer.getFixedPrice();
+        }
 
+        return quantity * price;
     }
 }
+
 
 
 
