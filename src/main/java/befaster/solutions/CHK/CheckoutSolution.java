@@ -75,14 +75,6 @@ public class CheckoutSolution {
             return checkoutValue;
         }
 
-        //EEB === 110 === 110 - 30 (B)
-
+        
     }
 }
-
-
-
-
-
-
-

@@ -42,11 +42,6 @@ public class Item {
         Integer remainder = quantity % specialOffers.get(0).getQuantity();
         Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
 
-        var specialOfferType = specialOffers.get(0).getSpecialOfferType();
-        if(specialOfferType.equals(SpecialOfferType.FREE_ITEM)){
-            return quantity * price - (remainder * price - divisionResult * specialOffers.get(0).getPrice());
-        }
-
         return remainder * price + divisionResult * specialOffers.get(0).getPrice();
     }
 
@@ -65,8 +60,3 @@ public class Item {
         return null;
     }
 }
-
-
-
-
-

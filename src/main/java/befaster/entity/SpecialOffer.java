@@ -41,5 +41,3 @@ public class SpecialOffer {
         return freeItemSKU;
     }
 }
-
-
