@@ -67,13 +67,18 @@ public class CheckoutSolution {
     }
 
     private int calculateCheckoutValue(char sku, HashMap<Character, Integer> basket){
-        if(!itemsList.get(sku).hasFreeItem()){
+        var freeItemSKU = itemsList.get(sku).getFreeItemSKU();
+
+        if(freeItemSKU == null){
             return itemsList.get(sku).getFinalPrice(basket.get(sku));
         }
 
-        itemsList.get(sku).spe
+        var freeItemQuantity = basket.get(freeItemSKU);
+
+
     }
 }
+
 
 
 
