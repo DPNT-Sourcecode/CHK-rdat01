@@ -34,6 +34,11 @@ public class Item {
 
         return quantity * price;
     }
+
+    public void AddSpecialOffers() {
+        specialOffers.add(specialOffer);
+    }
 }
+
 
 

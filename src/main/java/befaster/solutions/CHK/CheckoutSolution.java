@@ -11,7 +11,7 @@ public class CheckoutSolution {
 
     public CheckoutSolution(){
         itemsList = new HashMap<>();
-        populateItemsList();
+        createItemsList();
     }
 
     public Integer checkout(String skus) {
@@ -41,15 +41,21 @@ public class CheckoutSolution {
 
     private void createItemsList(){
         var itemA = new Item('A', 50);
+        itemA.AddSpecialOffers();
         var itemB = new Item('B', 30);
+        itemB.AddSpecialOffers();
         var itemC = new Item('C', 20);
         var itemD = new Item('D', 15);
+        var itemE = new Item('E', 40);
+        itemE.AddSpecialOffers();
 
         itemsList.put(itemA.getSku(), itemA);
         itemsList.put(itemB.getSku(), itemB);
         itemsList.put(itemC.getSku(), itemC);
         itemsList.put(itemD.getSku(), itemD);
+        itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
 
