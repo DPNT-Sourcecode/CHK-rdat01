@@ -10,14 +10,16 @@ import java.util.List;
 
 public class CheckoutSolution {
 
+    private HashMap<Character, Integer> basket;
     private HashMap<Character, Item> itemsList;
 
     public CheckoutSolution(){
+        basket = new HashMap<>();
         itemsList = new HashMap<>();
         populateItemsList();
     }
 
-    public Integer checkout(String skus) { //ABAC
+    public Integer checkout(String skus) {
         Integer checkoutValue = 0;
         char[] basketList = skus.toCharArray();
 
@@ -25,6 +27,9 @@ public class CheckoutSolution {
             if(!itemsList.containsKey(sku)){
                 return -1;
             }
+            int currentQuantity = basket.get(sku);
+
+            basket.put(sku, currentQuantity++);
 
             checkoutValue += itemsList.get(sku).getFinalPrice();
         }
@@ -39,3 +44,4 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
+
