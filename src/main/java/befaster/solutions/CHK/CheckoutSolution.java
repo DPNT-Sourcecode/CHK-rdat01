@@ -71,8 +71,9 @@ public class CheckoutSolution {
             return itemsList.get(sku).getFinalPrice(basket.get(sku));
         }
 
-        
+
     }
 }
+
 
 

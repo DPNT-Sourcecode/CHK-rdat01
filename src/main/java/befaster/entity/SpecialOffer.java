@@ -6,7 +6,7 @@ public class SpecialOffer {
     private Integer quantity;
     private Integer price;
     private SpecialOfferType specialOfferType;
-    private char freeItem;
+    private char freeItemSKU;
 
     public SpecialOffer(Integer quantity, Integer fixedPrice, SpecialOfferType specialOfferType) {
         this.quantity = quantity;
@@ -36,4 +36,9 @@ public class SpecialOffer {
     public SpecialOfferType getSpecialOfferType() {
         return specialOfferType;
     }
+
+    public char getFreeItemSKU() {
+        return freeItemSKU;
+    }
 }
+
