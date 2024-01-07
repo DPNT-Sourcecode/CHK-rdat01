@@ -33,7 +33,7 @@ public class CheckoutSolution {
             }
 
             int currentQuantity = basket.get(sku);
-            basket.put(sku, currentQuantity++);
+            basket.put(sku, currentQuantity + 1);
         }
 
         for (char sku : basket.keySet()) {
@@ -50,6 +50,7 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
+
 
 
 
