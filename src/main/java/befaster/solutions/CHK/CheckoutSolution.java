@@ -67,7 +67,12 @@ public class CheckoutSolution {
     }
 
     private int calculateCheckoutValue(char sku, HashMap<Character, Integer> basket){
-        return itemsList.get(sku).getFinalPrice(basket.get(sku));
+        if(!itemsList.get(sku).hasFreeItem()){
+            return itemsList.get(sku).getFinalPrice(basket.get(sku));
+        }
+
+        
     }
 }
+
 

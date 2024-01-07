@@ -57,7 +57,15 @@ public class Item {
             this.specialOffers.add(specialOffer);
         }
     }
+
+    public boolean hasFreeItem(){
+        for (var specialOffer : specialOffers) {
+            if(specialOffer.getSpecialOfferType() == SpecialOfferType.FREE_ITEM) return true;
+        }
+        return false;
+    }
 }
+
 
 
 
