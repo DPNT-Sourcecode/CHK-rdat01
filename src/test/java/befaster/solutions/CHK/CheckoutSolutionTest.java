@@ -34,6 +34,14 @@ public class CheckoutSolutionTest {
 
         assertThat(checkoutSolution.checkout(basket), equalTo(-1));
     }
+
+    @Test
+    public void givenAValidBasketWithOneItemShouldReturnTotalCheckoutValue() {
+        String basket = "B";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(30));
+    }
 }
+
 
 
