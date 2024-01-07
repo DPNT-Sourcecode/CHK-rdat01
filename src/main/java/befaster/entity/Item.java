@@ -44,11 +44,13 @@ public class Item {
         return getSpecialOffer() == null ? false : true;
     }
 
-    public Integer getFinalPrice(int quantity) {
-        if (hasSpecialOffer() && specialOffer.getQuantity() == quantity) {
-           return specialOffer.getFixedPrice();
+    public Integer getFinalPrice(int quantity) { // 6 - AAAAAA
+        if (hasSpecialOffer()) {
+           Integer finalCount = quantity - specialOffer.getQuantity();
+           return specialOffer.getFixedPrice() + finalCount * price;
         }
 
         return quantity * price;
     }
 }
+
