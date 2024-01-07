@@ -30,7 +30,7 @@ public class CheckoutSolutionTest {
 
     @Test
     public void givenAnInvalidBasketShouldReturnNegativeOne() {
-        String basket = "E";
+        String basket = "X";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(-1));
     }
@@ -49,3 +49,4 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout(basket), equalTo(230));
     }
 }
+

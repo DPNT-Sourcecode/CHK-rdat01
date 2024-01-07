@@ -40,10 +40,6 @@ public class Item {
         Integer remainder = quantity % specialOffers.get(0).getQuantity();
         Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
 
-        if(){
-
-        }
-
         return remainder * price + divisionResult * specialOffers.get(0).getFixedPrice();
     }
 
@@ -55,6 +51,7 @@ public class Item {
         }
     }
 }
+
 
 
 
