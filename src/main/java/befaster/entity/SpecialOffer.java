@@ -4,19 +4,24 @@ import befaster.entity.enums.SpecialOfferType;
 
 public class SpecialOffer {
     private Integer quantity;
-    private Integer fixedPrice;
+    private Integer price;
     private SpecialOfferType specialOfferType;
     private char freeItem;
 
     public SpecialOffer(Integer quantity, Integer fixedPrice, SpecialOfferType specialOfferType) {
         this.quantity = quantity;
-        this.fixedPrice = fixedPrice;
+        this.price = fixedPrice;
         this.specialOfferType = specialOfferType;
     }
 
-    public SpecialOffer(Integer quantity, char freeItem, SpecialOfferType specialOfferType) {
+    public SpecialOffer(
+            Integer quantity,
+            char freeItem,
+            int freeItemPrice,
+            SpecialOfferType specialOfferType) {
         this.quantity = quantity;
         this.freeItem = freeItem;
+        this.price = freeItemPrice;
         this.specialOfferType = specialOfferType;
     }
 
@@ -24,17 +29,11 @@ public class SpecialOffer {
         return quantity;
     }
 
-    public Integer getFixedPrice() {
-        return fixedPrice;
+    public Integer getPrice() {
+        return price;
     }
 
     public SpecialOfferType getSpecialOfferType() {
         return specialOfferType;
     }
-
-    public char getFreeItem() {
-        return freeItem;
-    }
 }
-
-

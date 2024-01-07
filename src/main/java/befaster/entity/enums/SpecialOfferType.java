@@ -4,4 +4,3 @@ public enum SpecialOfferType {
     SPECIAL_PRICE,
     FREE_ITEM
 }
-
