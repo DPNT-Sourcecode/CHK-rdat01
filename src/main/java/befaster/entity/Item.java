@@ -20,12 +20,12 @@ public class Item {
         return specialOffers;
     }
 
-    public boolean hasSpecialOffer() {
-        return getSpecialOffers() == null ? false : true;
+    public boolean hasSpecialOffers() {
+        return getSpecialOffers().size() == 0 ? false : true;
     }
 
     public Integer getFinalPrice(int quantity) {
-        if (hasSpecialOffer()) {
+        if (hasSpecialOffers()) {
             Integer remainder = quantity % specialOffers.getQuantity();
             Integer divisionResult = quantity / specialOffers.getQuantity();
 
@@ -43,6 +43,7 @@ public class Item {
         }
     }
 }
+
 
 
 

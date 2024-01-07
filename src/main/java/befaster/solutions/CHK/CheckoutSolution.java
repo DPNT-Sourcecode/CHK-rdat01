@@ -41,15 +41,22 @@ public class CheckoutSolution {
 
     private void createItemsList(){
         var itemA = new Item('A', 50);
-        itemA.AddSpecialOffers();
+        itemA.AddSpecialOffers(
+                new SpecialOffer(3, 130),
+                new SpecialOffer(5, 200)
+        );
 
         var itemB = new Item('B', 30);
-        itemB.AddSpecialOffers();
+        itemB.AddSpecialOffers(
+                new SpecialOffer(2, 45)
+        );
 
         var itemC = new Item('C', 20);
         var itemD = new Item('D', 15);
         var itemE = new Item('E', 40);
-        itemE.AddSpecialOffers();
+        itemE.AddSpecialOffers(
+                new SpecialOffer()
+        );
 
         itemsList.put(itemA.getSku(), itemA);
         itemsList.put(itemB.getSku(), itemB);
@@ -58,6 +65,7 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
 
 
