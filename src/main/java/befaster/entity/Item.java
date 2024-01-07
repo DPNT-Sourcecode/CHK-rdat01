@@ -29,7 +29,7 @@ public class Item {
     }
 
     public Integer getFinalPrice(int quantity) {
-        if (!hasSpecialOffers()) {
+        if (!hasSpecialOffers() || specialOffers.get(0).getSpecialOfferType() == SpecialOfferType.FREE_ITEM) {
             return quantity * price;
         }
 
@@ -60,4 +60,5 @@ public class Item {
         return null;
     }
 }
+
 
