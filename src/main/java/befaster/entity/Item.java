@@ -44,10 +44,10 @@ public class Item {
 
         var specialOfferType = specialOffers.get(0).getSpecialOfferType();
         if(specialOfferType.equals(SpecialOfferType.FREE_ITEM)){
-            return remainder * price - divisionResult * specialOffers.get(0).getFixedPrice();
+            return remainder * price - divisionResult * specialOffers.get(0).getPrice();
         }
 
-        return remainder * price + divisionResult * specialOffers.get(0).getFixedPrice();
+        return remainder * price + divisionResult * specialOffers.get(0).getPrice();
     }
 
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
@@ -58,3 +58,4 @@ public class Item {
         }
     }
 }
+

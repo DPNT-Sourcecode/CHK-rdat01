@@ -48,4 +48,12 @@ public class CheckoutSolutionTest {
 
         assertThat(checkoutSolution.checkout(basket), equalTo(230));
     }
+
+    @Test
+    public void givenAValidBasketWithFreeItemShouldReturnPriceOfBasket() {
+        String basket = "EE";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(80));
+    }
 }
+
