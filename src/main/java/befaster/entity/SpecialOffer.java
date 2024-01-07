@@ -4,7 +4,7 @@ public class SpecialOffer {
     private Integer quantity;
     private Integer fixedPrice;
 
-    public SpecialOffer(Integer quantity, Integer fixedPrice) {
+    public SpecialOffer(Integer quantity, Integer fixedPrice, enum offerType) {
         this.quantity = quantity;
         this.fixedPrice = fixedPrice;
     }
