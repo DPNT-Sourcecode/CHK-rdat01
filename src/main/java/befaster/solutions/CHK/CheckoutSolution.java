@@ -2,6 +2,7 @@ package befaster.solutions.CHK;
 
 import befaster.entity.Item;
 import befaster.entity.SpecialOffer;
+import befaster.entity.enums.SpecialOfferType;
 
 import java.util.HashMap;
 
@@ -42,20 +43,20 @@ public class CheckoutSolution {
     private void createItemsList(){
         var itemA = new Item('A', 50);
         itemA.AddSpecialOffers(
-                new SpecialOffer(3, 130),
-                new SpecialOffer(5, 200)
+                new SpecialOffer(3, 130, SpecialOfferType.SPECIAL_PRICE),
+                new SpecialOffer(5, 200, SpecialOfferType.SPECIAL_PRICE)
         );
 
         var itemB = new Item('B', 30);
         itemB.AddSpecialOffers(
-                new SpecialOffer(2, 45)
+                new SpecialOffer(2, 45, SpecialOfferType.SPECIAL_PRICE)
         );
 
         var itemC = new Item('C', 20);
         var itemD = new Item('D', 15);
         var itemE = new Item('E', 40);
         itemE.AddSpecialOffers(
-                new SpecialOffer()
+                new SpecialOffer(2, 'B', SpecialOfferType.FREE_ITEM)
         );
 
         itemsList.put(itemA.getSku(), itemA);
@@ -65,3 +66,4 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
