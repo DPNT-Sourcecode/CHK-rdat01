@@ -19,7 +19,7 @@ public class CheckoutSolution {
         populateItemsList();
     }
 
-    public Integer checkout(String skus) {
+    public Integer checkout(String skus) { //ABAC
         Integer checkoutValue = 0;
         char[] basketList = skus.toCharArray();
 
@@ -27,14 +27,16 @@ public class CheckoutSolution {
             if(!itemsList.containsKey(sku)){
                 return -1;
             }
+
+            if(!basket.containsKey(sku)){
+                basket.put(sku, 0);
+            }
+
             int currentQuantity = basket.get(sku);
-
             basket.put(sku, currentQuantity++);
-
-            checkoutValue += itemsList.get(sku).getFinalPrice();
         }
 
-        return checkoutValue;
+        return checkoutValue += itemsList.get(sku).getFinalPrice();;
     }
 
     private void populateItemsList(){
@@ -44,4 +46,5 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
+
 
