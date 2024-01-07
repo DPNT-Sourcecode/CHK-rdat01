@@ -7,17 +7,16 @@ import java.util.HashMap;
 
 public class CheckoutSolution {
 
-    private HashMap<Character, Integer> basket;
     private HashMap<Character, Item> itemsList;
 
     public CheckoutSolution(){
-        basket = new HashMap<>();
         itemsList = new HashMap<>();
         populateItemsList();
     }
 
     public Integer checkout(String skus) {
         Integer checkoutValue = 0;
+        HashMap<Character, Integer> basket = new HashMap<>();
         char[] basketList = skus.toCharArray();
 
         for (char sku : basketList) {
@@ -36,8 +35,6 @@ public class CheckoutSolution {
         for (char sku : basket.keySet()) {
             checkoutValue += itemsList.get(sku).getFinalPrice(basket.get(sku));
         }
-
-        basket.clear();
 
         return checkoutValue;
     }
