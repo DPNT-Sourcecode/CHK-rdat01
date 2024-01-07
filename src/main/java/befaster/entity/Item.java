@@ -49,12 +49,13 @@ public class Item {
             Integer remainder = quantity % specialOffer.getQuantity();
             Integer divisionResult = quantity / specialOffer.getQuantity();
 
-            return remainder * quantity + divisionResult * specialOffer.getFixedPrice();
+            return remainder * price + divisionResult * specialOffer.getFixedPrice();
         }
 
         return quantity * price;
     }
 }
+
 
 
 
