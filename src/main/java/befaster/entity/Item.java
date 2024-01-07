@@ -46,12 +46,15 @@ public class Item {
 
     public Integer getFinalPrice(int quantity) {
         if (hasSpecialOffer()) {
-            Integer finalCount = quantity - specialOffer.getQuantity();
-            return specialOffer.getFixedPrice() + finalCount * price;
+            Integer remainder = quantity % specialOffer.getQuantity();
+            Integer divisionResult = quantity / specialOffer.getQuantity();
+
+            return remainder * quantity + divisionResult * specialOffer.getFixedPrice();
         }
 
         return quantity * price;
     }
 }
+
 
 
