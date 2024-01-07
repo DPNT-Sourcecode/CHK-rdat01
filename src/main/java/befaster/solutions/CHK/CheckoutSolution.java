@@ -3,10 +3,7 @@ package befaster.solutions.CHK;
 import befaster.entity.Item;
 import befaster.entity.SpecialOffer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 
 public class CheckoutSolution {
 
@@ -40,6 +37,8 @@ public class CheckoutSolution {
             checkoutValue += itemsList.get(sku).getFinalPrice(basket.get(sku));
         }
 
+        basket.clear();
+
         return checkoutValue;
     }
 
@@ -50,6 +49,7 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
+
 
 
 
