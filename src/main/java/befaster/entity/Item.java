@@ -35,10 +35,15 @@ public class Item {
         return quantity * price;
     }
 
-    public void AddSpecialOffers() {
-        specialOffers.add(specialOffer);
+    public void AddSpecialOffers(SpecialOffer... specialOffers) {
+        for (var specialOffer : specialOffers) {
+            if(specialOffer == null) continue;
+
+            this.specialOffers.add(specialOffer);
+        }
     }
 }
+
 
 
 

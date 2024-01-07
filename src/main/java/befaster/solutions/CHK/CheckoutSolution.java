@@ -42,8 +42,10 @@ public class CheckoutSolution {
     private void createItemsList(){
         var itemA = new Item('A', 50);
         itemA.AddSpecialOffers();
+
         var itemB = new Item('B', 30);
         itemB.AddSpecialOffers();
+
         var itemC = new Item('C', 20);
         var itemD = new Item('D', 15);
         var itemE = new Item('E', 40);
@@ -56,6 +58,7 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
 
 
