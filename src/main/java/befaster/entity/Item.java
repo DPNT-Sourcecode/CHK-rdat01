@@ -11,7 +11,7 @@ public class Item {
     public Item(Character sku, Integer price) {
         this.sku = sku;
         this.price = price;
-        this.specialOffers = ArrayList<SpecialOffer>();
+        this.specialOffers = new ArrayList<>();
     }
 
     public Character getSku() {
@@ -55,5 +55,6 @@ public class Item {
         }
     }
 }
+
 
 
