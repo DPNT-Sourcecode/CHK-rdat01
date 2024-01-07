@@ -39,9 +39,9 @@ public class CheckoutSolution {
         return checkoutValue;
     }
 
-    private void populateItemsList(){
-        var itemA = new Item('A', 50, new SpecialOffer(3, 130));
-        var itemB = new Item('B', 30, new SpecialOffer(2, 45));
+    private void createItemsList(){
+        var itemA = new Item('A', 50);
+        var itemB = new Item('B', 30);
         var itemC = new Item('C', 20);
         var itemD = new Item('D', 15);
 
@@ -51,4 +51,5 @@ public class CheckoutSolution {
         itemsList.put(itemD.getSku(), itemD);
     }
 }
+
 
