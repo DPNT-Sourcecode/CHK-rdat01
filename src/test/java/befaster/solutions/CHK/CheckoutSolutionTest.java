@@ -22,10 +22,18 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void givenAValidBasketWithASpecialOfferShouldReturnTotalCheckoutValue() {
+        String basket = "AAA";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(130));
+    }
+
+    @Test
     public void givenAnInvalidBasketShouldReturnNegativeOne() {
         String basket = "E";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(-1));
     }
 }
+
 
