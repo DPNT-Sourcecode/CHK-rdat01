@@ -20,22 +20,6 @@ public class Item {
         return sku;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setSku(Character sku) {
-        this.sku = sku;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public void setSpecialOffer(SpecialOffer specialOffer) {
-        this.specialOffer = specialOffer;
-    }
-
     public SpecialOffer getSpecialOffer() {
         return specialOffer;
     }
@@ -55,3 +39,4 @@ public class Item {
         return quantity * price;
     }
 }
+

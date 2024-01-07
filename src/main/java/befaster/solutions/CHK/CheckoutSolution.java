@@ -15,9 +15,9 @@ public class CheckoutSolution {
     }
 
     public Integer checkout(String skus) {
-        Integer checkoutValue = 0;
-        HashMap<Character, Integer> basket = new HashMap<>();
-        char[] basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
+        var checkoutValue = 0;
+        var basket = new HashMap<Character, Integer>();
+        var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
 
         for (char sku : basketList) {
             if(!itemsList.containsKey(sku)){
@@ -40,9 +40,15 @@ public class CheckoutSolution {
     }
 
     private void populateItemsList(){
-        itemsList.put('A', new Item('A', 50, new SpecialOffer(3, 130)));
-        itemsList.put('B', new Item('B', 30, new SpecialOffer(2, 45)));
-        itemsList.put('C', new Item('C', 20));
-        itemsList.put('D', new Item('D', 15));
+        var itemA = new Item('A', 50, new SpecialOffer(3, 130));
+        var itemB = new Item('B', 30, new SpecialOffer(2, 45));
+        var itemC = new Item('C', 20);
+        var itemD = new Item('D', 15);
+
+        itemsList.put(itemA.getSku(), itemA);
+        itemsList.put(itemB.getSku(), itemB);
+        itemsList.put(itemC.getSku(), itemC);
+        itemsList.put(itemD.getSku(), itemD);
     }
 }
+
