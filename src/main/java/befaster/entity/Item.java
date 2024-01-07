@@ -1,5 +1,7 @@
 package befaster.entity;
 
+import befaster.entity.enums.SpecialOfferType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,10 +41,10 @@ public class Item {
 
         Integer remainder = quantity % specialOffers.get(0).getQuantity();
         Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
-        var specialOfferType = specialOffers.get(0).getSpecialOfferType();
-        
-        if(){
 
+        var specialOfferType = specialOffers.get(0).getSpecialOfferType();
+        if(specialOfferType.equals(SpecialOfferType.FREE_ITEM)){
+            return remainder * price - divisionResult * specialOffers.get(0).getFixedPrice();
         }
 
         return remainder * price + divisionResult * specialOffers.get(0).getFixedPrice();
@@ -56,6 +58,7 @@ public class Item {
         }
     }
 }
+
 
 
 
