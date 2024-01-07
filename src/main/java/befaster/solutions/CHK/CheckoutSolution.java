@@ -19,7 +19,7 @@ public class CheckoutSolution {
         populateItemsList();
     }
 
-    public Integer checkout(String skus) { //ABAC
+    public Integer checkout(String skus) {
         Integer checkoutValue = 0;
         char[] basketList = skus.toCharArray();
 
@@ -50,6 +50,7 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
+
 
 
 
