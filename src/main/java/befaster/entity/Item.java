@@ -58,13 +58,14 @@ public class Item {
         }
     }
 
-    public boolean hasFreeItem(){
+    public Character getFreeItemSKU(){
         for (var specialOffer : specialOffers) {
-            if(specialOffer.getSpecialOfferType() == SpecialOfferType.FREE_ITEM) return true;
+            if(specialOffer.getSpecialOfferType() == SpecialOfferType.FREE_ITEM) return specialOffer.getFreeItemSKU();
         }
-        return false;
+        return null;
     }
 }
+
 
 
 

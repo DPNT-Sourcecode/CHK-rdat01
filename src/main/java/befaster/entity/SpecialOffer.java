@@ -16,11 +16,11 @@ public class SpecialOffer {
 
     public SpecialOffer(
             Integer quantity,
-            char freeItem,
+            char freeItemSKU,
             int freeItemPrice,
             SpecialOfferType specialOfferType) {
         this.quantity = quantity;
-        this.freeItem = freeItem;
+        this.freeItemSKU = freeItemSKU;
         this.price = freeItemPrice;
         this.specialOfferType = specialOfferType;
     }
@@ -41,4 +41,5 @@ public class SpecialOffer {
         return freeItemSKU;
     }
 }
+
 
