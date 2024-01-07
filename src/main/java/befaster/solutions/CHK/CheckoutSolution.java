@@ -49,9 +49,3 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
-
-
-
-
-
-

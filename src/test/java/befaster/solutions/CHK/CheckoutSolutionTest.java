@@ -41,7 +41,11 @@ public class CheckoutSolutionTest {
 
         assertThat(checkoutSolution.checkout(basket), equalTo(30));
     }
+
+    @Test
+    public void givenAValidBasketWithSpecialOfferAndASingleRepeatedItemShouldReturnTotalCheckoutValue() {
+        String basket = "AAAA";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(180));
+    }
 }
-
-
-
