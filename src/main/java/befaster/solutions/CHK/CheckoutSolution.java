@@ -72,7 +72,7 @@ public class CheckoutSolution {
         var freeItemBasketQuantity = basket.get(freeItemSpecialOffer.getFreeItemSKU());
         var checkoutValue = itemsList.get(sku).getFinalPrice(basket.get(sku));
 
-        if(freeItemSpecialOffer == null || freeItemBasketQuantity == 0){
+        if(freeItemSpecialOffer == null || (freeItemBasketQuantity != null && freeItemBasketQuantity == 0)){
             return checkoutValue;
         }
 
@@ -83,6 +83,7 @@ public class CheckoutSolution {
         return checkoutValue - freeItemsPrice;
     }
 }
+
 
 
 
