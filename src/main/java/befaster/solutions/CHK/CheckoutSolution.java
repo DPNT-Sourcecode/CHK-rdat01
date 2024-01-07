@@ -17,7 +17,7 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
         Integer checkoutValue = 0;
         HashMap<Character, Integer> basket = new HashMap<>();
-        char[] basketList = skus.toCharArray();
+        char[] basketList = skus.trim().toCharArray();
 
         for (char sku : basketList) {
             if(!itemsList.containsKey(sku)){
@@ -46,3 +46,4 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
+
