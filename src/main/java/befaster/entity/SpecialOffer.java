@@ -17,5 +17,3 @@ public class SpecialOffer {
         return fixedPrice;
     }
 }
-
-

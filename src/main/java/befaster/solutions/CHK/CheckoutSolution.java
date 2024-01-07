@@ -17,7 +17,7 @@ public class CheckoutSolution {
         populateItemsList();
     }
 
-    public Integer checkout(String skus) {
+    public Integer checkout(String skus) { //ABAC
         Integer checkoutValue = 0;
         char[] basketList = skus.toCharArray();
 
@@ -26,7 +26,7 @@ public class CheckoutSolution {
                 return -1;
             }
 
-            checkoutValue += itemsList.get(sku);
+            checkoutValue += itemsList.get(sku).getFinalPrice();
         }
 
         return checkoutValue;
@@ -39,6 +39,3 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
-
-
-
