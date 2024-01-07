@@ -36,7 +36,11 @@ public class CheckoutSolution {
             basket.put(sku, currentQuantity++);
         }
 
-        return checkoutValue += itemsList.get(sku).getFinalPrice();;
+        for (char sku : basket.keySet()) {
+            checkoutValue += itemsList.get(sku).getFinalPrice(basket.get(sku));
+        }
+
+        return checkoutValue;
     }
 
     private void populateItemsList(){
@@ -46,5 +50,6 @@ public class CheckoutSolution {
         itemsList.put('D', new Item('D', 15));
     }
 }
+
 
 
