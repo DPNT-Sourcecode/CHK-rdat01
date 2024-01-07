@@ -1,7 +1,6 @@
 package befaster.entity;
 
-import befaster.entity.enums.SpecialOfferType;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Item {
@@ -12,6 +11,7 @@ public class Item {
     public Item(Character sku, Integer price) {
         this.sku = sku;
         this.price = price;
+        this.specialOffers = ArrayList<SpecialOffer>();
     }
 
     public Character getSku() {
@@ -31,16 +31,20 @@ public class Item {
             return quantity * price;
         }
 
-        for (var specialOffer : specialOffers) {
-            var specialOfferType = specialOffer.getSpecialOfferType();
+//        for (var specialOffer : specialOffers) {
+//            var specialOfferType = specialOffer.getSpecialOfferType();
+//
+//
+//        }
 
-            
+        Integer remainder = quantity % specialOffers.get(0).getQuantity();
+        Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
+
+        if(){
+
         }
 
-        Integer remainder = quantity % specialOffers.getQuantity();
-        Integer divisionResult = quantity / specialOffers.getQuantity();
-
-        return remainder * price + divisionResult * specialOffers.getFixedPrice();
+        return remainder * price + divisionResult * specialOffers.get(0).getFixedPrice();
     }
 
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
@@ -51,4 +55,5 @@ public class Item {
         }
     }
 }
+
 
