@@ -17,8 +17,9 @@ public class CheckoutSolution {
     }
 
     public Integer checkout(String skus) {
+        Checkout checkout = null;
         var checkoutValue = 0;
-        var basket = new HashMap<Character, Integer>();
+        var skusAndQuantities = new HashMap<Character, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
 
         for (char sku : basketList) {
@@ -26,16 +27,20 @@ public class CheckoutSolution {
                 return -1;
             }
 
-            if(!basket.containsKey(sku)){
-                basket.put(sku, 0);
+            if(!skusAndQuantities.containsKey(sku)){
+                skusAndQuantities.put(sku, 0);
             }
 
-            int currentQuantity = basket.get(sku);
-            basket.put(sku, currentQuantity + 1);
+            int currentQuantity = skusAndQuantities.get(sku);
+            skusAndQuantities.put(sku, currentQuantity + 1);
         }
 
-        for (char sku : basket.keySet()) {
-            checkoutValue += itemsList.get(sku).getFinalPrice(basket.get(sku), basket);
+        for (var entry : skusAndQuantities.entrySet()) {
+            HashMap<Item, Integer> checkoutB
+        }
+
+        for (char sku : skusAndQuantities.keySet()) {
+            checkoutValue += itemsList.get(sku).getFinalPrice(skusAndQuantities.get(sku), skusAndQuantities);
         }
 
         return checkoutValue;
@@ -67,4 +72,5 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
