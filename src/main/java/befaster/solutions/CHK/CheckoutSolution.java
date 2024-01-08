@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import befaster.entity.Checkout;
 import befaster.entity.Item;
 import befaster.entity.SpecialOffer;
 import befaster.entity.enums.SpecialOfferType;
@@ -66,3 +67,4 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
