@@ -17,11 +17,7 @@ public class Checkout {
 
     private void calculateCheckoutValue() {
         for (var basketEntry : basket.entrySet()) {
-            value += basketEntry.getKey().getFinalPrice(basketEntry.getValue(), skusAndQuantities);
+            value += basketEntry.getKey().getFinalPrice(basketEntry.getValue());
         }
     }
 }
-
-
-
-

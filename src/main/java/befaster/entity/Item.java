@@ -21,22 +21,22 @@ public class Item {
 
     public int getPrice() { return price; }
 
-    public int getFinalPrice(int quantity, HashMap<Character, Integer> basket) {
+    public int getFinalPrice(int quantity) {
         int finalPrice = quantity * price;
 
         if(!isSpecialOfferApplicable(quantity))
             return finalPrice;
 
         for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
-            var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
+            /*var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
 
             if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
-                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);
+                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);*/
 
             if(specialOffer.isFreeItemOffer())
                 continue;
 
-            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(quantity, specialOffer, basket));
+            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(quantity, specialOffer));
         }
 
         return finalPrice;
@@ -64,21 +64,15 @@ public class Item {
             SpecialOffer specialOffer,
             int freeItemBasketQuantity,
             HashMap<Character, Integer> basket) {
-        return basket.get(specialOffer.getFreeItemSKU())
+        return basket.get(specialOffer.getFreeItemSKU());
     }
 
-    private int calculateSpecialPriceOffer(
-            int quantity,
-            SpecialOffer specialOffer,
-            HashMap<Character, Integer> basket) {
-
+    private int calculateSpecialPriceOffer(int quantity, SpecialOffer specialOffer) {
         int remainder = quantity % specialOffer.getQuantity();
-        var remainderPrice = getFinalPrice(remainder, basket);
+        var remainderPrice = getFinalPrice(remainder);
 
         int divisionResult = quantity / specialOffer.getQuantity();
 
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
-
-
