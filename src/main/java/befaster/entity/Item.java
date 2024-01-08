@@ -29,6 +29,8 @@ public class Item {
     }
 
     public Integer getFinalPrice(int quantity) {
+        if(quantity == 0) return 0;
+
         int finalPrice = quantity * price;
 
         for (var specialOffer : getSpecialOffersOfTypeSpecialPrice()) {
@@ -53,6 +55,7 @@ public class Item {
         }
     }
 }
+
 
 
 
