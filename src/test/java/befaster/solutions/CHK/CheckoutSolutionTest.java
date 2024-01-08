@@ -62,4 +62,26 @@ public class CheckoutSolutionTest {
 
         assertThat(checkoutSolution.checkout(basket), equalTo(375));
     }
+
+    @Test
+    public void test1() {
+        String basket = "AAAAAAAA";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(330));
+    }
+
+    @Test
+    public void test2() {
+        String basket = "AAAAAAAAA";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(380));
+    }
+
+    @Test
+    public void test3() {
+        String basket = "EEB";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(80));
+    }
 }
+
