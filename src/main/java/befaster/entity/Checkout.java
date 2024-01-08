@@ -7,8 +7,13 @@ public class Checkout {
     private int value;
 
     public Checkout(HashMap<Item, Integer> basket){
-        basket = new HashMap<>();
+        this.basket = basket;
         value = 0;
     }
+
+    public int getValue() {
+        return value;
+    }
 }
+
 
