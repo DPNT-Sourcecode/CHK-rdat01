@@ -4,7 +4,6 @@ import befaster.entity.Item;
 import befaster.entity.SpecialOffer;
 import befaster.entity.enums.SpecialOfferType;
 
-import java.nio.channels.spi.AbstractSelectionKey;
 import java.util.HashMap;
 
 public class CheckoutSolution {
@@ -83,7 +82,3 @@ public class CheckoutSolution {
         return checkoutValue - freeItemsPrice;
     }
 }
-
-
-
-
