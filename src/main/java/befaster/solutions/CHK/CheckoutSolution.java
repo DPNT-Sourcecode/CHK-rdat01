@@ -66,4 +66,3 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
-

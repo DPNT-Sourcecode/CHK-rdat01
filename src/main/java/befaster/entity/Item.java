@@ -28,7 +28,7 @@ public class Item {
                 .toList();
     }
 
-    public Integer getFinalPrice(int quantity) {
+    public Integer getFinalPrice(int quantity) { // 3
         if(quantity == 0) return 0;
 
         int finalPrice = quantity * price;
@@ -55,8 +55,3 @@ public class Item {
         }
     }
 }
-
-
-
-
-
