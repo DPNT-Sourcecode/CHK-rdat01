@@ -29,7 +29,7 @@ public class Item {
             return finalPrice;
 
         for (var specialOffer : specialOffers) {
-            if(specialOffer.isFreeItemOffer() && skus.contains(specialOffer.getFreeItemSKU()))
+            if(specialOffer.isFreeItemOffer() && skus.contains(String.valueOf(specialOffer.getFreeItemSKU())))
                 return finalPrice - specialOffer.getPrice();
 
             int remainder = quantity % specialOffer.getQuantity();
@@ -63,4 +63,5 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
+
 
