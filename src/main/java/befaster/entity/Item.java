@@ -28,14 +28,15 @@ public class Item {
             return finalPrice;
 
         for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
-            if(specialOffer.isFreeItemOffer() && basket.get(specialOffer.getFreeItemSKU()) > 0)
+            var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
+            if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
                 return calculateFreeItemOffer(finalPrice, specialOffer);
 
             if(specialOffer.isFreeItemOffer())
                 continue;
 
             int remainder = quantity % specialOffer.getQuantity();
-            var remainderPrice = getFinalPrice(remainder, skus);
+            var remainderPrice = getFinalPrice(remainder, basket);
 
             int divisionResult = quantity / specialOffer.getQuantity();
 
@@ -65,9 +66,10 @@ public class Item {
     }
 
     private int calculateFreeItemOffer(int finalPrice, SpecialOffer specialOffer) {
-        return finalPrice - 15;
+        return finalPrice - specialOffer.getPrice();
     }
 }
+
 
 
 
