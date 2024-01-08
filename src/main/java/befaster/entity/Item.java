@@ -61,13 +61,17 @@ public class Item {
     }
 
     private int calculateFreeItemOffer(
-            SpecialOffer specialOffer, int freeItemBasketQuantity, HashMap<Character, Integer> basket) {
-        getFinalPrice()
-        return 0;
+            SpecialOffer specialOffer,
+            int freeItemBasketQuantity,
+            HashMap<Character, Integer> basket) {
+        return getFinalPrice(basket.get(specialOffer.getFreeItemSKU()), basket) + freeItemBasketQuantity * basket;
     }
 
     private int calculateSpecialPriceOffer(
-            int quantity, SpecialOffer specialOffer, HashMap<Character, Integer> basket) {
+            int quantity,
+            SpecialOffer specialOffer,
+            HashMap<Character, Integer> basket) {
+
         int remainder = quantity % specialOffer.getQuantity();
         var remainderPrice = getFinalPrice(remainder, basket);
 
@@ -76,5 +80,6 @@ public class Item {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
