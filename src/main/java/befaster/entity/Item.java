@@ -28,7 +28,7 @@ public class Item {
                 .toList();
     }
 
-    public int getFinalPrice(int quantity) { // 8
+    public int getFinalPrice(int quantity) {
         int finalPrice = quantity * price;
 
         if(quantity < specialOffers.get(0).getQuantity() && quantity < specialOffers.get(1).getQuantity())
@@ -37,12 +37,12 @@ public class Item {
         var specialPriceOffers = getSpecialOffersOfTypeSpecialPrice();
 
         for (var specialOffer : specialPriceOffers) {
-            int remainder = quantity % specialOffer.getQuantity(); // resto = 3
+            int remainder = quantity % specialOffer.getQuantity();
             int divisionResult = quantity / specialOffer.getQuantity();
 
-            remainder = getFinalPrice(remainder);
+            var remainderPrice = getFinalPrice(remainder);
 
-            var offerPrice = remainder * price + divisionResult * specialOffer.getPrice();
+            var offerPrice = remainderPrice + divisionResult * specialOffer.getPrice();
 
             finalPrice = Math.min(finalPrice, offerPrice);
         }
@@ -58,9 +58,3 @@ public class Item {
         }
     }
 }
-
-
-
-
-
-
