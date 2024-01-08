@@ -33,20 +33,14 @@ public class Item {
     }
 
     public Integer getFinalPrice(int quantity) {
-        if (!hasSpecialOffers() || specialOffers.get(0).getSpecialOfferType() == SpecialOfferType.FREE_ITEM) {
-            return quantity * price;
+        if (hasSpecialOffers()) {
+            Integer remainder = quantity % specialOffers.get(0).getQuantity();
+            Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
+
+            return remainder * quantity + divisionResult * specialOffers.get(0).getFixedPrice();
         }
 
-//        for (var specialOffer : specialOffers) {
-//            var specialOfferType = specialOffer.getSpecialOfferType();
-//
-//
-//        }
-
-        Integer remainder = quantity % specialOffers.get(0).getQuantity();
-        Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
-
-        return remainder * price + divisionResult * specialOffers.get(0).getPrice();
+        return quantity * price;
     }
 
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
@@ -64,4 +58,5 @@ public class Item {
         return null;
     }
 }
+
 
