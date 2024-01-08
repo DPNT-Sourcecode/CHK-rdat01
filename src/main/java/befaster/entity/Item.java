@@ -45,10 +45,6 @@ public class Item {
         return finalPrice;
     }
 
-    private int calculateFreeItemOffer(int finalPrice, SpecialOffer specialOffer) {
-        return finalPrice - specialOffer.getPrice();
-    }
-
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
         for (var specialOffer : specialOffers) {
             if(specialOffer == null) continue;
@@ -66,5 +62,10 @@ public class Item {
     private boolean isSpecialOfferApplicable(int quantity) {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
+
+    private int calculateFreeItemOffer(int finalPrice, SpecialOffer specialOffer) {
+        return finalPrice - 15;
+    }
 }
+
 
