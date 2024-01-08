@@ -28,13 +28,13 @@ public class Item {
                 .toList();
     }
 
-    public Integer getFinalPrice(int quantity) { // 3
+    public Integer getFinalPrice(int quantity) { // 8
         if(quantity == 0) return 0;
 
         int finalPrice = quantity * price;
 
         for (var specialOffer : getSpecialOffersOfTypeSpecialPrice()) {
-            Integer remainder = quantity % specialOffer.getQuantity();
+            Integer remainder = quantity % specialOffer.getQuantity(); // resto = 2
             Integer divisionResult = quantity / specialOffer.getQuantity();
 
             remainder = getFinalPrice(remainder);
@@ -55,3 +55,4 @@ public class Item {
         }
     }
 }
+
