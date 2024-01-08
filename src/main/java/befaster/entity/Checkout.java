@@ -4,10 +4,12 @@ import java.util.HashMap;
 
 public class Checkout {
     private HashMap<Item, Integer> basket;
+    private HashMap<Character, Integer> freeItems;
     private int value;
 
     public Checkout(HashMap<Item, Integer> basket){
         this.basket = basket;
+        this.freeItems = new HashMap<>();
         calculateCheckoutValue();
     }
 
@@ -33,8 +35,10 @@ public class Checkout {
             if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
                 return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);*/
 
-            if(specialOffer.isFreeItemOffer())
+            if(specialOffer.isFreeItemOffer()){
+                freeItems.put(specialOffer.getFreeItemSKU(), quantity / specialOffer.getQuantity());
                 continue;
+            }
 
             finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
         }
@@ -51,5 +55,6 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
