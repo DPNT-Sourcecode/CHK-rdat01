@@ -21,6 +21,8 @@ public class Checkout {
         for (var basketEntry : basket.entrySet()) {
             value += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
+
+
     }
 
     public int getItemPrice(Item item, int quantity) {
@@ -55,6 +57,7 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
 
