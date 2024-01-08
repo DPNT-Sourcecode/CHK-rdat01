@@ -64,7 +64,7 @@ public class Item {
             SpecialOffer specialOffer,
             int freeItemBasketQuantity,
             HashMap<Character, Integer> basket) {
-        return getFinalPrice(basket.get(specialOffer.getFreeItemSKU()), basket) + freeItemBasketQuantity * basket;
+        return getFinalPrice(basket.get(specialOffer.getFreeItemSKU()), basket) + freeItemBasketQuantity * 30;
     }
 
     private int calculateSpecialPriceOffer(
@@ -80,6 +80,7 @@ public class Item {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
 
