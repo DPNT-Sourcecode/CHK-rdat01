@@ -32,7 +32,7 @@ public class Item {
     public int getFinalPrice(int quantity) {
         int finalPrice = quantity * price;
 
-        if(specialOffers.stream().allMatch(specialOffer -> quantity < specialOffer.getQuantity()))
+        if(!isSpecialOfferApplicable(quantity))
             return finalPrice;
 
         for (var specialOffer : getApplicableSpecialPriceOffers(quantity)) {
@@ -56,7 +56,12 @@ public class Item {
             this.specialOffers.add(specialOffer);
         }
     }
+
+    private boolean isSpecialOfferApplicable(int quantity) {
+        return specialOffers.stream().allMatch(specialOffer -> !specialOffer.isSpecialOfferApplicable(quantity));
+    }
 }
+
 
 
 

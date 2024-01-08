@@ -32,4 +32,9 @@ public class SpecialOffer {
     public SpecialOfferType getSpecialOfferType() {
         return specialOfferType;
     }
+
+    public boolean isSpecialOfferApplicable(int quantity){
+        return quantity >= getQuantity();
+    }
 }
+
