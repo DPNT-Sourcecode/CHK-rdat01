@@ -24,16 +24,12 @@ public class Item {
 
     public List<SpecialOffer> getApplicableSpecialPriceOffers(int quantity) {
         return specialOffers.stream()
-                .filter(specialOffer -> specialOffer.getQuantity() <= quantity
-                        && specialOffer.getSpecialOfferType().equals(SpecialOfferType.SPECIAL_PRICE))
+                .filter(specialOffer -> specialOffer.isSpecialPriceOfferApplicable(quantity))
                 .toList();
     }
 
     public int getFinalPrice(int quantity) {
         int finalPrice = quantity * price;
-
-        if(!isSpecialOfferApplicable(quantity))
-            return finalPrice;
 
         for (var specialOffer : getApplicableSpecialPriceOffers(quantity)) {
             int remainder = quantity % specialOffer.getQuantity();
@@ -56,10 +52,9 @@ public class Item {
         }
     }
 
-    private boolean isSpecialOfferApplicable(int quantity) {
-        return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
-    }
+
 }
+
 
 
 

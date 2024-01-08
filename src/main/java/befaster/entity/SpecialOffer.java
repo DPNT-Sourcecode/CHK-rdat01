@@ -33,8 +33,9 @@ public class SpecialOffer {
         return specialOfferType;
     }
 
-    public boolean isSpecialOfferApplicable(int quantity){
-        return quantity >= getQuantity();
+    public boolean isSpecialPriceOfferApplicable(int quantity){
+        return quantity <= getQuantity() && getSpecialOfferType().equals(SpecialOfferType.SPECIAL_PRICE);
     }
 }
+
 
