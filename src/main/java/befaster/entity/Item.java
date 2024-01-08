@@ -20,6 +20,10 @@ public class Item {
         return sku;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
     public List<SpecialOffer> getSpecialOffers() {
         return specialOffers;
     }
@@ -60,3 +64,4 @@ public class Item {
         return null;
     }
 }
+
