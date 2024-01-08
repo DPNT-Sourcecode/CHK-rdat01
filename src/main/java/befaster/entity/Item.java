@@ -35,6 +35,8 @@ public class Item {
             Integer remainder = quantity % specialOffer.getQuantity();
             Integer divisionResult = quantity / specialOffer.getQuantity();
 
+            remainder = getFinalPrice(remainder);
+
             var offerPrice = remainder * price + divisionResult * specialOffer.getPrice();
 
             finalPrice = Math.min(finalPrice, offerPrice);
@@ -51,6 +53,7 @@ public class Item {
         }
     }
 }
+
 
 
 
