@@ -30,7 +30,7 @@ public class Item {
 
         for (var specialOffer : specialOffers) {
             if(specialOffer.getSpecialOfferType().equals(SpecialOfferType.FREE_ITEM))
-                return -specialOffer.getPrice();
+                return finalPrice - specialOffer.getPrice();
 
             int remainder = quantity % specialOffer.getQuantity();
             var remainderPrice = getFinalPrice(remainder);
@@ -63,6 +63,7 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
+
 
 
 
