@@ -43,10 +43,10 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void givenAValidBasketWithSpecialOfferAndASingleRepeatedItemShouldReturnTotalCheckoutValue() {
-        String basket = "AAAAA";
+    public void givenAValidBasketWithSpecialOfferAndASingleRepeatedItemShouldReturnLowestCheckoutValue() {
+        String basket = "AAAAAA";
 
-        assertThat(checkoutSolution.checkout(basket), equalTo(230));
+        assertThat(checkoutSolution.checkout(basket), equalTo(250));
     }
 
     @Test
@@ -56,3 +56,4 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout(basket), equalTo(80));
     }
 }
+
