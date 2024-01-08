@@ -22,24 +22,24 @@ public class Item {
     public int getPrice() { return price; }
 
     public int getFinalPrice(int quantity, HashMap<Character, Integer> basket) {
-        int basePrice = quantity * price;
+        int finalPrice = quantity * price;
 
         if(!isSpecialOfferApplicable(quantity))
-            return basePrice;
+            return finalPrice;
 
         for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
             var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
 
             if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
-                return calculateFreeItemOffer(basePrice, specialOffer, freeItemBasketQuantity);
+                return calculateFreeItemOffer(finalPrice, specialOffer, freeItemBasketQuantity);
 
             if(specialOffer.isFreeItemOffer())
                 continue;
 
-            Math.min(basePrice, calculateSpecialPriceOffer(quantity, specialOffer, basket));
+            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(quantity, specialOffer, basket));
         }
 
-        return basePrice;
+        return finalPrice;
     }
 
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
@@ -73,9 +73,3 @@ public class Item {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
-
-
-
-
-
-
