@@ -37,7 +37,7 @@ public class Item {
 
             var offerPrice = remainder * price + divisionResult * specialOffer.getPrice();
 
-            if(offerPrice < finalPrice) finalPrice = offerPrice;
+            finalPrice = Math.min(finalPrice, offerPrice);
         }
 
         return finalPrice;
@@ -51,5 +51,6 @@ public class Item {
         }
     }
 }
+
 
 
