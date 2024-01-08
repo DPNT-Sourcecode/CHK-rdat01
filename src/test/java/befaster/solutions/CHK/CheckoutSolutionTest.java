@@ -57,25 +57,47 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void givenAValidBasketWithMultipleCombinedOffersReturnsPrice() {
+    public void givenAValidBasketWithEightItemsAReturnsPrice() {
         String basket = "AAAAAAAA";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(330));
     }
 
     @Test
-    public void test2() {
+    public void givenAValidBasketWithNineItemsAReturnsPrice() {
         String basket = "AAAAAAAAA";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(380));
     }
 
     @Test
-    public void test3() {
+    public void givenAValidBasketContainingAFreeItemReturnsPrice() {
         String basket = "EEB";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(80));
     }
+
+    @Test
+    public void test1() {
+        String basket = "EEEEBB";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(160));
+    }
+
+    @Test
+    public void test2() {
+        String basket = "BEBEEE";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(160));
+    }
+
+    @Test
+    public void test3() {
+        String basket = "ABCDEABCDE";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(280));
+    }
 }
+
 
 
