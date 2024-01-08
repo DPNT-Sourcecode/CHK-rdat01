@@ -39,4 +39,3 @@ public class SpecialOffer {
 
     public boolean isFreeItemOffer() { return specialOfferType.equals(SpecialOfferType.FREE_ITEM); }
 }
-
