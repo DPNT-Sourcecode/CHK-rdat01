@@ -28,14 +28,14 @@ public class Item {
         return specialOffers;
     }
 
-    public SpecialOffer getSpecialOfferByQuantity(int quantity) {
+    public SpecialOffer getSpecialOfferByQuantity(int quantity) { //6
         SpecialOffer bestOffer = null;
 
         for (var specialOffer : getSpecialOffers()) {
-            Integer remainder = quantity % specialOffer.getQuantity();
-            Integer divisionResult = quantity / specialOffer.getQuantity();
+            Integer remainder = quantity % specialOffer.getQuantity(); // 0
+            Integer divisionResult = quantity / specialOffer.getQuantity(); // 2
 
-            remainder * quantity + divisionResult * specialOffer.getPrice();
+            var x = remainder * quantity + divisionResult * specialOffer.getPrice();
         }
 
         getSpecialOffers().stream()
@@ -49,16 +49,16 @@ public class Item {
     public Integer getFinalPrice(int quantity) {
         int finalPrice = quantity * price;
 
-        var bestOffer = getBestOffer(quantity);
+        for (var specialOffer : getSpecialOffers()) {
+            Integer remainder = quantity % specialOffer.getQuantity();
+            Integer divisionResult = quantity / specialOffer.getQuantity();
 
-        if (specialOffer == null || specialOffer.getSpecialOfferType().equals(SpecialOfferType.FREE_ITEM)) {
-            return finalPrice;
+            var offerPrice = remainder * quantity + divisionResult * specialOffer.getPrice();
+
+            if(offerPrice < finalPrice) finalPrice = offerPrice;
         }
 
-        Integer remainder = quantity % specialOffers.get(0).getQuantity();
-        Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
-
-        return remainder * quantity + divisionResult * specialOffers.get(0).getPrice();
+        return finalPrice;
     }
 
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
@@ -76,5 +76,6 @@ public class Item {
         return null;
     }
 }
+
 
 
