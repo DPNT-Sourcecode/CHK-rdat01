@@ -1,7 +1,5 @@
 package befaster.entity;
 
-import befaster.entity.enums.SpecialOfferType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class Item {
         if(!isSpecialOfferApplicable(quantity))
             return finalPrice;
 
-        for (var specialOffer : specialOffers) {
+        for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
             if(specialOffer.isFreeItemOffer() && skus.contains(String.valueOf(specialOffer.getFreeItemSKU())))
                 return finalPrice - specialOffer.getPrice();
 
@@ -55,10 +53,9 @@ public class Item {
         }
     }
 
-    private List<SpecialOffer> filterApplicableSpecialPriceOffers(int quantity) {
+    private List<SpecialOffer> filterApplicableSpecialOffers(int quantity) {
         return specialOffers.stream()
-                .filter(specialOffer -> specialOffer.getQuantity() <= quantity
-                        && specialOffer.isSpecialPriceOffer())
+                .filter(specialOffer -> quantity >= specialOffer.getQuantity())
                 .toList();
     }
 
@@ -66,6 +63,7 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
+
 
 
 
