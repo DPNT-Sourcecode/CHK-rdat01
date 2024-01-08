@@ -22,18 +22,18 @@ public class Item {
 
     public int getPrice() { return price; }
 
-    public int getFinalPrice(int quantity) {
+    public int getFinalPrice(int quantity, String skus) {
         int finalPrice = quantity * price;
 
         if(!isSpecialOfferApplicable(quantity))
             return finalPrice;
 
         for (var specialOffer : specialOffers) {
-            if(specialOffer.isFreeItemOffer())
+            if(specialOffer.isFreeItemOffer() && skus.contains(specialOffer.getFreeItemSKU()))
                 return finalPrice - specialOffer.getPrice();
 
             int remainder = quantity % specialOffer.getQuantity();
-            var remainderPrice = getFinalPrice(remainder);
+            var remainderPrice = getFinalPrice(remainder, skus);
 
             int divisionResult = quantity / specialOffer.getQuantity();
 
@@ -63,3 +63,4 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
+

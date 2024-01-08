@@ -29,6 +29,8 @@ public class SpecialOffer {
 
     public int getPrice() { return price; }
 
+    public char getFreeItemSKU() { return freeItemSKU; }
+
     public boolean isSpecialOfferApplicable(int quantity){
         return quantity >= getQuantity();
     }
@@ -37,3 +39,4 @@ public class SpecialOffer {
 
     public boolean isFreeItemOffer() { return specialOfferType.equals(SpecialOfferType.FREE_ITEM); }
 }
+
