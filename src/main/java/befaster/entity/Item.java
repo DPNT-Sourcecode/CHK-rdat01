@@ -29,17 +29,27 @@ public class Item {
     }
 
     public SpecialOffer getSpecialOfferByQuantity(int quantity) {
-        return getSpecialOffers().stream()
+        SpecialOffer bestOffer = null;
+
+        for (var specialOffer : getSpecialOffers()) {
+
+        }
+
+        getSpecialOffers().stream()
                 .filter(specialOffer -> specialOffer.getQuantity() == quantity)
                 .findFirst()
                 .orElse(null);
+
+        return bestOffer;
     }
 
     public Integer getFinalPrice(int quantity) {
-        var specialOffer = getSpecialOfferByQuantity(quantity);
+        int finalPrice = quantity * price;
+
+        var bestOffer = getBestOffer(quantity);
 
         if (specialOffer == null || specialOffer.getSpecialOfferType().equals(SpecialOfferType.FREE_ITEM)) {
-            return quantity * price;
+            return finalPrice;
         }
 
         Integer remainder = quantity % specialOffers.get(0).getQuantity();
@@ -63,3 +73,4 @@ public class Item {
         return null;
     }
 }
+
