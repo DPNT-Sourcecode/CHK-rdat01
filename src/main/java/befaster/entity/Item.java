@@ -29,11 +29,12 @@ public class Item {
     }
 
     public boolean hasSpecialOffers(int quantity) {
-        return getSpecialOffers().size() == 0 ? false : true;
+        return getSpecialOffers().stream()
+                .anyMatch(specialOffer -> specialOffer.getQuantity() == quantity);
     }
 
     public Integer getFinalPrice(int quantity) {
-        if (hasSpecialOffers()) {
+        if (hasSpecialOffers(quantity)) {
             Integer remainder = quantity % specialOffers.get(0).getQuantity();
             Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
 
@@ -58,6 +59,7 @@ public class Item {
         return null;
     }
 }
+
 
 
 
