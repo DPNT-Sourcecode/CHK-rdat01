@@ -32,11 +32,15 @@ public class Item {
         if(quantity == 0) return 0;
 
         int finalPrice = quantity * price;
+        var specialPriceOffers = getSpecialOffersOfTypeSpecialPrice();
 
-        for (var specialOffer : getSpecialOffersOfTypeSpecialPrice()) {
-            Integer remainder = quantity % specialOffer.getQuantity(); // resto = 2
+        for (var specialOffer : specialPriceOffers) {
+            int remainder = quantity % specialOffer.getQuantity(); // resto = 2
             Integer divisionResult = quantity / specialOffer.getQuantity();
 
+            if(specialPriceOffers.stream().anyMatch(specialPriceOffer -> specialPriceOffer.getQuantity() == remainder)){
+
+            }
             remainder = getFinalPrice(remainder);
 
             var offerPrice = remainder * price + divisionResult * specialOffer.getPrice();
@@ -55,4 +59,5 @@ public class Item {
         }
     }
 }
+
 
