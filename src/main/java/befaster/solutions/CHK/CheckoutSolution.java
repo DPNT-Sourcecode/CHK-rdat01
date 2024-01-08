@@ -17,9 +17,7 @@ public class CheckoutSolution {
     }
 
     public Integer checkout(String skus) {
-        Checkout checkout = null;
         HashMap<Item, Integer> basket = new HashMap<>();
-        var checkoutValue = 0;
         var skusAndQuantities = new HashMap<Character, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
 
@@ -40,7 +38,7 @@ public class CheckoutSolution {
             basket.put(itemsList.get(entry.getKey()), entry.getValue());
         }
 
-        return checkout.getValue();
+        return new Checkout(basket).getValue();
     }
 
     private void createItemsList(){
@@ -69,6 +67,7 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
 
 
