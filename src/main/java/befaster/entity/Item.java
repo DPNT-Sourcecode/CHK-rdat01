@@ -28,24 +28,6 @@ public class Item {
         return specialOffers;
     }
 
-    public SpecialOffer getSpecialOfferByQuantity(int quantity) { //6
-        SpecialOffer bestOffer = null;
-
-        for (var specialOffer : getSpecialOffers()) {
-            Integer remainder = quantity % specialOffer.getQuantity(); // 0
-            Integer divisionResult = quantity / specialOffer.getQuantity(); // 2
-
-            var x = remainder * quantity + divisionResult * specialOffer.getPrice();
-        }
-
-        getSpecialOffers().stream()
-                .filter(specialOffer -> specialOffer.getQuantity() == quantity)
-                .findFirst()
-                .orElse(null);
-
-        return bestOffer;
-    }
-
     public Integer getFinalPrice(int quantity) {
         int finalPrice = quantity * price;
 
@@ -76,6 +58,7 @@ public class Item {
         return null;
     }
 }
+
 
 
 

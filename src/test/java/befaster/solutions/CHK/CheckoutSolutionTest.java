@@ -55,5 +55,13 @@ public class CheckoutSolutionTest {
 
         assertThat(checkoutSolution.checkout(basket), equalTo(80));
     }
+
+    @Test
+    public void givenAValidBasketWithMultipleRepeatedItemsShouldReturnPriceOfBasket() {
+        String basket = "ABBAAAAAEE";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(375));
+    }
 }
+
 
