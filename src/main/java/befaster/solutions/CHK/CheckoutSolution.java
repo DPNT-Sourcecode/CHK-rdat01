@@ -34,7 +34,7 @@ public class CheckoutSolution {
         }
 
         for (char sku : basket.keySet()) {
-            checkoutValue += itemsList.get(sku).getFinalPrice(basket.get(sku), skus);
+            checkoutValue += itemsList.get(sku).getFinalPrice(basket.get(sku), basket);
         }
 
         return checkoutValue;
@@ -66,3 +66,4 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+

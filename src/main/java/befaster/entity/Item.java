@@ -1,6 +1,7 @@
 package befaster.entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Item {
@@ -20,14 +21,14 @@ public class Item {
 
     public int getPrice() { return price; }
 
-    public int getFinalPrice(int quantity, String skus) {
+    public int getFinalPrice(int quantity, HashMap<Character, Integer> basket) {
         int finalPrice = quantity * price;
 
         if(!isSpecialOfferApplicable(quantity))
             return finalPrice;
 
         for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
-            if(specialOffer.isFreeItemOffer() && skus.contains(String.valueOf(specialOffer.getFreeItemSKU())))
+            if(specialOffer.isFreeItemOffer() && basket.get(specialOffer.getFreeItemSKU()) > 0)
                 return calculateFreeItemOffer(finalPrice, specialOffer);
 
             if(specialOffer.isFreeItemOffer())
@@ -67,5 +68,6 @@ public class Item {
         return finalPrice - 15;
     }
 }
+
 
 
