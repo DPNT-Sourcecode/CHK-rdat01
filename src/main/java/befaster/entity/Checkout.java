@@ -8,12 +8,19 @@ public class Checkout {
 
     public Checkout(HashMap<Item, Integer> basket){
         this.basket = basket;
-        value = 0;
+        calculateCheckoutValue();
     }
 
     public int getValue() {
         return value;
     }
+
+    private void calculateCheckoutValue() {
+        for (var basketEntry : basket.entrySet()) {
+            value += itemsList.get(sku).getFinalPrice(skusAndQuantities.get(sku), skusAndQuantities);
+        }
+    }
 }
+
 
 

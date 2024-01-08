@@ -40,7 +40,7 @@ public class CheckoutSolution {
             basket.put(itemsList.get(entry.getKey()), entry.getValue());
         }
 
-        return new Checkout(basket).getValue();
+        return checkout.getValue();
     }
 
     private void createItemsList(){
@@ -69,6 +69,7 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
 
 
