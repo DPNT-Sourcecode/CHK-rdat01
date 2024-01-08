@@ -28,7 +28,7 @@ public class Item {
         return specialOffers;
     }
 
-    public boolean hasSpecialOffers() {
+    public boolean hasSpecialOffers(int quantity) {
         return getSpecialOffers().size() == 0 ? false : true;
     }
 
@@ -58,6 +58,7 @@ public class Item {
         return null;
     }
 }
+
 
 
 
