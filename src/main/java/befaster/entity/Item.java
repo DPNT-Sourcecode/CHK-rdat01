@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Item {
     private Character sku;
-    private Integer price;
+    private int price;
     private List<SpecialOffer> specialOffers;
 
-    public Item(Character sku, Integer price) {
+    public Item(Character sku, int price) {
         this.sku = sku;
         this.price = price;
         this.specialOffers = new ArrayList<>();
@@ -20,7 +20,7 @@ public class Item {
         return sku;
     }
 
-    public Integer getPrice() { return price; }
+    public int getPrice() { return price; }
 
     public List<SpecialOffer> getSpecialOffersOfTypeSpecialPrice() {
         return specialOffers.stream()
@@ -28,7 +28,7 @@ public class Item {
                 .toList();
     }
 
-    public Integer getFinalPrice(int quantity) { // 8
+    public int getFinalPrice(int quantity) { // 8
         if(quantity == 0) return 0;
 
         int finalPrice = quantity * price;
@@ -36,11 +36,8 @@ public class Item {
 
         for (var specialOffer : specialPriceOffers) {
             int remainder = quantity % specialOffer.getQuantity(); // resto = 2
-            Integer divisionResult = quantity / specialOffer.getQuantity();
-
-            if(specialPriceOffers.stream().anyMatch(specialPriceOffer -> specialPriceOffer.getQuantity() == remainder)){
-
-            }
+            int divisionResult = quantity / specialOffer.getQuantity();
+            
             remainder = getFinalPrice(remainder);
 
             var offerPrice = remainder * price + divisionResult * specialOffer.getPrice();
@@ -59,5 +56,6 @@ public class Item {
         }
     }
 }
+
 
 

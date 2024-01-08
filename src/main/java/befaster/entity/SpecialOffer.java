@@ -3,19 +3,19 @@ package befaster.entity;
 import befaster.entity.enums.SpecialOfferType;
 
 public class SpecialOffer {
-    private Integer quantity;
-    private Integer price;
+    private int quantity;
+    private int price;
     private SpecialOfferType specialOfferType;
     private char freeItemSKU;
 
-    public SpecialOffer(Integer quantity, Integer fixedPrice, SpecialOfferType specialOfferType) {
+    public SpecialOffer(int quantity, int fixedPrice, SpecialOfferType specialOfferType) {
         this.quantity = quantity;
         this.price = fixedPrice;
         this.specialOfferType = specialOfferType;
     }
 
     public SpecialOffer(
-            Integer quantity,
+            int quantity,
             char freeItemSKU,
             int freeItemPrice,
             SpecialOfferType specialOfferType) {
@@ -25,11 +25,12 @@ public class SpecialOffer {
         this.specialOfferType = specialOfferType;
     }
 
-    public Integer getQuantity() { return quantity; }
+    public int getQuantity() { return quantity; }
 
-    public Integer getPrice() { return price; }
+    public int getPrice() { return price; }
 
     public SpecialOfferType getSpecialOfferType() {
         return specialOfferType;
     }
 }
+
