@@ -25,19 +25,12 @@ public class SpecialOffer {
         this.specialOfferType = specialOfferType;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+    public Integer getQuantity() { return quantity; }
 
-    public Integer getPrice() {
-        return price;
-    }
+    public Integer getPrice() { return price; }
 
     public SpecialOfferType getSpecialOfferType() {
         return specialOfferType;
     }
-
-    public char getFreeItemSKU() {
-        return freeItemSKU;
-    }
 }
+

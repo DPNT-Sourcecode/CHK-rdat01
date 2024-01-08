@@ -20,9 +20,7 @@ public class Item {
         return sku;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
+    public Integer getPrice() { return price; }
 
     public List<SpecialOffer> getSpecialOffersOfTypeSpecialPrice() {
         return specialOffers.stream()
@@ -53,4 +51,5 @@ public class Item {
         }
     }
 }
+
 
