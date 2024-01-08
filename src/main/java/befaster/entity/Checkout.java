@@ -17,7 +17,30 @@ public class Checkout {
 
     private void calculateCheckoutValue() {
         for (var basketEntry : basket.entrySet()) {
-            value += basketEntry.getKey().getFinalPrice(basketEntry.getValue());
+            value += getFinalPrice(basketEntry.getKey(), basketEntry.getValue());
+            if (basketEntry.getKey().
         }
     }
+
+    public int getFinalPrice(Item item, int quantity) {
+        int finalPrice = quantity * item.getPrice();
+
+        if(!item.isSpecialOfferApplicable(quantity))
+            return finalPrice;
+
+        for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
+            /*var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
+
+            if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
+                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);*/
+
+            if(specialOffer.isFreeItemOffer())
+                continue;
+
+            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(quantity, specialOffer));
+        }
+
+        return finalPrice;
+    }
 }
+

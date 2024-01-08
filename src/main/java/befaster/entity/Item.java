@@ -50,13 +50,13 @@ public class Item {
         }
     }
 
-    private List<SpecialOffer> filterApplicableSpecialOffers(int quantity) {
+    public List<SpecialOffer> filterApplicableSpecialOffers(int quantity) {
         return specialOffers.stream()
                 .filter(specialOffer -> quantity >= specialOffer.getQuantity())
                 .toList();
     }
 
-    private boolean isSpecialOfferApplicable(int quantity) {
+    public boolean isSpecialOfferApplicable(int quantity) {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 
@@ -66,13 +66,5 @@ public class Item {
             HashMap<Character, Integer> basket) {
         return basket.get(specialOffer.getFreeItemSKU());
     }
-
-    private int calculateSpecialPriceOffer(int quantity, SpecialOffer specialOffer) {
-        int remainder = quantity % specialOffer.getQuantity();
-        var remainderPrice = getFinalPrice(remainder);
-
-        int divisionResult = quantity / specialOffer.getQuantity();
-
-        return remainderPrice + divisionResult * specialOffer.getPrice();
-    }
 }
+
