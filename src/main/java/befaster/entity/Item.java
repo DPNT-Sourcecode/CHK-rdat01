@@ -36,7 +36,7 @@ public class Item {
 
         var specialPriceOffers = getSpecialOffersOfTypeSpecialPrice();
 
-        for (var specialOffer : specialPriceOffers) {
+        for (var specialOffer : specialPriceOffers.stream().filter(specialPriceOffer -> specialPriceOffer.getQuantity() <= quantity).toList()) {
             int remainder = quantity % specialOffer.getQuantity();
             int divisionResult = quantity / specialOffer.getQuantity();
 
@@ -58,3 +58,4 @@ public class Item {
         }
     }
 }
+
