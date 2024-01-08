@@ -31,9 +31,8 @@ public class Item {
     public int getFinalPrice(int quantity) { // 8
         int finalPrice = quantity * price;
 
-        if(quantity < specialOffers.get(0).getQuantity() || quantity < specialOffers.get(1).getQuantity()) return finalPrice;
-
-
+        if(quantity < specialOffers.get(0).getQuantity() && quantity < specialOffers.get(1).getQuantity())
+            return finalPrice;
 
         var specialPriceOffers = getSpecialOffersOfTypeSpecialPrice();
 
@@ -59,6 +58,7 @@ public class Item {
         }
     }
 }
+
 
 
 
