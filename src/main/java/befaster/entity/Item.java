@@ -35,9 +35,9 @@ public class Item {
         var specialPriceOffers = getSpecialOffersOfTypeSpecialPrice();
 
         for (var specialOffer : specialPriceOffers) {
-            int remainder = quantity % specialOffer.getQuantity(); // resto = 2
+            int remainder = quantity % specialOffer.getQuantity(); // resto = 3
             int divisionResult = quantity / specialOffer.getQuantity();
-            
+
             remainder = getFinalPrice(remainder);
 
             var offerPrice = remainder * price + divisionResult * specialOffer.getPrice();
@@ -56,6 +56,7 @@ public class Item {
         }
     }
 }
+
 
 
 
