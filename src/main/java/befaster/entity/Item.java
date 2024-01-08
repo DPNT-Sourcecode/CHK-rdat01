@@ -28,7 +28,7 @@ public class Item {
 
         for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
             if(specialOffer.isFreeItemOffer() && skus.contains(String.valueOf(specialOffer.getFreeItemSKU())))
-                return finalPrice - specialOffer.getPrice();
+                return calculateFreeItemOffer(finalPrice, specialOffer);
 
             if(specialOffer.isFreeItemOffer())
                 continue;
@@ -43,6 +43,10 @@ public class Item {
         }
 
         return finalPrice;
+    }
+
+    private int calculateFreeItemOffer(int finalPrice, SpecialOffer specialOffer) {
+        return finalPrice - specialOffer.getPrice();
     }
 
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
@@ -63,3 +67,4 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
+
