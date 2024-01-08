@@ -31,7 +31,7 @@ public class Item {
             var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
 
             if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
-                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity);
+                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);
 
             if(specialOffer.isFreeItemOffer())
                 continue;
@@ -60,11 +60,14 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 
-    private int calculateFreeItemOffer(SpecialOffer specialOffer, int freeItemBasketQuantity) {
-        return 
+    private int calculateFreeItemOffer(
+            SpecialOffer specialOffer, int freeItemBasketQuantity, HashMap<Character, Integer> basket) {
+        getFinalPrice()
+        return 0;
     }
 
-    private int calculateSpecialPriceOffer(int quantity, SpecialOffer specialOffer, HashMap<Character, Integer> basket) {
+    private int calculateSpecialPriceOffer(
+            int quantity, SpecialOffer specialOffer, HashMap<Character, Integer> basket) {
         int remainder = quantity % specialOffer.getQuantity();
         var remainderPrice = getFinalPrice(remainder, basket);
 
@@ -73,4 +76,5 @@ public class Item {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
