@@ -53,7 +53,7 @@ public class Item {
             Integer remainder = quantity % specialOffer.getQuantity();
             Integer divisionResult = quantity / specialOffer.getQuantity();
 
-            var offerPrice = remainder * quantity + divisionResult * specialOffer.getPrice();
+            var offerPrice = remainder * price + divisionResult * specialOffer.getPrice();
 
             if(offerPrice < finalPrice) finalPrice = offerPrice;
         }
@@ -76,6 +76,7 @@ public class Item {
         return null;
     }
 }
+
 
 
 
