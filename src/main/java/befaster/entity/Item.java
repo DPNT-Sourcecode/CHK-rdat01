@@ -37,12 +37,11 @@ public class Item {
 
         for (var specialOffer : getApplicableSpecialPriceOffers(quantity)) {
             int remainder = quantity % specialOffer.getQuantity();
-            int divisionResult = quantity / specialOffer.getQuantity();
-
             var remainderPrice = getFinalPrice(remainder);
 
-            var offerPrice = remainderPrice + divisionResult * specialOffer.getPrice();
+            int divisionResult = quantity / specialOffer.getQuantity();
 
+            var offerPrice = remainderPrice + divisionResult * specialOffer.getPrice();
             finalPrice = Math.min(finalPrice, offerPrice);
         }
 
@@ -58,9 +57,10 @@ public class Item {
     }
 
     private boolean isSpecialOfferApplicable(int quantity) {
-        return specialOffers.stream().allMatch(specialOffer -> !specialOffer.isSpecialOfferApplicable(quantity));
+        return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
+
 
 
 
