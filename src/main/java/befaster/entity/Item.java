@@ -29,8 +29,9 @@ public class Item {
 
         for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
             var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
+
             if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
-                return calculateFreeItemOffer(finalPrice, specialOffer);
+                return calculateFreeItemOffer(finalPrice, specialOffer, freeItemBasketQuantity);
 
             if(specialOffer.isFreeItemOffer())
                 continue;
@@ -65,10 +66,11 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 
-    private int calculateFreeItemOffer(int finalPrice, SpecialOffer specialOffer) {
+    private int calculateFreeItemOffer(int finalPrice, SpecialOffer specialOffer, int freeItemBasketQuantity) {
         return finalPrice - specialOffer.getPrice();
     }
 }
+
 
 
 
