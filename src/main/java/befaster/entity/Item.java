@@ -24,14 +24,16 @@ public class Item {
         return price;
     }
 
-    public List<SpecialOffer> getSpecialOffers() {
-        return specialOffers;
+    public List<SpecialOffer> getSpecialOffersOfTypeSpecialPrice() {
+        return specialOffers.stream()
+                .filter(specialOffer -> specialOffer.getSpecialOfferType().equals(SpecialOfferType.SPECIAL_PRICE))
+                .toList();
     }
 
     public Integer getFinalPrice(int quantity) {
         int finalPrice = quantity * price;
 
-        for (var specialOffer : getSpecialOffers()) {
+        for (var specialOffer : getSpecialOffersOfTypeSpecialPrice()) {
             Integer remainder = quantity % specialOffer.getQuantity();
             Integer divisionResult = quantity / specialOffer.getQuantity();
 
@@ -50,11 +52,5 @@ public class Item {
             this.specialOffers.add(specialOffer);
         }
     }
-
-    public SpecialOffer getFreeItemSpecialOffer(){
-        for (var specialOffer : specialOffers) {
-            if(specialOffer.getSpecialOfferType() == SpecialOfferType.FREE_ITEM) return specialOffer;
-        }
-        return null;
-    }
 }
+

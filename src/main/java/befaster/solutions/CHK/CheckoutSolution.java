@@ -65,20 +65,5 @@ public class CheckoutSolution {
         itemsList.put(itemD.getSku(), itemD);
         itemsList.put(itemE.getSku(), itemE);
     }
-
-    private int calculateCheckoutValue(char sku, HashMap<Character, Integer> basket){
-        var freeItemSpecialOffer = itemsList.get(sku).getFreeItemSpecialOffer();
-        var freeItemBasketQuantity = basket.get(freeItemSpecialOffer.getFreeItemSKU());
-        var checkoutValue = itemsList.get(sku).getFinalPrice(basket.get(sku));
-
-        if(freeItemSpecialOffer == null || (freeItemBasketQuantity != null && freeItemBasketQuantity == 0)){
-            return checkoutValue;
-        }
-
-        var skuQuantity = basket.get(sku);
-        var freeItemsQuantity = skuQuantity / freeItemSpecialOffer.getQuantity();
-        var freeItemsPrice = freeItemsQuantity * freeItemSpecialOffer.getPrice();
-
-        return checkoutValue - freeItemsPrice;
-    }
 }
+
