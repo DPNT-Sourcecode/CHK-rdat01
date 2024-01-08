@@ -28,20 +28,24 @@ public class Item {
         return specialOffers;
     }
 
-    public boolean hasSpecialOffers(int quantity) {
+    public SpecialOffer getSpecialOfferByQuantity(int quantity) {
         return getSpecialOffers().stream()
-                .anyMatch(specialOffer -> specialOffer.getQuantity() == quantity);
+                .filter(specialOffer -> specialOffer.getQuantity() == quantity)
+                .findFirst()
+                .orElse(null);
     }
 
     public Integer getFinalPrice(int quantity) {
-        if (hasSpecialOffers(quantity)) {
-            Integer remainder = quantity % specialOffers.get(0).getQuantity();
-            Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
+        var specialOffer = getSpecialOfferByQuantity(quantity);
 
-            return remainder * quantity + divisionResult * specialOffers.get(0).getPrice();
+        if (specialOffer == null || specialOffer.getSpecialOfferType().equals(SpecialOfferType.FREE_ITEM)) {
+            return quantity * price;
         }
 
-        return quantity * price;
+        Integer remainder = quantity % specialOffers.get(0).getQuantity();
+        Integer divisionResult = quantity / specialOffers.get(0).getQuantity();
+
+        return remainder * quantity + divisionResult * specialOffers.get(0).getPrice();
     }
 
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
@@ -59,8 +63,3 @@ public class Item {
         return null;
     }
 }
-
-
-
-
-

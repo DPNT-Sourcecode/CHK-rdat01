@@ -82,5 +82,3 @@ public class CheckoutSolution {
         return checkoutValue - freeItemsPrice;
     }
 }
-
-
