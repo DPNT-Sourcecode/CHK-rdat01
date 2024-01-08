@@ -22,9 +22,10 @@ public class Item {
 
     public int getPrice() { return price; }
 
-    public List<SpecialOffer> getSpecialOffersOfTypeSpecialPrice() {
+    public List<SpecialOffer> getApplicableSpecialPriceOffers(int quantity) {
         return specialOffers.stream()
-                .filter(specialOffer -> specialOffer.getSpecialOfferType().equals(SpecialOfferType.SPECIAL_PRICE))
+                .filter(specialOffer -> specialOffer.getQuantity() <= quantity
+                        && specialOffer.getSpecialOfferType().equals(SpecialOfferType.SPECIAL_PRICE))
                 .toList();
     }
 
@@ -34,9 +35,7 @@ public class Item {
         if(quantity < specialOffers.get(0).getQuantity() && quantity < specialOffers.get(1).getQuantity())
             return finalPrice;
 
-        var specialPriceOffers = getSpecialOffersOfTypeSpecialPrice();
-
-        for (var specialOffer : specialPriceOffers.stream().filter(specialPriceOffer -> specialPriceOffer.getQuantity() <= quantity).toList()) {
+        for (var specialOffer : getApplicableSpecialPriceOffers(quantity)) {
             int remainder = quantity % specialOffer.getQuantity();
             int divisionResult = quantity / specialOffer.getQuantity();
 
@@ -58,4 +57,5 @@ public class Item {
         }
     }
 }
+
 
