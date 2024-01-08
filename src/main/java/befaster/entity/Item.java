@@ -29,7 +29,7 @@ public class Item {
             return finalPrice;
 
         for (var specialOffer : specialOffers) {
-            if(specialOffer.getSpecialOfferType().equals(SpecialOfferType.FREE_ITEM))
+            if(specialOffer.isFreeItemOffer())
                 return finalPrice - specialOffer.getPrice();
 
             int remainder = quantity % specialOffer.getQuantity();
@@ -55,7 +55,7 @@ public class Item {
     private List<SpecialOffer> filterApplicableSpecialPriceOffers(int quantity) {
         return specialOffers.stream()
                 .filter(specialOffer -> specialOffer.getQuantity() <= quantity
-                        && specialOffer.getSpecialOfferType().equals(SpecialOfferType.SPECIAL_PRICE))
+                        && specialOffer.isSpecialPriceOffer())
                 .toList();
     }
 
@@ -63,12 +63,3 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
-
-
-
-
-
-
-
-
-

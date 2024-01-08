@@ -29,14 +29,11 @@ public class SpecialOffer {
 
     public int getPrice() { return price; }
 
-    public SpecialOfferType getSpecialOfferType() {
-        return specialOfferType;
-    }
-
     public boolean isSpecialOfferApplicable(int quantity){
         return quantity >= getQuantity();
     }
+
+    public boolean isSpecialPriceOffer() { return specialOfferType.equals(SpecialOfferType.SPECIAL_PRICE); }
+
+    public boolean isFreeItemOffer() { return specialOfferType.equals(SpecialOfferType.FREE_ITEM); }
 }
-
-
-
