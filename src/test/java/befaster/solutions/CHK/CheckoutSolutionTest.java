@@ -15,49 +15,49 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void givenAValidBasketShouldReturnTotalCheckoutValue() {
+    public void givenAValidBasketShouldReturnsTotalCheckoutValue() {
         String basket = " ABCD";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(115));
     }
 
     @Test
-    public void givenAValidBasketWithASpecialOfferShouldReturnTotalCheckoutValue() {
+    public void givenAValidBasketWithASpecialOfferShouldReturnsTotalCheckoutValue() {
         String basket = "AAA";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(130));
     }
 
     @Test
-    public void givenAnInvalidBasketShouldReturnNegativeOne() {
+    public void givenAnInvalidBasketShouldReturnsNegativeOne() {
         String basket = "X";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(-1));
     }
 
     @Test
-    public void givenAValidBasketWithOneItemShouldReturnTotalCheckoutValue() {
+    public void givenAValidBasketWithOneItemShouldReturnsTotalCheckoutValue() {
         String basket = "B";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(30));
     }
 
     @Test
-    public void givenAValidBasketWithSpecialOfferAndASingleRepeatedItemShouldReturnLowestCheckoutValue() {
+    public void givenAValidBasketWithSpecialOfferAndASingleRepeatedItemShouldReturnsLowestCheckoutValue() {
         String basket = "AAAAAA";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(250));
     }
 
     @Test
-    public void givenAValidBasketWithFreeItemShouldReturnPriceOfBasket() {
+    public void givenAValidBasketWithFreeItemShouldReturnsPriceOfBasket() {
         String basket = "EE";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(80));
     }
 
     @Test
-    public void test1() {
+    public void givenAValidBasketWithMultipleCombinedOffersReturnsPrice() {
         String basket = "AAAAAAAA";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(330));
@@ -77,4 +77,5 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout(basket), equalTo(80));
     }
 }
+
 
