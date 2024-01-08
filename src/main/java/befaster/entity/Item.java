@@ -21,17 +21,17 @@ public class Item {
 
     public int getPrice() { return price; }
 
-    public int getFinalPrice(int quantity) {
+   /* public int getFinalPrice(int quantity) {
         int finalPrice = quantity * price;
 
         if(!isSpecialOfferApplicable(quantity))
             return finalPrice;
 
         for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
-            /*var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
+            *//*var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
 
             if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
-                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);*/
+                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);*//*
 
             if(specialOffer.isFreeItemOffer())
                 continue;
@@ -40,7 +40,7 @@ public class Item {
         }
 
         return finalPrice;
-    }
+    }*/
 
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
         for (var specialOffer : specialOffers) {
@@ -67,4 +67,5 @@ public class Item {
         return basket.get(specialOffer.getFreeItemSKU());
     }
 }
+
 

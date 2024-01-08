@@ -17,12 +17,11 @@ public class Checkout {
 
     private void calculateCheckoutValue() {
         for (var basketEntry : basket.entrySet()) {
-            value += getFinalPrice(basketEntry.getKey(), basketEntry.getValue());
-            if (basketEntry.getKey().
+            value += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
     }
 
-    public int getFinalPrice(Item item, int quantity) {
+    public int getItemPrice(Item item, int quantity) {
         int finalPrice = quantity * item.getPrice();
 
         if(!item.isSpecialOfferApplicable(quantity))
@@ -37,10 +36,20 @@ public class Checkout {
             if(specialOffer.isFreeItemOffer())
                 continue;
 
-            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(quantity, specialOffer));
+            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
         }
 
         return finalPrice;
     }
+
+    private int calculateSpecialPriceOffer(Item item, int quantity, SpecialOffer specialOffer) {
+        int remainder = quantity % specialOffer.getQuantity();
+        var remainderPrice = getItemPrice(item, remainder);
+
+        int divisionResult = quantity / specialOffer.getQuantity();
+
+        return remainderPrice + divisionResult * specialOffer.getPrice();
+    }
 }
+
 
