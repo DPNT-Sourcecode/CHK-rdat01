@@ -32,7 +32,10 @@ public class Item {
         SpecialOffer bestOffer = null;
 
         for (var specialOffer : getSpecialOffers()) {
+            Integer remainder = quantity % specialOffer.getQuantity();
+            Integer divisionResult = quantity / specialOffer.getQuantity();
 
+            remainder * quantity + divisionResult * specialOffer.getPrice();
         }
 
         getSpecialOffers().stream()
@@ -73,4 +76,5 @@ public class Item {
         return null;
     }
 }
+
 
