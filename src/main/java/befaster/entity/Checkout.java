@@ -26,6 +26,11 @@ public class Checkout {
     }
 
     public int getItemPrice(Item item, int quantity) {
+        var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
+        if(freeItemQuantity > 0){
+            quantity -= freeItemQuantity;
+        }
+
         int finalPrice = quantity * item.getPrice();
 
         if(!item.isSpecialOfferApplicable(quantity))
@@ -57,6 +62,7 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
 
