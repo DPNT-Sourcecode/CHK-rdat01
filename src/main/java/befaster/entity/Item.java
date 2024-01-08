@@ -28,7 +28,10 @@ public class Item {
         if(!isSpecialOfferApplicable(quantity))
             return finalPrice;
 
-        for (var specialOffer : filterApplicableSpecialPriceOffers(quantity)) {
+        for (var specialOffer : specialOffers) {
+            if(specialOffer.getSpecialOfferType().equals(SpecialOfferType.FREE_ITEM))
+                return -specialOffer.getPrice();
+
             int remainder = quantity % specialOffer.getQuantity();
             var remainderPrice = getFinalPrice(remainder);
 
@@ -60,6 +63,7 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
+
 
 
 
