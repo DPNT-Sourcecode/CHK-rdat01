@@ -5,23 +5,18 @@ import java.util.HashMap;
 public class Checkout {
     private HashMap<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
-    private int value;
 
     public Checkout(HashMap<Item, Integer> basket){
         this.basket = basket;
         this.freeItems = new HashMap<>();
-        this.value = 0;
-        calculateCheckoutValue();
     }
 
-    public int getValue() {
-        return this.value;
-    }
-
-    private void calculateCheckoutValue() {
+    public int calculateCheckoutValue() {
+        int checkoutValue = 0;
         for (var basketEntry : this.basket.entrySet()) {
-            this.value += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
+            checkoutValue += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
+        return checkoutValue;
     }
 
     private int getItemPrice(Item item, int quantity) {
@@ -56,5 +51,6 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 

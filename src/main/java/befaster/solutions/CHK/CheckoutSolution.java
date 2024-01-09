@@ -38,7 +38,7 @@ public class CheckoutSolution {
             basket.put(itemsList.get(entry.getKey()), entry.getValue());
         }
 
-        return new Checkout(basket).getValue();
+        return new Checkout(basket).calculateCheckoutValue();
     }
 
     private void createItemsList(){
@@ -67,4 +67,5 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
