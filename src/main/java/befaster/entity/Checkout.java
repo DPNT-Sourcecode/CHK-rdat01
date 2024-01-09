@@ -11,11 +11,6 @@ public class Checkout {
         this.freeItems = new HashMap<>();
     }
 
-    public Checkout(boolean isFreeItemsFlow){
-        this.basket = new HashMap<>();
-        this.freeItems = new HashMap<>();
-    }
-
     public HashMap<Character, Integer> getFreeItems() {
         return freeItems;
     }
@@ -73,5 +68,6 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
