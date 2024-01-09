@@ -87,9 +87,13 @@ public class Checkout {
                 .count() > 0;
     }
 
-    private boolean basketContainsRemainingGroupDiscountItems() {
-        return false;
+    private int getHowManyTimesToApplyDiscountGroup(SpecialOffer specialOffer) {
+        int matchingCount = 0;
+        for (char c: basketList) {
+            if("STXYZ".indexOf(c) != -1){
+                matchingCount++;
+            }
+        }
+        return matchingCount % specialOffer.getQuantity();
     }
 }
-
-
