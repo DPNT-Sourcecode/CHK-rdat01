@@ -65,7 +65,7 @@ public class Checkout {
                 groupDiscountQuantities.put(item.getSku(), currentQuantity + 1);
                 String teste = "";
                 for (var skusDiscountPack : skusDiscountPacks) {
-                    teste = basket.keySet().stream().map(entry -> entry.getSku()).toString();
+                    teste += String.valueOf(basket.keySet().stream().map(entry -> entry.getSku()));
                 }
 
                 continue;
@@ -110,4 +110,5 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
