@@ -25,7 +25,8 @@ public class Checkout {
         var sortedBasket = new TreeMap<Item, Integer>(new Comparator<Item>() {
             @Override
             public int compare(Item item1, Item item2) {
-                return Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
+                var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
+                return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
             }
         });
 
@@ -77,6 +78,7 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
 
