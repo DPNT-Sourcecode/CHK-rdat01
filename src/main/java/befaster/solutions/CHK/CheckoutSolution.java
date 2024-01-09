@@ -87,7 +87,7 @@ public class CheckoutSolution {
         itemR.AddSpecialOffers(
                 new SpecialOffer(3, itemQ.getSku(), itemQ.getPrice(), SpecialOfferType.DIFFERENT_ITEM_FREE)
         );
-        var itemS = new Item('S', 30);
+        var itemS = new Item('S', 20);
         var itemT = new Item('T', 20);
         var itemU = new Item('U', 40);
         itemU.AddSpecialOffers(
@@ -99,9 +99,9 @@ public class CheckoutSolution {
                 new SpecialOffer(3, 130, SpecialOfferType.SPECIAL_PRICE)
         );
         var itemW = new Item('W', 20);
-        var itemX = new Item('X', 90);
-        var itemY = new Item('Y', 10);
-        var itemZ = new Item('Z', 50);
+        var itemX = new Item('X', 17);
+        var itemY = new Item('Y', 20);
+        var itemZ = new Item('Z', 21);
 
         itemsList.put(itemA.getSku(), itemA);
         itemsList.put(itemB.getSku(), itemB);
@@ -131,4 +131,5 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
