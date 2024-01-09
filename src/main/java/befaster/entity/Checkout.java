@@ -93,10 +93,10 @@ public class Checkout {
     private int getHowManyTimesToApplyDiscountGroup(SpecialOffer specialOffer) {
         int matchingCount = 0;
         for (String discountPack : skusDiscountPacks) {
-            for (char basketSku : basketSkus) {
-                if(discountPack.indexOf(basketSku) != -1){
-                    var currentItemQuantity = basket.getOrDefault(basketSku, 0);
-                    basket.replace
+            for (var item : basket.keySet()) {
+                if(discountPack.indexOf(item.getSku()) != -1){
+                    var currentItemQuantity = basket.getOrDefault(item, 0);
+                    basket.replace(item, currentItemQuantity -1);
                     matchingCount++;
                 }
             }
@@ -104,6 +104,3 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
-
-
-
