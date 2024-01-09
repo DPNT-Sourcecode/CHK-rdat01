@@ -43,8 +43,8 @@ public class Checkout {
 
         int finalPrice = quantity * item.getPrice();
 
-        if(item.isInAGroupDiscountSpecialOffer()){
-            basket.get()
+        if(item.isInAGroupDiscountSpecialOffer() && quantity >= 3){
+            
         }
 
         if(!item.isSpecialOfferApplicable(quantity))
@@ -93,4 +93,5 @@ public class Checkout {
         }
     }
 }
+
 
