@@ -44,7 +44,7 @@ public class Checkout {
         int finalPrice = quantity * item.getPrice();
 
         if(item.isInAGroupDiscountSpecialOffer()){
-            
+            basket.get()
         }
 
         if(!item.isSpecialOfferApplicable(quantity))
@@ -52,7 +52,7 @@ public class Checkout {
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
 
-            if(specialOffer.isDifferentItemFreeOffer() && haveFreeItemsInTheBasket(basket, specialOffer)){
+            if(specialOffer.isDifferentItemFreeOffer() && haveFreeItemsInTheBasket(specialOffer)){
                 freeItemQuantity += quantity / specialOffer.getQuantity();
                 freeItems.put(specialOffer.getFreeItemSKU(), freeItemQuantity);
                 continue;
@@ -81,10 +81,17 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 
-    private boolean haveFreeItemsInTheBasket(HashMap<Item, Integer> basket, SpecialOffer specialOffer) {
+    private boolean haveFreeItemsInTheBasket(SpecialOffer specialOffer) {
+        return basket.keySet().stream()
+                .filter(basketItem -> basketItem.getSku() == specialOffer.getFreeItemSKU())
+                .count() > 0;
+    }
+
+    private boolean basketContainsRemainingGroupDiscountItems(SpecialOffer specialOffer) {
         return basket.keySet().stream()
                 .filter(basketItem -> basketItem.getSku() == specialOffer.getFreeItemSKU())
                 .count() > 0;
     }
 }
+
 
