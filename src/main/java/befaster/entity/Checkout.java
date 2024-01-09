@@ -1,6 +1,6 @@
 package befaster.entity;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class Checkout {
     private HashMap<Item, Integer> basket;
@@ -17,6 +17,17 @@ public class Checkout {
 
     public void addItem(Item item, int quantity){
         basket.put(item, quantity);
+    }
+
+    public static <K extends Comparable, V extends Comparable> Map<K,V> orderBasketByFreeItemOffers(Map<K, V> map){
+        List<Map.Entry<K,V>> entries = new LinkedList<>(map.entrySet());
+
+        Collections.sort(entries, new Comparator<Map.Entry<K, V>>() {
+            @Override
+            public int compare(Map.Entry<K, V> entry1, Map.Entry<K, V> entry2) {
+                return entry1.getValue().compareTo(entry2.getValue());
+            }
+        });
     }
 
     public int calculateCheckoutValue() {
