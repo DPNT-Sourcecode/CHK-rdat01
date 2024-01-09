@@ -12,7 +12,7 @@ public class CheckoutSolution {
     private HashMap<Character, Item> itemsList;
 
     public CheckoutSolution(){
-        itemsList = new HashMap<>();
+        this.itemsList = new HashMap<>();
         createItemsList();
     }
 
@@ -67,3 +67,4 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
