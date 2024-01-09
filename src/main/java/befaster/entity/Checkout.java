@@ -32,10 +32,10 @@ public class Checkout {
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
             if(specialOffer.isFreeItemOffer()){
-                /*var currentFreeItemQuantity = freeItems.getOrDefault(specialOffer.getFreeItemSKU(),0);
+                var currentFreeItemQuantity = freeItems.getOrDefault(specialOffer.getFreeItemSKU(),0);
                 currentFreeItemQuantity += quantity / specialOffer.getQuantity();
 
-                freeItems.put(specialOffer.getFreeItemSKU(), currentFreeItemQuantity);*/
+                freeItems.put(specialOffer.getFreeItemSKU(), currentFreeItemQuantity);
                 continue;
             }
 
