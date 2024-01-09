@@ -99,7 +99,7 @@ public class Checkout {
                 }
             }
         }
-        return matchingCount % specialOffer.getQuantity();
+        return matchingCount / specialOffer.getQuantity();
     }
 }
 
