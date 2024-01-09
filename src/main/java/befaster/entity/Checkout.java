@@ -17,10 +17,20 @@ public class Checkout {
 
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
+
         for (var basketEntry : basket.entrySet()) {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
+
+        for (var freeItem : freeItems.entrySet()) {
+            
+        }
+
         return checkoutValue;
+    }
+
+    private void evaluateFreeItems() {
+
     }
 
     private int calculateItemPrice(Item item, int quantity) {
@@ -54,5 +64,6 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
