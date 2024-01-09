@@ -35,10 +35,16 @@ public class Item {
     }
 
     public boolean isSpecialOfferApplicable(int quantity) {
-        return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
+        return specialOffers.stream()
+                .anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity) || hasGroupDiscountSpecialOffer());
     }
 
     public boolean hasFreeItemSpecialOffer(){
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isDifferentItemFreeOffer());
     }
+
+    public boolean hasGroupDiscountSpecialOffer(){
+        return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isGroupDiscountOffer());
+    }
 }
+

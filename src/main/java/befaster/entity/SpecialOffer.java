@@ -46,5 +46,8 @@ public class SpecialOffer {
     public boolean isDifferentItemFreeOffer() { return specialOfferType.equals(SpecialOfferType.DIFFERENT_ITEM_FREE); }
 
     public boolean isSameItemFreeOffer() { return specialOfferType.equals(SpecialOfferType.SAME_ITEM_FREE); }
+
+    public boolean isGroupDiscountOffer() { return specialOfferType.equals(SpecialOfferType.GROUP_DISCOUNT); }
 }
+
 
