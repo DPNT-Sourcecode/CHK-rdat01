@@ -52,12 +52,12 @@ public class Checkout {
                 continue;
             }
 
-            if(specialOffer.isDifferentItemFreeOffer()){
-                continue;
+            if(specialOffer.isSameItemFreeOffer() && quantity >= specialOffer.getQuantity() + 1){
+                return finalPrice - (quantity / (specialOffer.getQuantity()+1)) * specialOffer.getPrice();
             }
 
-            if(specialOffer.isSameItemFreeOffer() && quantity == specialOffer.getQuantity() + 1){
-                return finalPrice - (quantity / (specialOffer.getQuantity()+1)) * specialOffer.getPrice();
+            if(specialOffer.isDifferentItemFreeOffer() || specialOffer.isSameItemFreeOffer()){
+                continue;
             }
 
             finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
