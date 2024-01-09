@@ -56,6 +56,11 @@ public class CheckoutSolution {
         itemF.AddSpecialOffers(
                 new SpecialOffer(2, itemF.getSku(), itemF.getPrice(), SpecialOfferType.SAME_ITEM_FREE)
         );
+        var itemG = new Item('G', 20);
+        var itemH = new Item('H', 10);
+        itemF.AddSpecialOffers(
+                new SpecialOffer(5, 45, SpecialOfferType.SPECIAL_PRICE)
+        );
 
         itemsList.put(itemA.getSku(), itemA);
         itemsList.put(itemB.getSku(), itemB);
@@ -65,3 +70,4 @@ public class CheckoutSolution {
         itemsList.put(itemF.getSku(), itemF);
     }
 }
+
