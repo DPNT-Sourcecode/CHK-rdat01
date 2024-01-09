@@ -31,14 +31,14 @@ public class CheckoutSolution {
         }
 
         var checkoutValue = checkout.calculateCheckoutValue();
-        var checkoutFreeItems = checkout.getFreeItems();
+        /*var checkoutFreeItems = checkout.getFreeItems();
 
         for (var entry : checkoutFreeItems.entrySet()){
             freeItemsCheckout.addItem(itemsList.get(entry.getKey()), entry.getValue());
         }
 
         if(checkoutFreeItems.size() > 0)
-            checkoutValue -= freeItemsCheckout.calculateCheckoutValue();
+            checkoutValue -= freeItemsCheckout.calculateCheckoutValue();*/
 
         return checkoutValue;
     }
@@ -74,4 +74,5 @@ public class CheckoutSolution {
         itemsList.put(itemF.getSku(), itemF);
     }
 }
+
 
