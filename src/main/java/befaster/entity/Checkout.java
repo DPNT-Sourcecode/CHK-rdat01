@@ -44,7 +44,7 @@ public class Checkout {
         int finalPrice = quantity * item.getPrice();
 
         if(item.isInAGroupDiscountSpecialOffer() && quantity >= 3){
-            
+
         }
 
         if(!item.isSpecialOfferApplicable(quantity))
@@ -88,9 +88,7 @@ public class Checkout {
     }
 
     private boolean basketContainsRemainingGroupDiscountItems() {
-        for (var item : basket.keySet()) {
-
-        }
+        return false;
     }
 }
 
