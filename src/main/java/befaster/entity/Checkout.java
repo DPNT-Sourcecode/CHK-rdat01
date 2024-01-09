@@ -60,6 +60,12 @@ public class Checkout {
                 continue;
             }
 
+            if(specialOffer.isSameItemFreeOffer()){
+                if(quantity % specialOffer.getQuantity() == 0){
+                    var x = 0;
+                }
+            }
+
             finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
         }
 
@@ -81,3 +87,4 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
