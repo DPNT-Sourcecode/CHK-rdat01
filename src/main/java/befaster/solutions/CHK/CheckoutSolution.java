@@ -32,7 +32,9 @@ public class CheckoutSolution {
         var checkoutValue = checkout.calculateCheckoutValue();
 
         for (var entry : checkout.getFreeItems().entrySet()){
-            checkoutValue -= 0;
+            var newCheckout = new Checkout();
+            newCheckout.addItem(itemsList.get(entry.getKey()), entry.getValue());
+            checkoutValue -= newCheckout.calculateCheckoutValue();
         }
 
         return checkoutValue;
@@ -64,3 +66,4 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
