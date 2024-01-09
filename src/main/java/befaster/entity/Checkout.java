@@ -62,7 +62,7 @@ public class Checkout {
 
                 int desconto = setA * (specialOffer.getQuantity() * item.getPrice()) + resto * item.getPrice();
 
-                return desconto;
+                return finalPrice - (desconto / quantity);
             }
 
             finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
@@ -86,6 +86,7 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
 
