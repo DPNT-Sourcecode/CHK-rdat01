@@ -58,7 +58,7 @@ public class Checkout {
 
             if(specialOffer.isSameItemFreeOffer()){
                 if(quantity % specialOffer.getQuantity() == 0){
-                    return finalPrice - quantity / specialOffer.getQuantity();
+                    return finalPrice - (quantity / specialOffer.getQuantity()) * specialOffer.getPrice();
                 }
             }
 
@@ -83,3 +83,4 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
