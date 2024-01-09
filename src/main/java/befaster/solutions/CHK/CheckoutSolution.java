@@ -30,7 +30,10 @@ public class CheckoutSolution {
         }
 
         var checkoutValue = checkout.calculateCheckoutValue();
-        checkout.
+
+        for (var entry : checkout.getFreeItems().entrySet()){
+            checkoutValue -= 0;
+        }
 
         return checkoutValue;
     }
@@ -61,5 +64,3 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
-
-
