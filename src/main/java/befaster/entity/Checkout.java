@@ -5,10 +5,12 @@ import java.util.*;
 public class Checkout {
     private HashMap<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
+    private List<String> skusDiscountPacks;
 
-    public Checkout(){
+    public Checkout(List<String> skusDiscountPacks){
         this.basket = new HashMap<>();
         this.freeItems = new HashMap<>();
+        this.skusDiscountPacks = new ArrayList<>();
     }
 
     public void addItem(Item item, int quantity){

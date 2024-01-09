@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        var checkout = new Checkout();
+        var checkout = new Checkout("STXYZ");
         var itemsList = new HashMap<Character, Item>();
         var skusAndQuantities = new HashMap<Character, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
@@ -134,4 +134,5 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
