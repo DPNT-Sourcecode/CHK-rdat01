@@ -1,7 +1,6 @@
 package befaster.entity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Item {
@@ -39,3 +38,4 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
 }
+

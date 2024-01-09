@@ -14,7 +14,7 @@ public class CheckoutSolutionTest {
         checkoutSolution = new CheckoutSolution();
     }
 
-    /*@Test
+    @Test
     public void givenAValidBasketShouldReturnsTotalCheckoutValue() {
         String basket = " ABCD";
 
@@ -82,7 +82,7 @@ public class CheckoutSolutionTest {
         String basket = "EEEEBB";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(160));
-    }*/
+    }
 
     @Test
     public void givenAValidBasketWithBEBEEEShouldReturn160() {
@@ -91,11 +91,12 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout(basket), equalTo(160));
     }
 
-    /*@Test
+    @Test
     public void givenAValidBasketWithABCDEABCDEShouldReturn280() {
         String basket = "ABCDEABCDE";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(280));
-    }*/
+    }
 }
+
 
