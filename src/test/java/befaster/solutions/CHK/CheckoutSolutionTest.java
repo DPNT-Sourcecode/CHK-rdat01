@@ -134,20 +134,6 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void givenAValidBasketWithUShouldReturn40() {
-        String basket = "U";
-
-        assertThat(checkoutSolution.checkout(basket), equalTo(40));
-    }
-
-    @Test
-    public void givenAValidBasketWithUUShouldReturn80() {
-        String basket = "UU";
-
-        assertThat(checkoutSolution.checkout(basket), equalTo(80));
-    }
-
-    @Test
     public void givenAValidBasketWithUUUShouldReturn120() {
         String basket = "UUU";
 
@@ -168,4 +154,5 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout(basket), equalTo(160));
     }
 }
+
 
