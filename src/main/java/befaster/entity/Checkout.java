@@ -57,6 +57,10 @@ public class Checkout {
             }
 
             if(specialOffer.isSameItemFreeOffer() && quantity % specialOffer.getQuantity() == 0){
+                return finalPrice - (quantity / 3) * specialOffer.getPrice();
+            }
+
+            if(specialOffer.isSameItemFreeOffer()){
                 return finalPrice - (quantity / (specialOffer.getQuantity()+1)) * specialOffer.getPrice();
             }
 
@@ -81,8 +85,3 @@ public class Checkout {
                 .count() > 0;
     }
 }
-
-
-
-
-
