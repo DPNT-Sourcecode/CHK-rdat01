@@ -11,10 +11,6 @@ public class Checkout {
         this.freeItems = new HashMap<>();
     }
 
-    public HashMap<Character, Integer> getFreeItems() {
-        return freeItems;
-    }
-
     public void addItem(Item item, int quantity){
         basket.put(item, quantity);
     }
@@ -22,12 +18,9 @@ public class Checkout {
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
 
-        var sortedBasket = new TreeMap<Item, Integer>(new Comparator<Item>() {
-            @Override
-            public int compare(Item item1, Item item2) {
-                var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
-                return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
-            }
+        var sortedBasket = new TreeMap<Item, Integer>((item1, item2) -> {
+            var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
+            return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
         });
 
         sortedBasket.putAll(basket);
@@ -82,3 +75,4 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
