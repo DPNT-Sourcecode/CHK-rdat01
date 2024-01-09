@@ -32,7 +32,9 @@ public class Checkout {
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
             if(specialOffer.isFreeItemOffer()){
-                this.freeItems.put(specialOffer.getFreeItemSKU(), quantity / specialOffer.getQuantity());
+                var currentFreeItemQuantity = freeItems.get(specialOffer.getFreeItemSKU());
+                currentFreeItemQuantity += quantity / specialOffer.getQuantity();
+                this.freeItems.put(specialOffer.getFreeItemSKU(), currentFreeItemQuantity);
                 continue;
             }
 
@@ -51,6 +53,7 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
 
