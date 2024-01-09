@@ -13,7 +13,7 @@ public class Checkout {
 
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
-        for (var basketEntry : this.basket.entrySet()) {
+        for (var basketEntry : basket.entrySet()) {
             checkoutValue += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
         return checkoutValue;
@@ -55,5 +55,6 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
