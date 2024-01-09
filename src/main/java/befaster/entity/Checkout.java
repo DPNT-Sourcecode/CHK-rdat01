@@ -56,11 +56,7 @@ public class Checkout {
                 continue;
             }
 
-            var teste = (quantity - specialOffer.getQuantity()) * specialOffer.getPrice();
-            if(specialOffer.isSameItemFreeOffer() && teste>= 0){
-                if(teste >= 0){
-                    return finalPrice - teste;
-                }
+            if(specialOffer.isSameItemFreeOffer() && quantity % specialOffer.getQuantity() == 0){
                 return finalPrice - (quantity / 3) * specialOffer.getPrice();
             }
 
@@ -85,6 +81,7 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
 
