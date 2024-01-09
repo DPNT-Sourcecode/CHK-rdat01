@@ -89,7 +89,6 @@ public class CheckoutSolution {
         );
         var itemS = new Item('S', 20);
         itemS.AddSpecialOffers(
-                new SpecialOffer()
         );
         var itemT = new Item('T', 20);
         var itemU = new Item('U', 40);
@@ -134,6 +133,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
