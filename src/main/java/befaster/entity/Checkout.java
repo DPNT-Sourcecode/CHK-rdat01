@@ -1,14 +1,18 @@
 package befaster.entity;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Checkout {
-    private LinkedHashMap<Item, Integer> basket;
+    private Map<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
 
+    private Comparator<Item> comparator = Comparator.comparing(Item::hasFreeItemSpecialOffer);
+
     public Checkout(){
-        this.basket = new HashMap<>();
+        this.basket = new LinkedHashMap<>(Comparator.comparing(Item::hasFreeItemSpecialOffer));
         this.freeItems = new HashMap<>();
     }
 
@@ -69,3 +73,4 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
