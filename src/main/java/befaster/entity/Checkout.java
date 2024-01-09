@@ -46,6 +46,10 @@ public class Checkout {
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
 
+            if(specialOffer.isSpecialPriceOffer()){
+                finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
+            }
+
             if(specialOffer.isDifferentItemFreeOffer() && haveFreeItemsInTheBasket(basket, specialOffer)){
                 freeItemQuantity += quantity / specialOffer.getQuantity();
                 freeItems.put(specialOffer.getFreeItemSKU(), freeItemQuantity);
@@ -59,8 +63,6 @@ public class Checkout {
             if(specialOffer.isSameItemFreeOffer() && quantity % specialOffer.getQuantity() == 0){
                 return finalPrice - (quantity / 3) * specialOffer.getPrice();
             }
-
-            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
         }
 
         return finalPrice;
