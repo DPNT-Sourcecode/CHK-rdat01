@@ -29,7 +29,10 @@ public class CheckoutSolution {
             checkout.addItem(itemsList.get(entry.getKey()), entry.getValue());
         }
 
-        return checkout.calculateCheckoutValue();
+        var checkoutValue = checkout.calculateCheckoutValue();
+        checkout.
+
+        return checkoutValue;
     }
 
     private void createItemsList(HashMap<Character, Item> itemsList){
@@ -58,4 +61,5 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
