@@ -42,10 +42,14 @@ public class Checkout {
     private int calculateItemPrice(Item item, int quantity) {
         int finalPrice = quantity * item.getPrice();
 
+        var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
+        if(freeItemQuantity > 0){
+            quantity = freeItemQuantity >= quantity ? 0 : quantity - freeItemQuantity;
+            freeItems.remove(item.getSku());
+        }
+
         if(!item.isSpecialOfferApplicable(quantity))
             return finalPrice;
-
-        var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
             var freeItemBasketQuantity = basket.keySet().stream()
@@ -78,9 +82,3 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
-
-
-
-
-
-
