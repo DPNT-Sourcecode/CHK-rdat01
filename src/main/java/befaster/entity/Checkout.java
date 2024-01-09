@@ -3,13 +3,16 @@ package befaster.entity;
 import java.util.*;
 
 public class Checkout {
-    private HashMap<Item, Integer> basket;
+    private Map<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
     private char[] basketSkus;
     private List<String> skusDiscountPacks;
 
     public Checkout(char[] basketSkus, List<String> skusDiscountPacks){
-        this.basket = new HashMap<>();
+        this.basket = new TreeMap<Item, Integer>((item1, item2) -> {
+            var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
+            return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
+        });;
         this.freeItems = new HashMap<>();
         this.basketSkus = basketSkus;
         this.skusDiscountPacks = skusDiscountPacks;
@@ -22,14 +25,7 @@ public class Checkout {
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
 
-        var sortedBasket = new TreeMap<Item, Integer>((item1, item2) -> {
-            var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
-            return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
-        });
-
-        sortedBasket.putAll(basket);
-
-        for (var basketEntry : sortedBasket.entrySet()) {
+        for (var basketEntry : basket.entrySet()) {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
