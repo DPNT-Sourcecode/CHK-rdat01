@@ -38,7 +38,9 @@ public class Checkout {
         var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
-            if(specialOffer.isFreeItemOffer()){
+            var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
+
+            if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0){
                 freeItemQuantity += quantity / specialOffer.getQuantity();
 
                 freeItems.put(specialOffer.getFreeItemSKU(), freeItemQuantity);
