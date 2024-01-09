@@ -47,6 +47,10 @@ public class Checkout {
                 continue;
             }
 
+            if(specialOffer.isFreeItemOffer()){
+                continue;
+            }
+
             finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
         }
 
@@ -62,3 +66,4 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
