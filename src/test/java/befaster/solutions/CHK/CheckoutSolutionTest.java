@@ -29,28 +29,28 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void givenAnInvalidBasketShouldReturnsNegativeOne() {
-        String basket = "X";
+    public void givenAnInvalidBasketShouldReturnNegativeOne() {
+        String basket = "999";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(-1));
     }
 
     @Test
-    public void givenAValidBasketWithOneItemShouldReturnsTotalCheckoutValue() {
+    public void givenAValidBasketWithOneItemShouldReturnTotalCheckoutValue() {
         String basket = "B";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(30));
     }
 
     @Test
-    public void givenAValidBasketWithSpecialOfferAndASingleRepeatedItemShouldReturnsLowestCheckoutValue() {
+    public void givenAValidBasketWithSpecialOfferAndASingleRepeatedItemShouldReturnLowestCheckoutValue() {
         String basket = "AAAAAA";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(250));
     }
 
     @Test
-    public void givenAValidBasketWithFreeItemShouldReturnsPriceOfBasket() {
+    public void givenAValidBasketWithFreeItemShouldReturnPriceOfBasket() {
         String basket = "EE";
 
         assertThat(checkoutSolution.checkout(basket), equalTo(80));
@@ -133,3 +133,4 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout(basket), equalTo(40));
     }
 }
+
