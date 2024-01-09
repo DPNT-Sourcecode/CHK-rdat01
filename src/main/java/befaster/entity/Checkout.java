@@ -10,29 +10,30 @@ public class Checkout {
     public Checkout(HashMap<Item, Integer> basket){
         this.basket = basket;
         this.freeItems = new HashMap<>();
+        this.value = 0;
         calculateCheckoutValue();
     }
 
     public int getValue() {
-        return value;
+        return this.value;
     }
 
     private void calculateCheckoutValue() {
         //evaluateFreeItems();
 
-        for (var basketEntry : basket.entrySet()) {
-            value += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
+        for (var basketEntry : this.basket.entrySet()) {
+            this.value += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
     }
 
     private void evaluateFreeItems() {
-        for (var basketEntry : basket.entrySet()) {
+        for (var basketEntry : this.basket.entrySet()) {
             value += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
     }
 
     private int getItemPrice(Item item, int quantity) {
-        var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
+        var freeItemQuantity = this.freeItems.getOrDefault(item.getSku(), 0);
         if(freeItemQuantity > 0){
             quantity -= freeItemQuantity;
         }
@@ -49,7 +50,7 @@ public class Checkout {
                 return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);*/
 
             if(specialOffer.isFreeItemOffer()){
-                freeItems.put(specialOffer.getFreeItemSKU(), quantity / specialOffer.getQuantity());
+                this.freeItems.put(specialOffer.getFreeItemSKU(), quantity / specialOffer.getQuantity());
                 continue;
             }
 
@@ -68,3 +69,4 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
