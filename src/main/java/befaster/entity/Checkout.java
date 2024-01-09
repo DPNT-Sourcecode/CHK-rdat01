@@ -18,6 +18,7 @@ public class Checkout {
         this.freeItems = new HashMap<>();
         this.basketSkus = basketSkus;
         this.skusDiscountPacks = skusDiscountPacks;
+        this.groupDiscountQuantities = new HashMap<>();
     }
 
     public void addItem(Item item, int quantity){
@@ -61,7 +62,7 @@ public class Checkout {
             //var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(specialOffer);
             if(item.isInAGroupDiscountSpecialOffer()){
                 var currentQuantity = groupDiscountQuantities.getOrDefault(item.getSku(), 0);
-                groupDiscountQuantities.put(item.getSku(), currentQuantity);
+                groupDiscountQuantities.put(item.getSku(), currentQuantity + 1);
 
                 continue;
             }
@@ -105,6 +106,7 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
 
 
