@@ -7,6 +7,7 @@ public class Checkout {
     private HashMap<Character, Integer> freeItems;
     private char[] basketSkus;
     private List<String> skusDiscountPacks;
+    private HashMap<Character, Integer> groupDiscountQuantities;
 
     public Checkout(char[] basketSkus, List<String> skusDiscountPacks){
         this.basket = new TreeMap<>((item1, item2) -> {
@@ -57,9 +58,12 @@ public class Checkout {
                 return finalPrice - (quantity / (specialOffer.getQuantity()+1)) * specialOffer.getPrice();
             }
 
-            var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(specialOffer);
-            if(item.isInAGroupDiscountSpecialOffer() && groupDiscountCount > 0){
-                return finalPrice - groupDiscountCount * specialOffer.getPrice();
+            //var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(specialOffer);
+            if(item.isInAGroupDiscountSpecialOffer()){
+                var currentQuantity = groupDiscountQuantities.getOrDefault(item.getSku(), 0);
+                groupDiscountQuantities.put(item.getSku(), currentQuantity);
+
+                continue;
             }
 
             if(specialOffer.isDifferentItemFreeOffer() || specialOffer.isSameItemFreeOffer()){
@@ -101,6 +105,7 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
 
 
