@@ -50,12 +50,18 @@ public class CheckoutSolution {
         itemE.AddSpecialOffers(
                 new SpecialOffer(2, itemB.getSku(), itemB.getPrice(), SpecialOfferType.FREE_ITEM)
         );
+        var itemF = new Item('F', 10);
+        itemF.AddSpecialOffers(
+                new SpecialOffer(2, itemF.getSku(), itemF.getPrice(), SpecialOfferType.FREE_ITEM)
+        );
 
         itemsList.put(itemA.getSku(), itemA);
         itemsList.put(itemB.getSku(), itemB);
         itemsList.put(itemC.getSku(), itemC);
         itemsList.put(itemD.getSku(), itemD);
         itemsList.put(itemE.getSku(), itemE);
+        itemsList.put(itemF.getSku(), itemF);
     }
 }
+
 
