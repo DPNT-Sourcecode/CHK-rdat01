@@ -24,11 +24,11 @@ public class Checkout {
     }
 
     private int getItemPrice(Item item, int quantity) {
-        /*var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
+        var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
         if(freeItemQuantity > 0){
             quantity = freeItemQuantity >= quantity ? 0 : quantity - freeItemQuantity;
             freeItems.remove(item.getSku());
-        }*/
+        }
 
         int finalPrice = quantity * item.getPrice();
 
@@ -36,15 +36,15 @@ public class Checkout {
             return finalPrice;
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
-            var freeItemBasketQuantity = freeItems.getOrDefault(item.getSku(), 0);
 
-            if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
+            if(specialOffer.isFreeItemOffer() && freeItemQuantity > 0) {
                 return finalPrice - specialOffer.getPrice();
+            }
 
             if(specialOffer.isFreeItemOffer()){
-                freeItemBasketQuantity += quantity / specialOffer.getQuantity();
+                freeItemQuantity += quantity / specialOffer.getQuantity();
 
-                freeItems.put(specialOffer.getFreeItemSKU(), freeItemBasketQuantity);
+                freeItems.put(specialOffer.getFreeItemSKU(), freeItemQuantity);
                 continue;
             }
 
