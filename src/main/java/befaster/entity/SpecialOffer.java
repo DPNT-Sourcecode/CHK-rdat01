@@ -8,6 +8,11 @@ public class SpecialOffer {
     private SpecialOfferType specialOfferType;
     private char freeItemSKU;
 
+    public SpecialOffer(int quantity, SpecialOfferType specialOfferType) {
+        this.quantity = quantity;
+        this.specialOfferType = specialOfferType;
+    }
+
     public SpecialOffer(int quantity, int fixedPrice, SpecialOfferType specialOfferType) {
         this.quantity = quantity;
         this.price = fixedPrice;
@@ -39,4 +44,5 @@ public class SpecialOffer {
 
     public boolean isSameItemFreeOffer() { return specialOfferType.equals(SpecialOfferType.SAME_ITEM_FREE); }
 }
+
 
