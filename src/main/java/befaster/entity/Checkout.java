@@ -36,11 +36,15 @@ public class Checkout {
             return finalPrice;
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
-            if(specialOffer.isFreeItemOffer()){
-                /*var currentFreeItemQuantity = freeItems.getOrDefault(specialOffer.getFreeItemSKU(),0);
-                currentFreeItemQuantity += quantity / specialOffer.getQuantity();
+            var freeItemBasketQuantity = freeItems.getOrDefault(specialOffer.getFreeItemSKU(), 0);
 
-                freeItems.put(specialOffer.getFreeItemSKU(), currentFreeItemQuantity);*/
+            if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
+                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);
+
+            if(specialOffer.isFreeItemOffer()){
+                freeItemBasketQuantity += quantity / specialOffer.getQuantity();
+
+                freeItems.put(specialOffer.getFreeItemSKU(), freeItemBasketQuantity);
                 continue;
             }
 
@@ -59,3 +63,4 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
