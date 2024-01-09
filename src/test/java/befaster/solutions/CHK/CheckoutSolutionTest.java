@@ -97,4 +97,12 @@ public class CheckoutSolutionTest {
 
         assertThat(checkoutSolution.checkout(basket), equalTo(280));
     }
+
+    @Test
+    public void givenAValidBasketWithCCADDEEBBAShouldReturn280() {
+        String basket = "CCADDEEBBA";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(280));
+    }
 }
+
