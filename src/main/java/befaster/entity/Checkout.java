@@ -32,6 +32,10 @@ public class Checkout {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
+        for (var groupDiscountEntry : groupDiscountQuantities.entrySet()) {
+            gro
+        }
+
         return checkoutValue;
     }
 
@@ -106,9 +110,3 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
-
-
-
-
-
-
