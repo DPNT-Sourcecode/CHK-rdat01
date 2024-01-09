@@ -14,6 +14,8 @@ public class CheckoutSolution {
         var skusAndQuantities = new HashMap<Character, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
 
+        createItemsList(itemsList);
+
         for (char sku : basketList) {
             if(!itemsList.containsKey(sku)){
                 return -1;
@@ -60,4 +62,5 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
