@@ -23,6 +23,7 @@ public class Checkout {
         var freeItemQuantity = this.freeItems.getOrDefault(item.getSku(), 0);
         if(freeItemQuantity > 0){
             quantity = freeItemQuantity >= quantity ? 0 : quantity - freeItemQuantity;
+            this.freeItems.remove(item.getSku());
         }
 
         int finalPrice = quantity * item.getPrice();
@@ -54,3 +55,4 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
