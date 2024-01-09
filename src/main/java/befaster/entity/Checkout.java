@@ -45,10 +45,6 @@ public class Checkout {
 
         int finalPrice = quantity * item.getPrice();
 
-        if(item.isInAGroupDiscountSpecialOffer() && quantity >= 3){
-
-        }
-
         if(!item.isSpecialOfferApplicable(quantity))
             return finalPrice;
 
@@ -62,6 +58,11 @@ public class Checkout {
 
             if(specialOffer.isSameItemFreeOffer() && quantity >= specialOffer.getQuantity() + 1){
                 return finalPrice - (quantity / (specialOffer.getQuantity()+1)) * specialOffer.getPrice();
+            }
+
+            var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(specialOffer);
+            if(item.isInAGroupDiscountSpecialOffer() && groupDiscountCount > 0){
+                return finalPrice - groupDiscountCount * specialOffer.getPrice();
             }
 
             if(specialOffer.isDifferentItemFreeOffer() || specialOffer.isSameItemFreeOffer()){
@@ -91,10 +92,9 @@ public class Checkout {
 
     private int getHowManyTimesToApplyDiscountGroup(SpecialOffer specialOffer) {
         int matchingCount = 0;
-
         for (String discountPack : skusDiscountPacks) {
-            for ( : ) {
-                if(discountPack.indexOf(c) != -1){
+            for (char basketSku : basketSkus) {
+                if(discountPack.indexOf(basketSku) != -1){
                     matchingCount++;
                 }
             }
@@ -102,4 +102,5 @@ public class Checkout {
         return matchingCount % specialOffer.getQuantity();
     }
 }
+
 
