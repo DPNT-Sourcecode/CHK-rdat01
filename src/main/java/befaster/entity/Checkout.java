@@ -42,7 +42,6 @@ public class Checkout {
                     freeItemQuantity += quantity / specialOffer.getQuantity();
 
                     freeItems.put(specialOffer.getFreeItemSKU(), freeItemQuantity);
-                    continue;
                 }
             }
         }
