@@ -5,18 +5,15 @@ import java.util.HashMap;
 public class Checkout {
     private HashMap<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
-    private boolean isFreeItemsFlow;
 
     public Checkout(){
         this.basket = new HashMap<>();
         this.freeItems = new HashMap<>();
-        this.isFreeItemsFlow = false;
     }
 
     public Checkout(boolean isFreeItemsFlow){
         this.basket = new HashMap<>();
         this.freeItems = new HashMap<>();
-        this.isFreeItemsFlow = isFreeItemsFlow;
     }
 
     public HashMap<Character, Integer> getFreeItems() {
@@ -25,30 +22,6 @@ public class Checkout {
 
     public void addItem(Item item, int quantity){
         basket.put(item, quantity);
-    }
-
-    public void updateQuantitiesIfHasFreeItems(){
-        var freeItems = new HashMap<Character, Integer>();
-        
-        for (var basketEntry : basket.entrySet()) {
-            var item = basketEntry.getKey();
-            var quantity = basketEntry.getValue();
-            var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
-
-            for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
-                var freeItemBasketQuantity = basket.keySet().stream()
-                        .filter(basketItem -> basketItem.getSku() == specialOffer.getFreeItemSKU())
-                        .count();
-
-                if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0){
-                    freeItemQuantity += quantity / specialOffer.getQuantity();
-
-                    freeItems.put(specialOffer.getFreeItemSKU(), freeItemQuantity);
-                }
-            }
-
-            basket.get()
-        }
     }
 
     public int calculateCheckoutValue() {
@@ -63,10 +36,6 @@ public class Checkout {
 
     private int calculateItemPrice(Item item, int quantity) {
         int finalPrice = quantity * item.getPrice();
-
-        if(isFreeItemsFlow){
-            return 0;
-        }
 
         if(!item.isSpecialOfferApplicable(quantity))
             return finalPrice;
@@ -104,4 +73,5 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
