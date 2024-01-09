@@ -3,11 +3,16 @@ package befaster.entity;
 import java.util.*;
 
 public class Checkout {
-    private HashMap<Item, Integer> basket;
+    private Map<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
 
     public Checkout(){
-        this.basket = new HashMap<>();
+        this.basket = new TreeMap<>(new Comparator<Item>() {
+            @Override
+            public int compare(Item item1, Item item2) {
+                return Boolean.compare(item1.hasFreeItemSpecialOffer(), item2.hasFreeItemSpecialOffer());
+            }
+        });
         this.freeItems = new HashMap<>();
     }
 
@@ -68,5 +73,6 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
