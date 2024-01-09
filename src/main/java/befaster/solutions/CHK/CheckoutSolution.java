@@ -10,9 +10,9 @@ import java.util.List;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
+        var checkout = new Checkout(skus, List.of("STXYZ"));
         var skusAndQuantities = new HashMap<Character, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
-        var checkout = new Checkout(basketList, List.of("STXYZ"));
         var itemsList = new HashMap<Character, Item>();
 
         createItemsList(itemsList);
@@ -145,3 +145,4 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+

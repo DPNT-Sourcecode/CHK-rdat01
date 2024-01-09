@@ -5,18 +5,18 @@ import java.util.*;
 public class Checkout {
     private Map<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
-    private char[] basketSkus;
+    private String skus;
     private List<String> skusDiscountPacks;
     private HashMap<Character, Integer> groupDiscountQuantities;
 
-    public Checkout(char[] basketSkus, List<String> skusDiscountPacks){
+    public Checkout(String sku, List<String> skusDiscountPacks){
         this.basket = new TreeMap<>((item1, item2) -> {
             var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
         });
 
         this.freeItems = new HashMap<>();
-        this.basketSkus = basketSkus;
+        this.skus = skus;
         this.skusDiscountPacks = skusDiscountPacks;
         this.groupDiscountQuantities = new HashMap<>();
     }
@@ -30,10 +30,6 @@ public class Checkout {
 
         for (var basketEntry : basket.entrySet()) {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
-        }
-
-        for (var groupDiscountEntry : groupDiscountQuantities.entrySet()) {
-            gro
         }
 
         return checkoutValue;
@@ -67,6 +63,8 @@ public class Checkout {
             if(item.isInAGroupDiscountSpecialOffer()){
                 var currentQuantity = groupDiscountQuantities.getOrDefault(item.getSku(), 0);
                 groupDiscountQuantities.put(item.getSku(), currentQuantity + 1);
+
+                if()
 
                 continue;
             }
