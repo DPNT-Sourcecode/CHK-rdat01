@@ -38,7 +38,9 @@ public class Checkout {
         var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
-            var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
+            var freeItemBasketQuantity = basket.getOrDefault(
+                    basket.keySet().stream()
+                            .filter(basketItem -> basketItem.getSku().equals(specialOffer.getFreeItemSKU())), 0);
 
             if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0){
                 freeItemQuantity += quantity / specialOffer.getQuantity();
@@ -66,4 +68,5 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
