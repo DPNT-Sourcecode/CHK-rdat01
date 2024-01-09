@@ -22,12 +22,15 @@ public class Checkout {
     public static <K extends Comparable, V extends Comparable> Map<K,V> orderBasketByFreeItemOffers(Map<K, V> map){
         List<Map.Entry<K,V>> entries = new LinkedList<>(map.entrySet());
 
-        Collections.sort(entries, new Comparator<Map.Entry<K, V>>() {
-            @Override
-            public int compare(Map.Entry<K, V> entry1, Map.Entry<K, V> entry2) {
-                return entry1.getValue().compareTo(entry2.getValue());
-            }
-        });
+        Collections.sort(entries, (entry1, entry2) -> entry1.getValue().compareTo(entry2.getValue()));
+
+        var sortedMap = new LinkedHashMap<K, V>();
+
+        for(var entry : entries){
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+
+        return sortedMap;
     }
 
     public int calculateCheckoutValue() {
@@ -79,3 +82,4 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
