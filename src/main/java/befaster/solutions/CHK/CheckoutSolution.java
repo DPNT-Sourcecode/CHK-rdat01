@@ -41,12 +41,10 @@ public class CheckoutSolution {
                 new SpecialOffer(3, 130, SpecialOfferType.SPECIAL_PRICE),
                 new SpecialOffer(5, 200, SpecialOfferType.SPECIAL_PRICE)
         );
-
         var itemB = new Item('B', 30);
         itemB.AddSpecialOffers(
                 new SpecialOffer(2, 45, SpecialOfferType.SPECIAL_PRICE)
         );
-
         var itemC = new Item('C', 20);
         var itemD = new Item('D', 15);
         var itemE = new Item('E', 40);
@@ -147,6 +145,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
