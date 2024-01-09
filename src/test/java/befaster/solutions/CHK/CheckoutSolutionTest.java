@@ -11,11 +11,6 @@ public class CheckoutSolutionTest {
 
     @BeforeEach
     public void setUp() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         checkoutSolution = new CheckoutSolution();
     }
 
@@ -103,4 +98,5 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout(basket), equalTo(280));
     }
 }
+
 
