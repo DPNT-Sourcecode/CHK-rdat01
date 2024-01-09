@@ -19,20 +19,6 @@ public class Checkout {
         basket.put(item, quantity);
     }
 
-    public static <K extends Comparable, V extends Comparable> Map<K,V> orderBasketByFreeItemOffers(Map<K, V> map){
-        List<Map.Entry<K,V>> entries = new LinkedList<>(map.entrySet());
-
-        Collections.sort(entries, (entry1, entry2) -> entry1.getValue().compareTo(entry2.getValue()));
-
-        var sortedMap = new LinkedHashMap<K, V>();
-
-        for(var entry : entries){
-            sortedMap.put(entry.getKey(), entry.getValue());
-        }
-
-        return sortedMap;
-    }
-
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
 
@@ -82,4 +68,5 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
