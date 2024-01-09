@@ -109,6 +109,27 @@ public class CheckoutSolution {
         itemsList.put(itemD.getSku(), itemD);
         itemsList.put(itemE.getSku(), itemE);
         itemsList.put(itemF.getSku(), itemF);
+        itemsList.put(itemG.getSku(), itemG);
+        itemsList.put(itemH.getSku(), itemH);
+        itemsList.put(itemI.getSku(), itemI);
+        itemsList.put(itemJ.getSku(), itemJ);
+        itemsList.put(itemK.getSku(), itemK);
+        itemsList.put(itemL.getSku(), itemL);
+        itemsList.put(itemM.getSku(), itemM);
+        itemsList.put(itemN.getSku(), itemN);
+        itemsList.put(itemO.getSku(), itemO);
+        itemsList.put(itemP.getSku(), itemP);
+        itemsList.put(itemQ.getSku(), itemQ);
+        itemsList.put(itemR.getSku(), itemR);
+        itemsList.put(itemS.getSku(), itemS);
+        itemsList.put(itemT.getSku(), itemT);
+        itemsList.put(itemU.getSku(), itemU);
+        itemsList.put(itemV.getSku(), itemV);
+        itemsList.put(itemW.getSku(), itemW);
+        itemsList.put(itemX.getSku(), itemX);
+        itemsList.put(itemY.getSku(), itemY);
+        itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
