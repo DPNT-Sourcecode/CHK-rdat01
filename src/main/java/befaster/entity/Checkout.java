@@ -20,6 +20,10 @@ public class Checkout {
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
 
+        for (var entry : skusDiscountPacks) {
+
+        }
+
         var sortedBasket = new TreeMap<Item, Integer>((item1, item2) -> {
             var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
