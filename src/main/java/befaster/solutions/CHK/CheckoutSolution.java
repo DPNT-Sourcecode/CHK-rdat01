@@ -88,6 +88,9 @@ public class CheckoutSolution {
                 new SpecialOffer(3, itemQ.getSku(), itemQ.getPrice(), SpecialOfferType.DIFFERENT_ITEM_FREE)
         );
         var itemS = new Item('S', 20);
+        itemS.AddSpecialOffers(
+                new SpecialOffer()
+        );
         var itemT = new Item('T', 20);
         var itemU = new Item('U', 40);
         itemU.AddSpecialOffers(
@@ -131,5 +134,6 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
