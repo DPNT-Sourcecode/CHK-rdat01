@@ -42,4 +42,3 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isFreeItemOffer());
     }
 }
-

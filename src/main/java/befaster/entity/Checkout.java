@@ -4,18 +4,12 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-public class Checkout {
+public class Checkout{
     private TreeMap<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
 
     public Checkout(){
-        this.basket = new TreeMap<>(new Comparator<Item>() {
-            @Override
-            public int compare(Item item1, Item item2) {
-                return 0;
-            }
-        });
-
+        this.basket = new TreeMap<>((item1, item2) -> item1.hasFreeItemSpecialOffer() ? 0 : 1);
         this.freeItems = new HashMap<>();
     }
 
@@ -76,7 +70,3 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
-
-
-
-
