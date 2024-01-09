@@ -9,7 +9,7 @@ public class Checkout{
     private HashMap<Character, Integer> freeItems;
 
     public Checkout(){
-        this.basket = new TreeMap<>((item1, item2) -> item1.hasFreeItemSpecialOffer() ? 0 : 1);
+        this.basket = new TreeMap<>(Comparator.comparing(Item::hasFreeItemSpecialOffer).reversed());
         this.freeItems = new HashMap<>();
     }
 
