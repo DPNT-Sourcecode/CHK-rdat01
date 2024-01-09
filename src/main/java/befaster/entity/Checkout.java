@@ -5,11 +5,13 @@ import java.util.*;
 public class Checkout {
     private HashMap<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
+    private char[] basketSkus;
     private List<String> skusDiscountPacks;
 
-    public Checkout(List<String> skusDiscountPacks){
+    public Checkout(char[] basketSkus, List<String> skusDiscountPacks){
         this.basket = new HashMap<>();
         this.freeItems = new HashMap<>();
+        this.basketSkus = basketSkus;
         this.skusDiscountPacks = skusDiscountPacks;
     }
 
@@ -91,10 +93,13 @@ public class Checkout {
         int matchingCount = 0;
 
         for (String discountPack : skusDiscountPacks) {
-            if(discountPack.indexOf(c) != -1){
-                matchingCount++;
+            for ( : ) {
+                if(discountPack.indexOf(c) != -1){
+                    matchingCount++;
+                }
             }
         }
         return matchingCount % specialOffer.getQuantity();
     }
 }
+
