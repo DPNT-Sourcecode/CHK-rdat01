@@ -36,7 +36,8 @@ public class Item {
 
     public boolean isSpecialOfferApplicable(int quantity) {
         return specialOffers.stream()
-                .anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
+                .anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity)
+                        || isSpecialOfferApplicable(quantity));
     }
 
     public boolean hasFreeItemSpecialOffer(){
@@ -47,3 +48,4 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isGroupDiscountOffer());
     }
 }
+
