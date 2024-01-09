@@ -43,9 +43,10 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isDifferentItemFreeOffer());
     }
 
-    public boolean hasGroupDiscountSpecialOffer(){
+    public boolean isInAGroupDiscountSpecialOffer(){
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isGroupDiscountOffer());
     }
 }
+
 
 

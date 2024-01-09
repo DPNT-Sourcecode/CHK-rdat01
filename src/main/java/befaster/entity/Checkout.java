@@ -43,6 +43,10 @@ public class Checkout {
 
         int finalPrice = quantity * item.getPrice();
 
+        if(item.isInAGroupDiscountSpecialOffer()){
+            
+        }
+
         if(!item.isSpecialOfferApplicable(quantity))
             return finalPrice;
 
@@ -83,3 +87,4 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
