@@ -9,10 +9,11 @@ public class Checkout {
     private List<String> skusDiscountPacks;
 
     public Checkout(char[] basketSkus, List<String> skusDiscountPacks){
-        this.basket = new TreeMap<Item, Integer>((item1, item2) -> {
+        this.basket = new TreeMap<>((item1, item2) -> {
             var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
-        });;
+        });
+
         this.freeItems = new HashMap<>();
         this.basketSkus = basketSkus;
         this.skusDiscountPacks = skusDiscountPacks;
@@ -26,13 +27,16 @@ public class Checkout {
         int checkoutValue = 0;
 
         for (var basketEntry : basket.entrySet()) {
-            checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
+            checkoutValue += calculateItemPrice(basketEntry);
         }
 
         return checkoutValue;
     }
 
-    private int calculateItemPrice(Item item, int quantity) {
+    private int calculateItemPrice(Map.Entry<Item, Integer> entry) {
+        var item = entry.getKey();
+        var quantity = entry.getValue();
+
         var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
         if(freeItemQuantity > 0){
             quantity = freeItemQuantity >= quantity ? 0 : (quantity - freeItemQuantity);
@@ -100,3 +104,4 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
