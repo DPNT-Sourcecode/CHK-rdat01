@@ -18,12 +18,20 @@ public class Checkout {
     }
 
     private void calculateCheckoutValue() {
+        //evaluateFreeItems();
+
         for (var basketEntry : basket.entrySet()) {
             value += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
     }
 
-    public int getItemPrice(Item item, int quantity) {
+    private void evaluateFreeItems() {
+        for (var basketEntry : basket.entrySet()) {
+            value += getItemPrice(basketEntry.getKey(), basketEntry.getValue());
+        }
+    }
+
+    private int getItemPrice(Item item, int quantity) {
         var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
         if(freeItemQuantity > 0){
             quantity -= freeItemQuantity;
