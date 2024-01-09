@@ -62,7 +62,7 @@ public class Checkout {
 
             if(specialOffer.isSameItemFreeOffer()){
                 if(quantity % specialOffer.getQuantity() == 0){
-                    var x = 0;
+                    return finalPrice;
                 }
             }
 
@@ -87,4 +87,5 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
