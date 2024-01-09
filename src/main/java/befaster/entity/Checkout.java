@@ -1,13 +1,21 @@
 package befaster.entity;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Checkout {
-    private HashMap<Item, Integer> basket;
+    private TreeMap<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
 
     public Checkout(){
-        this.basket = new HashMap<>();
+        this.basket = new TreeMap<>(new Comparator<Item>() {
+            @Override
+            public int compare(Item item1, Item item2) {
+                return 0;
+            }
+        });
+
         this.freeItems = new HashMap<>();
     }
 
@@ -68,6 +76,7 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
 
