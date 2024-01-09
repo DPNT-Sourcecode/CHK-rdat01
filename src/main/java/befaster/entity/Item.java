@@ -30,14 +30,14 @@ public class Item {
 
     public List<SpecialOffer> filterApplicableSpecialOffers(int quantity) {
         return specialOffers.stream()
-                .filter(specialOffer -> quantity >= specialOffer.getQuantity())
+                .filter(specialOffer -> quantity >= specialOffer.getQuantity() || isInAGroupDiscountSpecialOffer())
                 .toList();
     }
 
     public boolean isSpecialOfferApplicable(int quantity) {
         return specialOffers.stream()
-                .anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity)
-                        || isSpecialOfferApplicable(quantity));
+                .anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity))
+                || isInAGroupDiscountSpecialOffer();
     }
 
     public boolean hasFreeItemSpecialOffer(){
@@ -48,4 +48,5 @@ public class Item {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isGroupDiscountOffer());
     }
 }
+
 
