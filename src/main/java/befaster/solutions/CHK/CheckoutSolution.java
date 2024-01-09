@@ -59,11 +59,11 @@ public class CheckoutSolution {
         var itemD = new Item('D', 15);
         var itemE = new Item('E', 40);
         itemE.AddSpecialOffers(
-                new SpecialOffer(2, itemB.getSku(), itemB.getPrice(), SpecialOfferType.FREE_ITEM)
+                new SpecialOffer(2, itemB.getSku(), itemB.getPrice(), SpecialOfferType.DIFFERENT_ITEM_FREE)
         );
         var itemF = new Item('F', 10);
         itemF.AddSpecialOffers(
-                new SpecialOffer(2, itemF.getSku(), itemF.getPrice(), SpecialOfferType.FREE_ITEM)
+                new SpecialOffer(2, itemF.getSku(), itemF.getPrice(), SpecialOfferType.SAME_ITEM_FREE)
         );
 
         itemsList.put(itemA.getSku(), itemA);
@@ -74,5 +74,6 @@ public class CheckoutSolution {
         itemsList.put(itemF.getSku(), itemF);
     }
 }
+
 
 

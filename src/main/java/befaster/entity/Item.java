@@ -39,6 +39,7 @@ public class Item {
     }
 
     public boolean hasFreeItemSpecialOffer(){
-        return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isFreeItemOffer());
+        return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isDifferentItemFreeOffer());
     }
 }
+

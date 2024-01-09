@@ -50,13 +50,13 @@ public class Checkout {
 
         for (var specialOffer : item.filterApplicableSpecialOffers(quantity)) {
 
-            if(specialOffer.isFreeItemOffer() && haveFreeItemsInTheBasket(basket, specialOffer)){
+            if(specialOffer.isDifferentItemFreeOffer() && haveFreeItemsInTheBasket(basket, specialOffer)){
                 freeItemQuantity += quantity / specialOffer.getQuantity();
                 freeItems.put(specialOffer.getFreeItemSKU(), freeItemQuantity);
                 continue;
             }
 
-            if(specialOffer.isFreeItemOffer()){
+            if(specialOffer.isDifferentItemFreeOffer()){
                 continue;
             }
 

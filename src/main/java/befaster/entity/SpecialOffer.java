@@ -37,5 +37,6 @@ public class SpecialOffer {
 
     public boolean isSpecialPriceOffer() { return specialOfferType.equals(SpecialOfferType.SPECIAL_PRICE); }
 
-    public boolean isFreeItemOffer() { return specialOfferType.equals(SpecialOfferType.FREE_ITEM); }
+    public boolean isDifferentItemFreeOffer() { return specialOfferType.equals(SpecialOfferType.DIFFERENT_ITEM_FREE); }
 }
+
