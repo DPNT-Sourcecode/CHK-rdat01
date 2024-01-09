@@ -5,6 +5,7 @@ import befaster.entity.Item;
 import befaster.entity.SpecialOffer;
 import befaster.entity.enums.SpecialOfferType;
 
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class CheckoutSolution {
@@ -67,3 +68,4 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
