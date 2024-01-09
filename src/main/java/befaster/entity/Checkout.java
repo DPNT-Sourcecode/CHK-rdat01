@@ -22,12 +22,14 @@ public class Checkout {
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
 
-        var sortedBasket = new TreeMap<>(new Comparator<Item>() {
+        var sortedBasket = new TreeMap<Item, Integer>(new Comparator<Item>() {
             @Override
             public int compare(Item item1, Item item2) {
                 return Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
             }
         });
+
+        sortedBasket.putAll(basket);
 
         for (var basketEntry : sortedBasket.entrySet()) {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
@@ -75,6 +77,7 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
 
