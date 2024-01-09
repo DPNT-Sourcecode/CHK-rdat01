@@ -69,15 +69,17 @@ public class Checkout {
                 continue;
             }
 
-            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
+            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(entry, specialOffer));
         }
 
         return finalPrice;
     }
 
-    private int calculateSpecialPriceOffer(Item item, int quantity, SpecialOffer specialOffer) {
+    private int calculateSpecialPriceOffer(Map.Entry<Item, Integer> entry, SpecialOffer specialOffer) {
+        var item = entry.getKey();
+        var quantity = entry.getValue();
         int remainder = quantity % specialOffer.getQuantity();
-        var remainderPrice = calculateItemPrice(item, remainder);
+        var remainderPrice = calculateItemPrice(entry);
 
         int divisionResult = quantity / specialOffer.getQuantity();
 
@@ -90,18 +92,18 @@ public class Checkout {
                 .count() > 0;
     }
 
-    private int getHowManyTimesToApplyDiscountGroup(SpecialOffer specialOffer) {
+    private int getHowManyTimesToApplyDiscountGroup(Map.Entry<Item, Integer> entry, SpecialOffer specialOffer) {
         int matchingCount = 0;
+        var item = entry.getKey();
         for (String discountPack : skusDiscountPacks) {
-            for (var item : basket.keySet()) {
-                if(discountPack.indexOf(item.getSku()) != -1){
-                    var currentItemQuantity = basket.getOrDefault(item, 0);
-                    basket.replace(item, currentItemQuantity -1);
-                    matchingCount++;
-                }
+            if(discountPack.indexOf(item.getSku()) != -1){
+                var currentItemQuantity = basket.getOrDefault(item, 0);
+                entry.setValue(currentItemQuantity -1);
+                matchingCount++;
             }
         }
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
