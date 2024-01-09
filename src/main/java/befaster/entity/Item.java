@@ -21,27 +21,6 @@ public class Item {
 
     public int getPrice() { return price; }
 
-   /* public int getFinalPrice(int quantity) {
-        int finalPrice = quantity * price;
-
-        if(!isSpecialOfferApplicable(quantity))
-            return finalPrice;
-
-        for (var specialOffer : filterApplicableSpecialOffers(quantity)) {
-            *//*var freeItemBasketQuantity = basket.getOrDefault(specialOffer.getFreeItemSKU(), 0);
-
-            if(specialOffer.isFreeItemOffer() && freeItemBasketQuantity > 0)
-                return finalPrice - calculateFreeItemOffer(specialOffer, freeItemBasketQuantity, basket);*//*
-
-            if(specialOffer.isFreeItemOffer())
-                continue;
-
-            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(quantity, specialOffer));
-        }
-
-        return finalPrice;
-    }*/
-
     public void AddSpecialOffers(SpecialOffer... specialOffers) {
         for (var specialOffer : specialOffers) {
             if(specialOffer == null) continue;
@@ -59,11 +38,5 @@ public class Item {
     public boolean isSpecialOfferApplicable(int quantity) {
         return specialOffers.stream().anyMatch(specialOffer -> specialOffer.isSpecialOfferApplicable(quantity));
     }
-
-    private int calculateFreeItemOffer(
-            SpecialOffer specialOffer,
-            int freeItemBasketQuantity,
-            HashMap<Character, Integer> basket) {
-        return basket.get(specialOffer.getFreeItemSKU());
-    }
 }
+
