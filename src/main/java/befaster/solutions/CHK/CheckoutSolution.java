@@ -21,11 +21,7 @@ public class CheckoutSolution {
                 return -1;
             }
 
-            if(!skusAndQuantities.containsKey(sku)){
-                skusAndQuantities.put(sku, 0);
-            }
-
-            int currentQuantity = skusAndQuantities.get(sku);
+            int currentQuantity = skusAndQuantities.getOrDefault(sku, 0);
             skusAndQuantities.put(sku, currentQuantity + 1);
         }
 
@@ -62,3 +58,4 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
