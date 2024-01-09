@@ -60,7 +60,7 @@ public class Checkout {
                 return finalPrice - (quantity / (specialOffer.getQuantity()+1)) * specialOffer.getPrice();
             }
 
-            var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(specialOffer);
+            var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(entry, specialOffer);
             if(item.isInAGroupDiscountSpecialOffer() && groupDiscountCount > 0){
                 return finalPrice - groupDiscountCount * specialOffer.getPrice();
             }
@@ -97,7 +97,7 @@ public class Checkout {
         var item = entry.getKey();
         for (String discountPack : skusDiscountPacks) {
             if(discountPack.indexOf(item.getSku()) != -1){
-                var currentItemQuantity = basket.getOrDefault(item, 0);
+                var currentItemQuantity = entry.getValue();
                 entry.setValue(currentItemQuantity -1);
                 matchingCount++;
             }
@@ -105,5 +105,6 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
 
