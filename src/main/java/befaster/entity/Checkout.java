@@ -95,6 +95,8 @@ public class Checkout {
         for (String discountPack : skusDiscountPacks) {
             for (char basketSku : basketSkus) {
                 if(discountPack.indexOf(basketSku) != -1){
+                    var currentItemQuantity = basket.getOrDefault(basketSku, 0);
+                    basket.replace
                     matchingCount++;
                 }
             }
@@ -102,5 +104,6 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
 
