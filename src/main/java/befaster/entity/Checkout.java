@@ -11,6 +11,10 @@ public class Checkout {
         this.freeItems = new HashMap<>();
     }
 
+    public void addItem(Item item, int quantity){
+        basket.put(item, quantity);
+    }
+
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
         for (var basketEntry : basket.entrySet()) {
@@ -55,7 +59,3 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
-
-
-
-
