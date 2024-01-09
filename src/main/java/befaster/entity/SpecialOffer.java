@@ -41,5 +41,3 @@ public class SpecialOffer {
 
     public boolean isSameItemFreeOffer() { return specialOfferType.equals(SpecialOfferType.SAME_ITEM_FREE); }
 }
-
-

@@ -5,4 +5,3 @@ public enum SpecialOfferType {
     DIFFERENT_ITEM_FREE,
     SAME_ITEM_FREE
 }
-
