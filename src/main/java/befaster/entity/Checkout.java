@@ -9,7 +9,7 @@ public class Checkout {
     private List<String> skusDiscountPacks;
     private HashMap<Character, Integer> groupDiscountQuantities;
 
-    public Checkout(String sku, List<String> skusDiscountPacks){
+    public Checkout(String skus, List<String> skusDiscountPacks){
         this.basket = new TreeMap<>((item1, item2) -> {
             var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
@@ -63,8 +63,10 @@ public class Checkout {
             if(item.isInAGroupDiscountSpecialOffer()){
                 var currentQuantity = groupDiscountQuantities.getOrDefault(item.getSku(), 0);
                 groupDiscountQuantities.put(item.getSku(), currentQuantity + 1);
-
-                if()
+                String teste = "";
+                for (var skusDiscountPack : skusDiscountPacks) {
+                    teste = basket.keySet().stream().map(entry -> entry.getSku()).toString();
+                }
 
                 continue;
             }
@@ -108,3 +110,4 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
