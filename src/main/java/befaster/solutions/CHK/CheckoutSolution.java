@@ -93,6 +93,9 @@ public class CheckoutSolution {
                 new SpecialOffer(3, 45, SpecialOfferType.GROUP_DISCOUNT)
         );
         var itemT = new Item('T', 20);
+        itemT.AddSpecialOffers(
+                new SpecialOffer(3, 45, SpecialOfferType.GROUP_DISCOUNT)
+        );
         var itemU = new Item('U', 40);
         itemU.AddSpecialOffers(
                 new SpecialOffer(3, itemU.getSku(), itemU.getPrice(), SpecialOfferType.SAME_ITEM_FREE)
@@ -104,8 +107,17 @@ public class CheckoutSolution {
         );
         var itemW = new Item('W', 20);
         var itemX = new Item('X', 17);
+        itemX.AddSpecialOffers(
+                new SpecialOffer(3, 45, SpecialOfferType.GROUP_DISCOUNT)
+        );
         var itemY = new Item('Y', 20);
+        itemY.AddSpecialOffers(
+                new SpecialOffer(3, 45, SpecialOfferType.GROUP_DISCOUNT)
+        );
         var itemZ = new Item('Z', 21);
+        itemZ.AddSpecialOffers(
+                new SpecialOffer(3, 45, SpecialOfferType.GROUP_DISCOUNT)
+        );
 
         itemsList.put(itemA.getSku(), itemA);
         itemsList.put(itemB.getSku(), itemB);
@@ -135,6 +147,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
