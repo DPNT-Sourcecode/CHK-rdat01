@@ -10,7 +10,7 @@ public class Checkout {
     public Checkout(List<String> skusDiscountPacks){
         this.basket = new HashMap<>();
         this.freeItems = new HashMap<>();
-        this.skusDiscountPacks = new ArrayList<>();
+        this.skusDiscountPacks = skusDiscountPacks;
     }
 
     public void addItem(Item item, int quantity){
@@ -88,8 +88,8 @@ public class Checkout {
     }
 
     private boolean basketContainsRemainingGroupDiscountItems() {
-        return basket.keySet().stream()
-                .filter(basketItem -> basketItem.getSku() == specialOffer.getFreeItemSKU())
-                .count() > 0;
+        for (var item : basket.keySet()) {
+
+        }
     }
 }
