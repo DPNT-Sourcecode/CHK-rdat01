@@ -28,6 +28,8 @@ public class Checkout {
     }
 
     public void updateQuantitiesIfHasFreeItems(){
+        var freeItems = new HashMap<Character, Integer>();
+        
         for (var basketEntry : basket.entrySet()) {
             var item = basketEntry.getKey();
             var quantity = basketEntry.getValue();
@@ -44,6 +46,8 @@ public class Checkout {
                     freeItems.put(specialOffer.getFreeItemSKU(), freeItemQuantity);
                 }
             }
+
+            basket.get()
         }
     }
 
@@ -100,3 +104,4 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
