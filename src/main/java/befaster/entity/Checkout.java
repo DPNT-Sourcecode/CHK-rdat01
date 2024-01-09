@@ -1,9 +1,10 @@
 package befaster.entity;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Checkout {
-    private HashMap<Item, Integer> basket;
+    private LinkedHashMap<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
 
     public Checkout(){
