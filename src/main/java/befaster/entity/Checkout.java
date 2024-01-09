@@ -87,11 +87,9 @@ public class Checkout {
                 .count() > 0;
     }
 
-    private boolean basketContainsRemainingGroupDiscountItems(SpecialOffer specialOffer) {
+    private boolean basketContainsRemainingGroupDiscountItems() {
         return basket.keySet().stream()
                 .filter(basketItem -> basketItem.getSku() == specialOffer.getFreeItemSKU())
                 .count() > 0;
     }
 }
-
-
