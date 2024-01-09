@@ -6,8 +6,8 @@ public class Checkout {
     private HashMap<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
 
-    public Checkout(HashMap<Item, Integer> basket){
-        this.basket = basket;
+    public Checkout(){
+        this.basket = new HashMap<>();
         this.freeItems = new HashMap<>();
     }
 
@@ -55,6 +55,7 @@ public class Checkout {
         return remainderPrice + divisionResult * specialOffer.getPrice();
     }
 }
+
 
 
 

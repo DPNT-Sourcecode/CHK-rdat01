@@ -9,9 +9,11 @@ import java.util.HashMap;
 
 public class CheckoutSolution {
 
+    private Checkout checkout;
     private HashMap<Character, Item> itemsList;
 
     public CheckoutSolution(){
+        this.checkout = new Checkout();
         this.itemsList = new HashMap<>();
         createItemsList();
     }
@@ -38,7 +40,7 @@ public class CheckoutSolution {
             basket.put(itemsList.get(entry.getKey()), entry.getValue());
         }
 
-        return new Checkout(basket).calculateCheckoutValue();
+        return checkout.calculateCheckoutValue();
     }
 
     private void createItemsList(){
@@ -67,3 +69,4 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
