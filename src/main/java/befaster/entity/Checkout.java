@@ -89,8 +89,9 @@ public class Checkout {
 
     private int getHowManyTimesToApplyDiscountGroup(SpecialOffer specialOffer) {
         int matchingCount = 0;
-        for (char c: basketList) {
-            if("STXYZ".indexOf(c) != -1){
+
+        for (String discountPack : skusDiscountPacks) {
+            if(discountPack.indexOf(c) != -1){
                 matchingCount++;
             }
         }
