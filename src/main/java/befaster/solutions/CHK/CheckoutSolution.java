@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class CheckoutSolution {
     public Integer checkout(String skus) {
         var checkout = new Checkout();
+        var freeItemsCheckout = new Checkout();
         var itemsList = new HashMap<Character, Item>();
         var skusAndQuantities = new HashMap<Character, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
@@ -32,10 +33,10 @@ public class CheckoutSolution {
         var checkoutValue = checkout.calculateCheckoutValue();
 
         for (var entry : checkout.getFreeItems().entrySet()){
-            var newCheckout = new Checkout();
-            newCheckout.addItem(itemsList.get(entry.getKey()), entry.getValue());
-            checkoutValue -= newCheckout.calculateCheckoutValue();
+            freeItemsCheckout.addItem(itemsList.get(entry.getKey()), entry.getValue());
         }
+
+        checkoutValue -= freeItemsCheckout.calculateCheckoutValue();
 
         return checkoutValue;
     }
@@ -66,4 +67,5 @@ public class CheckoutSolution {
         itemsList.put(itemE.getSku(), itemE);
     }
 }
+
 
