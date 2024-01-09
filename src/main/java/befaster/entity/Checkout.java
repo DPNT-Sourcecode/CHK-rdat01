@@ -27,16 +27,13 @@ public class Checkout {
         int checkoutValue = 0;
 
         for (var basketEntry : basket.entrySet()) {
-            checkoutValue += calculateItemPrice(basketEntry);
+            checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
         return checkoutValue;
     }
 
-    private int calculateItemPrice(Map.Entry<Item, Integer> entry) {
-        var item = entry.getKey();
-        var quantity = entry.getValue();
-
+    private int calculateItemPrice(Item item, int quantity) {
         var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
         if(freeItemQuantity > 0){
             quantity = freeItemQuantity >= quantity ? 0 : (quantity - freeItemQuantity);
@@ -60,7 +57,7 @@ public class Checkout {
                 return finalPrice - (quantity / (specialOffer.getQuantity()+1)) * specialOffer.getPrice();
             }
 
-            var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(entry, specialOffer);
+            var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(specialOffer);
             if(item.isInAGroupDiscountSpecialOffer() && groupDiscountCount > 0){
                 return finalPrice - groupDiscountCount * specialOffer.getPrice();
             }
@@ -69,17 +66,15 @@ public class Checkout {
                 continue;
             }
 
-            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(entry, specialOffer));
+            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
         }
 
         return finalPrice;
     }
 
-    private int calculateSpecialPriceOffer(Map.Entry<Item, Integer> entry, SpecialOffer specialOffer) {
-        var item = entry.getKey();
-        var quantity = entry.getValue();
+    private int calculateSpecialPriceOffer(Item item, int quantity, SpecialOffer specialOffer) {
         int remainder = quantity % specialOffer.getQuantity();
-        var remainderPrice = calculateItemPrice(entry);
+        var remainderPrice = calculateItemPrice(item, remainder);
 
         int divisionResult = quantity / specialOffer.getQuantity();
 
@@ -92,19 +87,21 @@ public class Checkout {
                 .count() > 0;
     }
 
-    private int getHowManyTimesToApplyDiscountGroup(Map.Entry<Item, Integer> entry, SpecialOffer specialOffer) {
+    private int getHowManyTimesToApplyDiscountGroup(SpecialOffer specialOffer) {
         int matchingCount = 0;
-        var item = entry.getKey();
         for (String discountPack : skusDiscountPacks) {
-            if(discountPack.indexOf(item.getSku()) != -1){
-                var currentItemQuantity = entry.getValue();
-                entry.setValue(currentItemQuantity -1);
-                matchingCount++;
+            for (var item : basket.keySet()) {
+                if(discountPack.indexOf(item.getSku()) != -1){
+                    var currentItemQuantity = basket.getOrDefault(item, 0);
+                    basket.replace(item, currentItemQuantity -1);
+                    matchingCount++;
+                }
             }
         }
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
 
 
