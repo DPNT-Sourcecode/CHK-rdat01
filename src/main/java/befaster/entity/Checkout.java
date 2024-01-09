@@ -58,7 +58,7 @@ public class Checkout {
 
             if(specialOffer.isSameItemFreeOffer()){
                 if(quantity % specialOffer.getQuantity() == 0){
-                    return finalPrice;
+                    return finalPrice - quantity / specialOffer.getQuantity();
                 }
             }
 
