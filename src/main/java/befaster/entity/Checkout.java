@@ -113,15 +113,20 @@ public class Checkout {
                 count = count % groupDiscountOffer.getQuantity();
             }
 
+            if(count % groupDiscountOffer.getQuantity() != 0){
+                valueByItemOrder += count * item.getPrice();
+            }
+
             if(itemQuantity >= groupDiscountOffer.getQuantity()){
                 valueByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
                         + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
             }
 
-            /*if(itemQuantity % groupDiscountOffer.getQuantity() != 0){
+            if(itemQuantity % groupDiscountOffer.getQuantity() != 0){
+                count = 0;
                 count += itemQuantity < groupDiscountOffer.getQuantity()
                         ? itemQuantity : itemQuantity % groupDiscountOffer.getQuantity();
-            }*/
+            }
 
             individualItems += calculateItemPrice(item, itemQuantity);
         }
@@ -171,6 +176,7 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
 
