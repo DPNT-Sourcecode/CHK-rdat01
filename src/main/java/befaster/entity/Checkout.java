@@ -125,7 +125,8 @@ public class Checkout {
                 break;
 
             aux += entry.getValue();
-            if(aux <= entryValuesSum - numberOfRemainingItems)
+            entryValuesSum -= entry.getValue();
+            if(aux != entryValuesSum - numberOfRemainingItems)
                 continue;
 
             sum+= calculateItemPrice(entry.getKey(), entry.getValue());
