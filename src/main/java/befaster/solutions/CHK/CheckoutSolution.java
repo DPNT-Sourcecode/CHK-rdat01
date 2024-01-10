@@ -38,11 +38,10 @@ public class CheckoutSolution {
         }
 
         for (var entry : groupItemsToCalculate.entrySet()) {
-            checkout.addItemToCheckout(entry.getKey(), entry.getValue());
+            checkout.addItemToGroupItem(entry.getKey(), entry.getValue());
         }
 
         var checkoutValue = checkout.calculateCheckoutValue();
-        checkoutValue += checkout.calculateGroupDiscount(groupItemsToCalculate);
 
         return checkoutValue;
     }
@@ -157,9 +156,3 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
-
-
-
-
-
-
