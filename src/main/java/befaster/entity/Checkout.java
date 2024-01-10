@@ -94,6 +94,7 @@ public class Checkout {
         int individualItems = 0,
             valueByEntry = 0,
             valueByItemOrder = 0,
+            valueOfDiscount = 0,
             count = 0;
         boolean appliedDiscount = false;
 
@@ -123,9 +124,9 @@ public class Checkout {
                 int numberOfDiscounts = count / groupDiscountOffer.getQuantity();
                 int remainderItems = count % groupDiscountOffer.getQuantity();
 
-                valueByItemOrder += numberOfDiscounts * groupDiscountOffer.getPrice();
+                valueOfDiscount += numberOfDiscounts * groupDiscountOffer.getPrice();
                 if(numberOfDiscounts > 0){
-                    valueByItemOrder += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
+                    valueOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                 }
 
                 count = remainderItems > 0 ? remainderItems : 0;
@@ -155,6 +156,7 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
     }
 }
+
 
 
 
