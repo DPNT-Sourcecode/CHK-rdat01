@@ -33,6 +33,16 @@ public class Checkout {
         return checkoutValue;
     }
 
+    public int calculateGroupDiscount(HashMap<Item, Integer> groupItemsToCalculate) {
+        int checkoutValue = 0;
+
+        for (var basketEntry : groupItemsToCalculate.entrySet()) {
+            checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
+        }
+
+        return checkoutValue;
+    }
+
     private int calculateItemPrice(Item item, int quantity) {
         var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
         if(freeItemQuantity > 0){
@@ -86,5 +96,6 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 

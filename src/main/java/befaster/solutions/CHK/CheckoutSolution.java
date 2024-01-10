@@ -11,10 +11,10 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
         final String discountGroup = "STXYZ";
         var checkout = new Checkout(discountGroup);
-        var skusAndQuantities = new HashMap<Character, Integer>();
+        var skusAndQuantities = new HashMap<Item, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
         var itemsList = new HashMap<Character, Item>();
-        var groupItemsToCalculate = new HashMap<Character, Integer>();
+        var groupItemsToCalculate = new HashMap<Item, Integer>();
 
         createItemsList(itemsList);
 
@@ -25,12 +25,12 @@ public class CheckoutSolution {
 
             int currentQuantity2 = groupItemsToCalculate.getOrDefault(sku, 0);
             if(discountGroup.contains(String.valueOf(sku))){
-                groupItemsToCalculate.put(sku, currentQuantity2 + 1);
+                groupItemsToCalculate.put(itemsList.get(sku), currentQuantity2 + 1);
                 continue;
             }
 
             int currentQuantity = skusAndQuantities.getOrDefault(sku, 0);
-            skusAndQuantities.put(sku, currentQuantity + 1);
+            skusAndQuantities.put(itemsList.get(sku), currentQuantity + 1);
         }
 
         for (var entry : skusAndQuantities.entrySet()) {
@@ -38,6 +38,7 @@ public class CheckoutSolution {
         }
 
         var checkoutValue = checkout.calculateCheckoutValue();
+        checkoutValue += checkout.calculateGroupDiscount(groupItemsToCalculate);
 
         return checkoutValue;
     }
@@ -152,6 +153,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
