@@ -32,40 +32,7 @@ public class Checkout {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
-        int checkoutGroupDiscountValue = Integer.MAX_VALUE,
-                value = Integer.MAX_VALUE;
-
-        for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
-            var item = groupDiscountEntry.getKey();
-            var quantity = groupDiscountEntry.getValue();
-            var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
-
-            if(quantity % groupDiscountOffer.getQuantity() == 0){
-                value = groupDiscountOffer.getPrice()
-                        * (quantity / groupDiscountOffer.getQuantity());
-            }
-
-            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
-        }
-
-        var groupDiscountItem = itemsInGroupDiscount.keySet().stream().findFirst();
-        if(!groupDiscountItem.isPresent()){
-            return checkoutValue;
-        }
-
-        var groupDiscountOffer = groupDiscountItem.get().getGroupDiscountSpecialOffer();
-        if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
-            value = groupDiscountOffer.getPrice()
-                * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity())
-                    * (basketQuantity / groupDiscountOffer.getQuantity());
-
-            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
-        }
-
-        checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
-                ? checkoutGroupDiscountValue : 0;
-
-        return checkoutValue + checkoutGroupDiscountValue;
+        return checkoutValue + calculateGroupDiscountValue(checkoutValue, basketQuantity);
     }
 
     private int calculateItemPrice(Item item, int quantity) {
@@ -119,6 +86,43 @@ public class Checkout {
         return basket.keySet().stream()
                 .filter(basketItem -> basketItem.getSku() == specialOffer.getFreeItemSKU())
                 .count() > 0;
+    }
+
+    private int calculateGroupDiscountValue(int checkoutValue, int basketQuantity) {
+        int checkoutGroupDiscountValue = Integer.MAX_VALUE,
+            value = Integer.MAX_VALUE;
+
+        for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
+            var item = groupDiscountEntry.getKey();
+            var quantity = groupDiscountEntry.getValue();
+            var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
+
+            if(quantity % groupDiscountOffer.getQuantity() == 0){
+                value = groupDiscountOffer.getPrice()
+                        * (quantity / groupDiscountOffer.getQuantity());
+            }
+
+            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
+        }
+
+        var groupDiscountItem = itemsInGroupDiscount.keySet().stream().findFirst();
+        if(!groupDiscountItem.isPresent()){
+            return checkoutValue;
+        }
+
+        var groupDiscountOffer = groupDiscountItem.get().getGroupDiscountSpecialOffer();
+        if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
+            value = groupDiscountOffer.getPrice()
+                    * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity())
+                    * (basketQuantity / groupDiscountOffer.getQuantity());
+
+            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
+        }
+
+        checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
+                ? checkoutGroupDiscountValue : 0;
+
+        return checkoutGroupDiscountValue;
     }
 }
 
