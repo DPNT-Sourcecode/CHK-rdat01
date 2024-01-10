@@ -21,7 +21,7 @@ public class Checkout {
         basket.put(item, quantity);
     }
 
-    public void addItemToGroupItem(SpecialOffer specialOffer, int quantity){
+    public void set(SpecialOffer specialOffer, int quantity){
         groupDiscountOffer.put(specialOffer, quantity);
     }
 
@@ -106,3 +106,4 @@ public class Checkout {
                 .count() > 0;
     }
 }
+

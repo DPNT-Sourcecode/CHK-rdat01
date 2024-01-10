@@ -12,7 +12,7 @@ public class CheckoutSolution {
         var discountGroup = "STXYZ";
         var checkout = new Checkout();
         var itemsNotInGroupDiscount = new HashMap<Item, Integer>();
-        var itemsInGroupDiscount = new HashMap<String, Integer>();
+        var itemsInGroupDiscount = new HashMap<String, SpecialOffer>();
         var groupDiscountCount = 0;
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
         var itemsList = new HashMap<Character, Item>();
@@ -41,7 +41,7 @@ public class CheckoutSolution {
         }
 
         for (var entry : itemsInGroupDiscount.entrySet()) {
-            checkout.addItemToGroupItem(entry.getKey(), entry.getValue());
+            checkout.addItemToCheckout(entry.getKey(), entry.getValue(), groupDiscountCount);
         }
 
         var checkoutValue = checkout.calculateCheckoutValue();
@@ -159,6 +159,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
