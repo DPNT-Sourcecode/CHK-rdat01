@@ -126,9 +126,10 @@ public class Checkout {
         }
 
         checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
-                ? checkoutGroupDiscountValue : 0;
+                ? checkoutGroupDiscountValue : 0 + individualItems;
 
         return checkoutGroupDiscountValue;
     }
 }
+
 
