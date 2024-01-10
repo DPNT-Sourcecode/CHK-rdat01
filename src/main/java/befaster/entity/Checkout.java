@@ -130,6 +130,8 @@ public class Checkout {
                     valuesOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                 }
                 valuesByItemOrder += currentItemPrice;
+                count = remainderItems > 0 ? remainderItems : 0;
+
                 /*count = remainderItems > 0 ? remainderItems : 0;
                 valueByItemOrder -= calculateItemPrice(item, remainderItems);*/
                 appliedDiscount = true;
