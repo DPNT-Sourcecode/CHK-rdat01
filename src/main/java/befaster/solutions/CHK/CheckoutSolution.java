@@ -6,11 +6,10 @@ import befaster.entity.SpecialOffer;
 import befaster.entity.enums.SpecialOfferType;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        var checkout = new Checkout(List.of("STXYZ"));
+        var checkout = new Checkout("STXYZ");
         var skusAndQuantities = new HashMap<Character, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
         var itemsList = new HashMap<Character, Item>();
@@ -145,4 +144,5 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 

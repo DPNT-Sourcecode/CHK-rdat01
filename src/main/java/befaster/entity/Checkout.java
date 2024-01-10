@@ -5,10 +5,10 @@ import java.util.*;
 public class Checkout {
     private Map<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
-    private List<String> skusDiscountPacks;
+    private String skusDiscountPacks;
     private HashMap<Character, Boolean> groupDiscountAvailable;
 
-    public Checkout(List<String> skusDiscountPacks){
+    public Checkout(String skusDiscountPacks){
         this.basket = new TreeMap<>((item1, item2) -> {
             var valueCompare = Boolean.compare(item2.hasFreeItemSpecialOffer(), item1.hasFreeItemSpecialOffer());
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
@@ -86,4 +86,5 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
