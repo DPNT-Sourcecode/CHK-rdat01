@@ -32,17 +32,18 @@ public class Checkout {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
-        int lowestValue = Integer.MAX_VALUE;
+        int lowestValue = 0;
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
             var quantity = groupDiscountEntry.getValue();
+            var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
 
-            if(groupDiscountCount % groupDiscountOffer.getQuantity() == 0){
-                checkoutValue += groupDiscountOffer.getPrice() * (groupDiscountCount / groupDiscountOffer.getQuantity());
+            if(quantity % groupDiscountOffer.getQuantity() == 0){
+                lowestValue = groupDiscountOffer.getPrice() * (quantity / groupDiscountOffer.getQuantity());
             }
         }
 
-        return checkoutValue;
+        return checkoutValue + lowestValue;
     }
 
     private int calculateItemPrice(Item item, int quantity) {
@@ -98,4 +99,5 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
