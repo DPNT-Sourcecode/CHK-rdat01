@@ -139,7 +139,6 @@ public class Checkout {
         if(basketQuantity > groupDiscountOffer.getQuantity()){
             var itemsList = new ArrayList<>(itemsInGroupDiscount.keySet());
             while(basketQuantity / groupDiscountOffer.getQuantity() > 0){
-
                 basketQuantity -= groupDiscountOffer.getQuantity();
             }
 
@@ -152,5 +151,6 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
