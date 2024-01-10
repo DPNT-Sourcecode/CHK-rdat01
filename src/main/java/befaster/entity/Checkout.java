@@ -110,9 +110,16 @@ public class Checkout {
         var groupDiscountOffer = itemsInGroupDiscount.keySet().stream()
                 .findFirst().get().getGroupDiscountSpecialOffer();
 
-        var isFullBasketOffer = entryValuesSum % groupDiscountOffer.getQuantity() == 0 ? true : false;
+        var numberOfDiscounts = entryValuesSum / groupDiscountOffer.getQuantity();
+        var numberOfRemainingItems = entryValuesSum % groupDiscountOffer.getQuantity();
+
+        var isFullBasketOffer = numberOfRemainingItems == 0 ? true : false;
         if(isFullBasketOffer)
-            return (entryValuesSum / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice();
+            return numberOfDiscounts * groupDiscountOffer.getPrice();
+
+        for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
+
+        }
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
