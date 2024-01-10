@@ -125,7 +125,6 @@ public class Checkout {
                 break;
 
             aux += entry.getValue();
-            entryValuesSum -= entry.getValue();
             if(aux != entryValuesSum - numberOfRemainingItems)
                 continue;
 
@@ -201,3 +200,4 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
