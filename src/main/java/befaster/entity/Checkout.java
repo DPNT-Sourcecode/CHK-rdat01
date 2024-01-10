@@ -121,11 +121,10 @@ public class Checkout {
             }
 
             if(canApplyDiscount || count >= groupDiscountOffer.getQuantity()){
-                int numberOfDiscounts = count / groupDiscountOffer.getQuantity();
+                int numberOfDiscountsToApply = count / groupDiscountOffer.getQuantity();
                 int remainderItems = count % groupDiscountOffer.getQuantity();
 
-                valueOfDiscount += numberOfDiscounts * groupDiscountOffer.getPrice();
-                if(numberOfDiscounts > 0){
+                if(numberOfDiscountsToApply > 0){
                     valueOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                 }
 
@@ -156,6 +155,7 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
     }
 }
+
 
 
 
