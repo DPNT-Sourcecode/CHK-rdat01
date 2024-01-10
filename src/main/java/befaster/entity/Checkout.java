@@ -114,10 +114,10 @@ public class Checkout {
                 }
             }
 
-            var curentItemPrice = calculateItemPrice(item, itemQuantity);
+            var currentItemPrice = calculateItemPrice(item, itemQuantity);
 
             if(appliedDiscount){
-                valuesByItemOrder += curentItemPrice;
+                valuesByItemOrder += currentItemPrice;
                 appliedDiscount = false;
                 isPriceCalculated = true;
             }
@@ -130,7 +130,7 @@ public class Checkout {
                 if(numberOfDiscountsToApply > 0){
                     valuesOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                 }
-                valuesByItemOrder += curentItemPrice;
+                valuesByItemOrder += currentItemPrice;
                 /*count = remainderItems > 0 ? remainderItems : 0;
                 valueByItemOrder -= calculateItemPrice(item, remainderItems);*/
                 appliedDiscount = true;
@@ -138,7 +138,7 @@ public class Checkout {
                 if(isPriceCalculated){
                     valuesByItemOrder += 0;
                 } else {
-                    valuesByItemOrder += curentItemPrice;
+                    valuesByItemOrder += currentItemPrice;
                 }
             }
 
@@ -146,10 +146,10 @@ public class Checkout {
                 valuesByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
                         + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
             } else {
-                valuesByEntry += curentItemPrice;
+                valuesByEntry += currentItemPrice;
             }
 
-            individualItems += curentItemPrice;
+            individualItems += currentItemPrice;
         }
 
         valuesByEntry = valuesByEntry == 0 ? Integer.MAX_VALUE : valuesByEntry;
@@ -158,4 +158,3 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valuesByEntry, valuesByItemOrder));
     }
 }
-
