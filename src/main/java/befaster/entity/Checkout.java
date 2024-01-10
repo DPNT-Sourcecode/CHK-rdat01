@@ -6,7 +6,7 @@ public class Checkout {
     private Map<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
     private String skusDiscountPacks;
-    private int groupDiscountOfferCount;
+    private HashMap<Item, Integer> groupItem;
 
     public Checkout(String skusDiscountPacks){
         this.basket = new TreeMap<>((item1, item2) -> {
@@ -16,15 +16,15 @@ public class Checkout {
 
         this.freeItems = new HashMap<>();
         this.skusDiscountPacks = skusDiscountPacks;
-        this.groupDiscountOfferCount = 0;
+        this.groupItem = new HashMap<>();
     }
 
     public void addItemToCheckout(Item item, int quantity){
         basket.put(item, quantity);
     }
 
-    public void setGroupDiscountOfferCount(int groupDiscountOfferCount) {
-        this.groupDiscountOfferCount = groupDiscountOfferCount;
+    public void addItemToGroupItem(Item item, int quantity){
+        groupItem.put(item, quantity);
     }
 
     public int calculateCheckoutValue() {
@@ -108,6 +108,7 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
 
