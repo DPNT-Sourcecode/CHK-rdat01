@@ -32,12 +32,13 @@ public class Checkout {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
-        int checkoutGroupDiscountValue = Integer.MAX_VALUE;
+        int checkoutGroupDiscountValue = Integer.MAX_VALUE,
+                value = Integer.MAX_VALUE;
+
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
             var quantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
-            int value = Integer.MAX_VALUE;
 
             if(quantity % groupDiscountOffer.getQuantity() == 0){
                 value = groupDiscountOffer.getPrice()
@@ -51,8 +52,10 @@ public class Checkout {
                 .findFirst().get().getGroupDiscountSpecialOffer();
 
         if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
-            value2 = groupDiscountOffer.getPrice()
-                    * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity());
+            value = groupDiscountOffer.getPrice()
+                * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity());
+
+            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
         }
 
         checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
