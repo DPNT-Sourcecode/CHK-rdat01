@@ -41,7 +41,7 @@ public class CheckoutSolution {
 
         checkout.setItemsInGroupDiscount(itemsInGroupDiscount);
 
-        var checkoutValue = checkout.calculateCheckoutValue(basketList.length);
+        var checkoutValue = checkout.calculateCheckoutValue();
 
         return checkoutValue;
     }
@@ -156,3 +156,4 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+

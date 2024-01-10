@@ -26,14 +26,14 @@ public class Checkout {
         basket.put(item, quantity);
     }
 
-    public int calculateCheckoutValue(int basketQuantity) {
+    public int calculateCheckoutValue() {
         int checkoutValue = 0;
 
         for (var basketEntry : basket.entrySet()) {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
-        return checkoutValue + calculateGroupDiscountValue(basketQuantity);
+        return checkoutValue + calculateGroupDiscountValue();
     }
 
     private int calculateItemPrice(Item item, int quantity) {
@@ -87,7 +87,7 @@ public class Checkout {
                 .count() > 0;
     }
 
-    private int calculateGroupDiscountValue(int basketQuantity) {
+    private int calculateGroupDiscountValue() {
         int checkoutGroupDiscountValue = 0,
             individualItems = 0,
             valueByEntry = 0,
