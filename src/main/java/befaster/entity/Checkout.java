@@ -13,10 +13,14 @@ public class Checkout {
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
         });
 
-        this.itemsInGroupDiscount = new TreeMap<>((item1, item2) -> {
-            var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
-            return valueCompare != 0 ? valueCompare : 1;
-        });
+        this.itemsInGroupDiscount = new TreeMap<>(
+                new Comparator<Item>() {
+                    @Override
+                    public int compare(Item item1, Item item2) {
+                        var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
+                        return valueCompare != 0 ? valueCompare : 1;
+                    }
+                });
 
         this.freeItems = new HashMap<>();
     }
@@ -152,5 +156,6 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
