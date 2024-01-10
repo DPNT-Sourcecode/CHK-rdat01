@@ -137,12 +137,11 @@ public class Checkout {
         }
 
         if(basketQuantity > groupDiscountOffer.getQuantity()){
-            var itemsList = new ArrayList<>(itemsInGroupDiscount.keySet());
             int aux = 0, newBasketQuantity = 0;
 
             while(basketQuantity / groupDiscountOffer.getQuantity() > 0){
                 for (int i = 0; i < itemsInGroupDiscount.size(); i++) {
-                    itemsList.remove(0);
+                    itemsList.remove();
                 }
                 aux += groupDiscountOffer.getPrice();
                 basketQuantity -= groupDiscountOffer.getQuantity();
@@ -167,6 +166,7 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
 
