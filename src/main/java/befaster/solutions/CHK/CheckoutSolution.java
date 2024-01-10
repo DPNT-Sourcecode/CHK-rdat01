@@ -9,10 +9,11 @@ import java.util.HashMap;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        final String discountGroup = "STXYZ";
+        var discountGroup = "STXYZ";
         var checkout = new Checkout();
         var itemsNotInGroupDiscount = new HashMap<Item, Integer>();
         var itemsInGroupDiscount = new HashMap<String, Integer>();
+        var groupDiscountCount = 0;
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
         var itemsList = new HashMap<Character, Item>();
 
@@ -31,8 +32,8 @@ public class CheckoutSolution {
                 continue;
             }
 
-            int inGroupDiscountCount = itemsInGroupDiscount.getOrDefault(discountGroup, 0);
-            itemsInGroupDiscount.put(discountGroup, inGroupDiscountCount + 1);
+            itemsInGroupDiscount.put(discountGroup, item.getGroupDiscountSpecialOffer());
+            groupDiscountCount++;
         }
 
         for (var entry : itemsNotInGroupDiscount.entrySet()) {
@@ -158,6 +159,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
