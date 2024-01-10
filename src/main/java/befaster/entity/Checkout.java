@@ -1,6 +1,7 @@
 package befaster.entity;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Checkout {
     private Map<Item, Integer> basket;
@@ -59,13 +60,16 @@ public class Checkout {
                 return finalPrice - (quantity / (specialOffer.getQuantity()+1)) * specialOffer.getPrice();
             }
 
-            //var groupDiscountCount = getHowManyTimesToApplyDiscountGroup(specialOffer);
             if(item.isInAGroupDiscountSpecialOffer()){
-                var currentQuantity = groupDiscountQuantities.getOrDefault(item.getSku(), 0);
-                groupDiscountQuantities.put(item.getSku(), currentQuantity + 1);
-                String teste = "";
+                var orderedBasketSkus = basket.keySet().stream()
+                        .map(entry -> String.valueOf(entry.getSku()))
+                        .collect(Collectors.joining());
+
                 for (var skusDiscountPack : skusDiscountPacks) {
-                    teste += String.valueOf(basket.keySet().stream().map(entry -> entry.getSku()));
+                    if(skusDiscountPack.contains(orderedBasketSkus) || orderedBasketSkus.contains(skusDiscountPack)){
+
+                        return specialOffer.getPrice();
+                    };
                 }
 
                 continue;
@@ -110,5 +114,6 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
 
