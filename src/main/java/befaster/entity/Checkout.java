@@ -180,6 +180,3 @@ public class Checkout {
         return currentItemPrice;
     }
 }
-
-
-

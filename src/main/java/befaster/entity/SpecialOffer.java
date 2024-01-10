@@ -41,4 +41,3 @@ public class SpecialOffer {
 
     public boolean isGroupDiscountOffer() { return specialOfferType.equals(SpecialOfferType.GROUP_DISCOUNT); }
 }
-
