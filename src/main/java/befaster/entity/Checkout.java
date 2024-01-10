@@ -114,8 +114,10 @@ public class Checkout {
                 }
             }
 
+            var curentItemPrice = calculateItemPrice(item, itemQuantity);
+
             if(appliedDiscount){
-                valuesByItemOrder += calculateItemPrice(item, itemQuantity);
+                valuesByItemOrder += curentItemPrice;
                 appliedDiscount = false;
                 isPriceCalculated = true;
             }
@@ -128,7 +130,7 @@ public class Checkout {
                 if(numberOfDiscountsToApply > 0){
                     valuesOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                 }
-                valuesByItemOrder += calculateItemPrice(item, itemQuantity);
+                valuesByItemOrder += curentItemPrice;
                 /*count = remainderItems > 0 ? remainderItems : 0;
                 valueByItemOrder -= calculateItemPrice(item, remainderItems);*/
                 appliedDiscount = true;
@@ -136,7 +138,7 @@ public class Checkout {
                 if(isPriceCalculated){
                     valuesByItemOrder += 0;
                 } else {
-                    valuesByItemOrder += calculateItemPrice(item, itemQuantity);
+                    valuesByItemOrder += curentItemPrice;
                 }
             }
 
@@ -144,10 +146,10 @@ public class Checkout {
                 valuesByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
                         + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
             } else {
-                valuesByEntry += calculateItemPrice(item, itemQuantity);
+                valuesByEntry += curentItemPrice;
             }
 
-            individualItems += calculateItemPrice(item, itemQuantity);
+            individualItems += curentItemPrice;
         }
 
         valuesByEntry = valuesByEntry == 0 ? Integer.MAX_VALUE : valuesByEntry;
@@ -156,3 +158,4 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valuesByEntry, valuesByItemOrder));
     }
 }
+
