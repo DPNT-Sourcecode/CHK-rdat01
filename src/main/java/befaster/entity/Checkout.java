@@ -100,6 +100,7 @@ public class Checkout {
 
             if(basketQuantity <= groupDiscountOffer.getQuantity()){
                 individualItems += calculateItemPrice(item, quantity);
+                continue;
             }
 
             if(quantity % groupDiscountOffer.getQuantity() == 0){
@@ -130,3 +131,4 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
