@@ -105,9 +105,11 @@ public class Checkout {
                 value = Math.min(value, aux);
             }
 
-            if(basketQuantity <= groupDiscountOffer.getQuantity()){
-                individualItems += calculateItemPrice(item, quantity);
+            if(basketQuantity > groupDiscountOffer.getQuantity()){
+
             }
+
+            individualItems += calculateItemPrice(item, quantity);
         }
 
         checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
@@ -132,4 +134,5 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
