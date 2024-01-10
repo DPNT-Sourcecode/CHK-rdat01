@@ -132,10 +132,8 @@ public class Checkout {
                 int numberOfDiscountsToApply = count / groupDiscountOffer.getQuantity();
                 int remainingItems = count % groupDiscountOffer.getQuantity();
 
-                valuesOfDiscount += numberOfDiscountsToApply * groupDiscountOffer.getPrice();
-                if(numberOfDiscountsToApply > 0){
-                    valuesOfDiscount += remainingItems * item.getPrice();
-                }
+                valuesOfDiscount += numberOfDiscountsToApply * groupDiscountOffer.getPrice()
+                        + remainingItems * item.getPrice();
 
                 count = remainingItems > 0 ? remainingItems : 0;
                 valuesByItemOrder += currentItemPrice;
@@ -168,5 +166,6 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
 
