@@ -128,9 +128,9 @@ public class Checkout {
                 if(numberOfDiscountsToApply > 0){
                     valueOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                 }
-
-                count = remainderItems > 0 ? remainderItems : 0;
-                valueByItemOrder -= calculateItemPrice(item, remainderItems);
+                valueByItemOrder += calculateItemPrice(item, itemQuantity);
+                /*count = remainderItems > 0 ? remainderItems : 0;
+                valueByItemOrder -= calculateItemPrice(item, remainderItems);*/
                 appliedDiscount = true;
             }else {
                 if(isPriceCalculated){
