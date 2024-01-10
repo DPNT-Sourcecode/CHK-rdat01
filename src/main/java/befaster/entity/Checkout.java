@@ -56,7 +56,8 @@ public class Checkout {
         var groupDiscountOffer = groupDiscountItem.get().getGroupDiscountSpecialOffer();
         if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
             value = groupDiscountOffer.getPrice()
-                * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity());
+                * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity())
+                    * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity());
 
             checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
         }
@@ -120,5 +121,6 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
