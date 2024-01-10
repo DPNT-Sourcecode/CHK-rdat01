@@ -23,14 +23,16 @@ public class CheckoutSolution {
                 return -1;
             }
 
-            int inGroupDiscountCount = itemsInGroupDiscount.getOrDefault(itemsList.get(sku), 0);
-            if(discountGroup.contains(String.valueOf(sku))){
-                itemsInGroupDiscount.put(itemsList.get(sku).getGroupDiscountSpecialOffer(), inGroupDiscountCount + 1);
+            var item = itemsList.get(sku);
+
+            int notInGroupDiscountCount = itemsNotInGroupDiscount.getOrDefault(item, 0);
+            if(!discountGroup.contains(String.valueOf(sku))){
+                itemsNotInGroupDiscount.put(item, notInGroupDiscountCount + 1);
                 continue;
             }
 
-            int notInGroupDiscountCount = itemsNotInGroupDiscount.getOrDefault(itemsList.get(sku), 0);
-            itemsNotInGroupDiscount.put(itemsList.get(sku), notInGroupDiscountCount + 1);
+            int inGroupDiscountCount = itemsInGroupDiscount.getOrDefault(item, 0);
+            itemsInGroupDiscount.put(item.getGroupDiscountSpecialOffer(), inGroupDiscountCount + 1);
         }
 
         for (var entry : itemsNotInGroupDiscount.entrySet()) {
@@ -156,5 +158,6 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
