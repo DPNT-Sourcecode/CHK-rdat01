@@ -153,6 +153,15 @@ public class Checkout {
             return individualItems;
         }
 
+        var groupDiscountOffer = groupDiscountItem.get().getGroupDiscountSpecialOffer();
+        if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
+            int value = groupDiscountOffer.getPrice()
+                    * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity())
+                    * (basketQuantity / groupDiscountOffer.getQuantity());
+
+            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
+        }
+
         return checkoutGroupDiscountValue;
     }
 }
