@@ -108,8 +108,8 @@ public class Checkout {
                 int aux = count % groupDiscountOffer.getQuantity();
                 if(aux > 0){
                     valueByItemOrder += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
-                    count = 0;
                 }
+                count = 0;
             }else {
                 valueByItemOrder = 0;
             }
@@ -152,4 +152,5 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
