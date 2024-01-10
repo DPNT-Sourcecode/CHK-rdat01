@@ -34,11 +34,10 @@ public class Checkout {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
-        int counting = 0;
+        int counting = 1;
         for (var groupItemEntry : groupItem.entrySet()) {
-
-            for (var specialOffer : ) {
-
+            if(counting == 3){
+                checkoutValue += groupItemEntry.getKey().getGroupDiscountSpecialOffer().getPrice();
             }
             counting++;
         }
@@ -109,4 +108,5 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
