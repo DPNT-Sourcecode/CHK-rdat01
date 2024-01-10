@@ -108,14 +108,6 @@ public class Checkout {
             sumByEntriesValue += calculateEntryValuePrice(
                     itemQuantity, item.getPrice(), currentItemPrice, groupDiscountOffer);
 
-            int applicableDiscountsCount = itemQuantity / groupDiscountOffer.getQuantity();
-            int remainingQuantity = itemQuantity % groupDiscountOffer.getQuantity();
-
-            if(itemQuantity >= groupDiscountOffer.getQuantity() || itemQuantity + count >= groupDiscountOffer.getQuantity()){
-                count += itemQuantity;
-                canApplyDiscount = true;
-            }
-            //////
             boolean isPriceCalculated = false,
                     canApplyDiscount = false;
 
