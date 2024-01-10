@@ -162,12 +162,14 @@ public class Checkout {
         return Math.min(sumOfAllItemsValue, Math.min(sumByEntriesValue, Math.min(valuesByItemOrder, valuesOfDiscount)));
     }
 
-    private int calculateEntryValuePrice(Item item, SpecialOffer offer, int currentItemPrice){
+    private int calculateEntryValuePrice(int itemQuantity, int , SpecialOffer offer, int currentItemPrice){
+        var offerQuantity = offer.getQuantity();
 
         if(itemQuantity >= offerQuantity){
-            return (itemQuantity / offerQuantity) * groupDiscountOffer.getPrice()
+            return (itemQuantity / offerQuantity) * offer.getPrice()
                     + (itemQuantity % offerQuantity) * itemOriginalPrice;
         }
         return currentItemPrice;
     }
 }
+
