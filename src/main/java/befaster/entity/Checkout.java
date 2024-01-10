@@ -14,7 +14,7 @@ public class Checkout {
         });
 
         this.itemsInGroupDiscount = new TreeMap<>(
-            new Comparator<>() {
+            new Comparator<Item>() {
                 @Override
                 public int compare(Item item1, Item item2) {
                     var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
@@ -165,8 +165,3 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
-
-
-
-
-
