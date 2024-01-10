@@ -11,10 +11,10 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
         final String discountGroup = "STXYZ";
         var checkout = new Checkout();
-        var skusAndQuantities = new HashMap<Item, Integer>();
+        var itemsNotInGroupDiscount = new HashMap<Item, Integer>();
+        var itemsInGroupDiscount = new HashMap<SpecialOffer, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
         var itemsList = new HashMap<Character, Item>();
-        var groupItemsToCalculate = new HashMap<SpecialOffer, Integer>();
 
         createItemsList(itemsList);
 
@@ -23,21 +23,21 @@ public class CheckoutSolution {
                 return -1;
             }
 
-            int currentQuantity2 = groupItemsToCalculate.getOrDefault(itemsList.get(sku), 0);
+            int inGroupDiscountCount = itemsInGroupDiscount.getOrDefault(itemsList.get(sku), 0);
             if(discountGroup.contains(String.valueOf(sku))){
-                groupItemsToCalculate.put(itemsList.get(sku).getGroupDiscountSpecialOffer(), currentQuantity2 + 1);
+                itemsInGroupDiscount.put(itemsList.get(sku).getGroupDiscountSpecialOffer(), inGroupDiscountCount + 1);
                 continue;
             }
 
-            int currentQuantity = skusAndQuantities.getOrDefault(itemsList.get(sku), 0);
-            skusAndQuantities.put(itemsList.get(sku), currentQuantity + 1);
+            int notInGroupDiscountCount = itemsNotInGroupDiscount.getOrDefault(itemsList.get(sku), 0);
+            itemsNotInGroupDiscount.put(itemsList.get(sku), notInGroupDiscountCount + 1);
         }
 
-        for (var entry : skusAndQuantities.entrySet()) {
+        for (var entry : itemsNotInGroupDiscount.entrySet()) {
             checkout.addItemToCheckout(entry.getKey(), entry.getValue());
         }
 
-        for (var entry : groupItemsToCalculate.entrySet()) {
+        for (var entry : itemsInGroupDiscount.entrySet()) {
             checkout.addItemToGroupItem(entry.getKey(), entry.getValue());
         }
 
@@ -156,4 +156,5 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
