@@ -95,7 +95,8 @@ public class Checkout {
             sumByEntriesValue = 0,
             valuesByItemOrder = 0,
             valuesOfDiscount = 0,
-            count = 0;
+            count = 0,
+            lastCount = 0;
         boolean appliedDiscount = false;
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
@@ -146,6 +147,8 @@ public class Checkout {
                     valuesByItemOrder += currentItemPrice;
                 }
             }
+
+            lastCount = count;
         }
 
         sumByEntriesValue = sumByEntriesValue == 0 ? Integer.MAX_VALUE : sumByEntriesValue;
@@ -165,4 +168,5 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
