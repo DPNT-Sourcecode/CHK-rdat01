@@ -133,12 +133,11 @@ public class Checkout {
 
                 valuesOfDiscount += numberOfDiscountsToApply * groupDiscountOffer.getPrice();
                 if(numberOfDiscountsToApply > 0){
-                    valuesOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
+                    valuesOfDiscount += remainingItems * item.getPrice();
                 }
+
                 count = remainingItems > 0 ? remainingItems : 0;
                 valuesByItemOrder += currentItemPrice;
-                /*count = remainingItems > 0 ? remainingItems : 0;
-                valueByItemOrder -= calculateItemPrice(item, remainingItems);*/
                 appliedDiscount = true;
             }else {
                 if(isPriceCalculated){
@@ -147,8 +146,6 @@ public class Checkout {
                     valuesByItemOrder += currentItemPrice;
                 }
             }
-
-
         }
 
         sumByEntriesValue = sumByEntriesValue == 0 ? Integer.MAX_VALUE : sumByEntriesValue;
@@ -168,3 +165,4 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
