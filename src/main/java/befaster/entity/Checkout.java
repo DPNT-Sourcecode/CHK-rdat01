@@ -98,8 +98,8 @@ public class Checkout {
         int checkoutGroupDiscountValue = Integer.MAX_VALUE,
             value = Integer.MAX_VALUE,
             individualItems = 0,
-            valueByEntry = Integer.MAX_VALUE,
-            valueByItemOrder = Integer.MAX_VALUE,
+            valueByEntry = 0,
+            valueByItemOrder = 0,
             count = 0;
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
@@ -115,6 +115,8 @@ public class Checkout {
                     valueByItemOrder += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                     count = 0;
                 }
+            }else {
+                valueByItemOrder = 0;
             }
 
             if(itemQuantity >= groupDiscountOffer.getQuantity()){
@@ -155,3 +157,4 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
