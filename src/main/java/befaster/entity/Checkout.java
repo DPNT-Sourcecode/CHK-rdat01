@@ -98,20 +98,6 @@ public class Checkout {
                 .filter(basketItem -> basketItem.getSku() == specialOffer.getFreeItemSKU())
                 .count() > 0;
     }
-
-    private int getHowManyTimesToApplyDiscountGroup(SpecialOffer specialOffer) {
-        int matchingCount = 0;
-        for (String discountPack : skusDiscountPacks) {
-            for (var item : basket.keySet()) {
-                if(discountPack.indexOf(item.getSku()) != -1){
-                    var currentItemQuantity = basket.getOrDefault(item, 0);
-                    basket.replace(item, currentItemQuantity -1);
-                    matchingCount++;
-                }
-            }
-        }
-        return matchingCount / specialOffer.getQuantity();
-    }
 }
 
 
