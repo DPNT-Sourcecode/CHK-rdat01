@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Checkout {
     private Map<Item, Integer> basket;
+    private Map<Item, Integer> itemsInGroupDiscount;
     private HashMap<Character, Integer> freeItems;
-    private HashMap<Item, Integer> itemsInGroupDiscount;
 
     public Checkout(){
         this.basket = new TreeMap<>((item1, item2) -> {
@@ -13,8 +13,8 @@ public class Checkout {
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
         });
 
+        this.itemsInGroupDiscount = new TreeMap<>(Comparator.comparingInt(Item::getPrice));
         this.freeItems = new HashMap<>();
-        this.itemsInGroupDiscount = new HashMap<>();
     }
 
     public void setItemsInGroupDiscount(HashMap<Item, Integer> itemsInGroupDiscount){
@@ -131,5 +131,3 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
-
-

@@ -189,4 +189,3 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout(basket), equalTo(17));
     }
 }
-
