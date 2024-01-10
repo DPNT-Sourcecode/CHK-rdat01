@@ -52,6 +52,3 @@ public class Item {
         return specialOffers.stream().filter(specialOffer -> specialOffer.isGroupDiscountOffer()).findFirst().get();
     }
 }
-
-
-
