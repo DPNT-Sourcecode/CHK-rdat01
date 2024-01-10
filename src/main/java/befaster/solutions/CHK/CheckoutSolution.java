@@ -9,12 +9,12 @@ import java.util.HashMap;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-         String discountGroup = "STXYZ";
+        final String discountGroup = "STXYZ";
         var checkout = new Checkout(discountGroup);
         var skusAndQuantities = new HashMap<Character, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
         var itemsList = new HashMap<Character, Item>();
-        var groupItemsToCalculate = new HashMap<Character, Item>();
+        var groupItemsToCalculate = new HashMap<Character, Integer>();
 
         createItemsList(itemsList);
 
@@ -23,8 +23,10 @@ public class CheckoutSolution {
                 return -1;
             }
 
-            if(discountGroup.contains(sku)){
-
+            int currentQuantity2 = groupItemsToCalculate.getOrDefault(sku, 0);
+            if(discountGroup.contains(String.valueOf(sku))){
+                groupItemsToCalculate.put(sku, currentQuantity2 + 1);
+                continue;
             }
 
             int currentQuantity = skusAndQuantities.getOrDefault(sku, 0);
@@ -150,6 +152,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
