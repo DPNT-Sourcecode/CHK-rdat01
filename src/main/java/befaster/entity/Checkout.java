@@ -101,8 +101,14 @@ public class Checkout {
 
         boolean appliedDiscount = false;
 
-        for(int entryValue : itemsInGroupDiscount.values())
-            entryValuesSum += entryValue;
+       /* for(var entryValue : itemsInGroupDiscount.values())
+            entryValuesSum += entryValue;*/
+
+        var entries = itemsInGroupDiscount.entrySet();
+        for(var entry : entries){
+            entries.remove(entry);
+            entryValuesSum += entry.getValue();
+        }
 
         if(entryValuesSum == 0)
             return 0;
@@ -116,10 +122,6 @@ public class Checkout {
         var isFullBasketOffer = numberOfRemainingItems == 0 ? true : false;
         if(isFullBasketOffer)
             return numberOfDiscounts * groupDiscountOffer.getPrice();
-
-        for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
-
-        }
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
@@ -187,3 +189,4 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
