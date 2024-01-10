@@ -117,6 +117,7 @@ public class Checkout {
 
             if(appliedDiscount){
                 valuesByItemOrder += currentItemPrice;
+                valuesOfDiscount += currentItemPrice;
                 appliedDiscount = false;
                 isPriceCalculated = true;
             }
@@ -159,4 +160,5 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valuesByEntry, Math.min(valuesByItemOrder, valuesOfDiscount)));
     }
 }
+
 
