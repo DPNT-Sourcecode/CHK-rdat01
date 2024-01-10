@@ -77,11 +77,11 @@ public class Checkout {
 
     private int calculateSpecialPriceOffer(Item item, int quantity, SpecialOffer specialOffer) {
         int remainder = quantity % specialOffer.getQuantity();
-        var remainderPrice = calculateItemPrice(item, remainder);
+        var remainingItemPrice = calculateItemPrice(item, remainder);
 
         int divisionResult = quantity / specialOffer.getQuantity();
 
-        return remainderPrice + divisionResult * specialOffer.getPrice();
+        return remainingItemPrice + divisionResult * specialOffer.getPrice();
     }
 
     private boolean haveFreeItemsInTheBasket(SpecialOffer specialOffer) {
@@ -109,9 +109,11 @@ public class Checkout {
                     itemQuantity, item.getPrice(), currentItemPrice, groupDiscountOffer);
 
             int applicableDiscountsCount = itemQuantity / groupDiscountOffer.getQuantity();
+            int remainingQuantity = itemQuantity % groupDiscountOffer.getQuantity();
 
-            if(itemQuantity ){
-
+            if(itemQuantity >= groupDiscountOffer.getQuantity() || itemQuantity + count >= groupDiscountOffer.getQuantity()){
+                count += itemQuantity;
+                canApplyDiscount = true;
             }
             //////
             boolean isPriceCalculated = false,
@@ -135,16 +137,16 @@ public class Checkout {
 
             if(canApplyDiscount || count >= groupDiscountOffer.getQuantity()){
                 int numberOfDiscountsToApply = count / groupDiscountOffer.getQuantity();
-                int remainderItems = count % groupDiscountOffer.getQuantity();
+                int remainingItems = count % groupDiscountOffer.getQuantity();
 
                 valuesOfDiscount += numberOfDiscountsToApply * groupDiscountOffer.getPrice();
                 if(numberOfDiscountsToApply > 0){
                     valuesOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                 }
-                count = remainderItems > 0 ? remainderItems : 0;
+                count = remainingItems > 0 ? remainingItems : 0;
                 valuesByItemOrder += currentItemPrice;
-                /*count = remainderItems > 0 ? remainderItems : 0;
-                valueByItemOrder -= calculateItemPrice(item, remainderItems);*/
+                /*count = remainingItems > 0 ? remainingItems : 0;
+                valueByItemOrder -= calculateItemPrice(item, remainingItems);*/
                 appliedDiscount = true;
             }else {
                 if(isPriceCalculated){
@@ -174,6 +176,3 @@ public class Checkout {
         return currentItemPrice;
     }
 }
-
-
-
