@@ -101,13 +101,14 @@ public class Checkout {
             var item = groupDiscountEntry.getKey();
             var itemQuantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
-            boolean isPriceCalculated = false;
+            boolean isPriceCalculated = false,
+                    canApplyDiscount = false;
 
             if(itemQuantity < groupDiscountOffer.getQuantity()){
                 count += itemQuantity;
             } else {
                 if(itemQuantity + count >= groupDiscountOffer.getQuantity()){
-                    count += itemQuantity;
+                    canApplyDiscount = true;
                 }
             }
 
@@ -117,7 +118,7 @@ public class Checkout {
                 isPriceCalculated = true;
             }
 
-            if(count >= groupDiscountOffer.getQuantity()){
+            if(canApplyDiscount){
                 valueByItemOrder += (count / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice();
                 int aux = count % groupDiscountOffer.getQuantity();
                 if(aux > 0){
@@ -149,6 +150,7 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
     }
 }
+
 
 
 
