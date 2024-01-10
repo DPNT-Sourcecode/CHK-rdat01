@@ -13,10 +13,14 @@ public class Checkout {
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
         });
 
-        this.itemsInGroupDiscount = new TreeMap<>((item1, item2) -> {
-            var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
-            return valueCompare != 0 ? valueCompare : 1;
-        });
+        this.itemsInGroupDiscount = new TreeMap<>(
+                new Comparator<Item>() {
+                    @Override
+                    public int compare(Item item1, Item item2) {
+                        var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
+                        return valueCompare != 0 ? valueCompare : 1;
+                    }
+                });
 
         this.freeItems = new HashMap<>();
     }
@@ -99,12 +103,12 @@ public class Checkout {
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
-            var quantity = groupDiscountEntry.getValue();
+            var itemQuantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
 
-            if(quantity % groupDiscountOffer.getQuantity() == 0){
+            if(itemQuantity % groupDiscountOffer.getQuantity() == 0){
                 var aux = groupDiscountOffer.getPrice()
-                        * (quantity / groupDiscountOffer.getQuantity());
+                        * (itemQuantity / groupDiscountOffer.getQuantity());
 
                 value = Math.min(value, aux);
             }
@@ -113,7 +117,7 @@ public class Checkout {
 
             }
 
-            individualItems += calculateItemPrice(item, quantity);
+            individualItems += calculateItemPrice(item, itemQuantity);
         }
 
         checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
@@ -148,4 +152,5 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
