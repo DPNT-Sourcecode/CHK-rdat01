@@ -14,13 +14,13 @@ public class Checkout {
         });
 
         this.itemsInGroupDiscount = new TreeMap<>(
-                new Comparator<Item>() {
-                    @Override
-                    public int compare(Item item1, Item item2) {
-                        var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
-                        return valueCompare != 0 ? valueCompare : 1;
-                    }
-                });
+            new Comparator<>() {
+                @Override
+                public int compare(Item item1, Item item2) {
+                    var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
+                    return valueCompare != 0 ? valueCompare : 1;
+                }
+            });
 
         this.freeItems = new HashMap<>();
     }
@@ -138,19 +138,25 @@ public class Checkout {
 
         if(basketQuantity > groupDiscountOffer.getQuantity()){
             var itemsList = new ArrayList<>(itemsInGroupDiscount.keySet());
+            var aux = 0;
             while(basketQuantity / groupDiscountOffer.getQuantity() > 0){
                 for (int i = 0; i < itemsInGroupDiscount.size(); i++) {
                     itemsInGroupDiscount.pollFirstEntry();
                 }
+                aux += groupDiscountOffer.getPrice();
                 basketQuantity -= groupDiscountOffer.getQuantity();
             }
 
             var x = basketQuantity / groupDiscountOffer.getQuantity();
             for (int i = 0; i < x; i++) {
-                itemsInGroupDiscount.pollFirstEntry();
+                groupDiscountItem = itemsInGroupDiscount.keySet().stream().findFirst();
+                if(!groupDiscountItem.isPresent()){
+                    continue;
+                }
+                aux += groupDiscountItem.get().getPrice();
             }
 
-            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
+            checkoutGroupDiscountValue = Math.min(aux, checkoutGroupDiscountValue);
         }
 
         checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
@@ -159,6 +165,7 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
 
