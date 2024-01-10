@@ -121,13 +121,15 @@ public class Checkout {
         int sum = 0;
         var entries = itemsInGroupDiscount.entrySet();
         for(var entry : entries){
-            if(numberOfRemainingItems == 0)
+            if(numberOfRemainingItems < 0)
                 break;
 
-            sum+= calculateItemPrice(entry.getKey(), entry.getValue());
-            if(numberOfRemainingItems >= entry.getValue()){
-                numberOfRemainingItems -= entry.getValue();
+            if(entry){
+                
             }
+
+            sum+= calculateItemPrice(entry.getKey(), entry.getValue());
+            numberOfRemainingItems -= entry.getValue();
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + sum;
@@ -198,6 +200,7 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
 
 
