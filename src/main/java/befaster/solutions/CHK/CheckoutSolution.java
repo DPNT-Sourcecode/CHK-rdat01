@@ -6,13 +6,14 @@ import befaster.entity.SpecialOffer;
 import befaster.entity.enums.SpecialOfferType;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
         var discountGroup = "STXYZ";
         var checkout = new Checkout();
         var itemsNotInGroupDiscount = new HashMap<Item, Integer>();
-        var itemsInGroupDiscount = new HashMap<Item, Integer>();
+        var itemsInGroupDiscount = new TreeMap<Item, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
         var itemsList = new HashMap<Character, Item>();
 
@@ -156,3 +157,4 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+

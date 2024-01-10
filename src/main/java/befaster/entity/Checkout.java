@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Checkout {
     private Map<Item, Integer> basket;
-    private Map<Item, Integer> itemsInGroupDiscount;
+    private TreeMap<Item, Integer> itemsInGroupDiscount;
     private HashMap<Character, Integer> freeItems;
 
     public Checkout(){
@@ -25,7 +25,7 @@ public class Checkout {
         this.freeItems = new HashMap<>();
     }
 
-    public void setItemsInGroupDiscount(HashMap<Item, Integer> itemsInGroupDiscount){
+    public void setItemsInGroupDiscount(TreeMap<Item, Integer> itemsInGroupDiscount){
         this.itemsInGroupDiscount = itemsInGroupDiscount;
     }
 
@@ -139,7 +139,15 @@ public class Checkout {
         if(basketQuantity > groupDiscountOffer.getQuantity()){
             var itemsList = new ArrayList<>(itemsInGroupDiscount.keySet());
             while(basketQuantity / groupDiscountOffer.getQuantity() > 0){
+                for (int i = 0; i < itemsInGroupDiscount.size(); i++) {
+                    itemsInGroupDiscount.pollFirstEntry();
+                }
                 basketQuantity -= groupDiscountOffer.getQuantity();
+            }
+
+            var x = basketQuantity / groupDiscountOffer.getQuantity();
+            for (int i = 0; i < x; i++) {
+                itemsInGroupDiscount.pollFirstEntry();
             }
 
             checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
@@ -151,6 +159,7 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
 
