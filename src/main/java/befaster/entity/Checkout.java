@@ -162,6 +162,3 @@ public class Checkout {
         return Math.min(sumOfAllItemsValue, Math.min(valuesByEntry, Math.min(valuesByItemOrder, valuesOfDiscount)));
     }
 }
-
-
-
