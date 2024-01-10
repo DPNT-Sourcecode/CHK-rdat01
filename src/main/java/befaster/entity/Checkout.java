@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Checkout {
     private Map<Item, Integer> basket;
-    private Map<Item, Integer> itemsInGroupDiscount;
+    private TreeMap<Item, Integer> itemsInGroupDiscount;
     private HashMap<Character, Integer> freeItems;
 
     public Checkout(){
@@ -13,12 +13,19 @@ public class Checkout {
             return (valueCompare != 0) ? valueCompare : item1.getSku().compareTo(item2.getSku());
         });
 
-        this.itemsInGroupDiscount = new TreeMap<>(Comparator.comparing(Item::getPrice));
+        this.itemsInGroupDiscount = new TreeMap<>(
+                new Comparator<Item>() {
+                    @Override
+                    public int compare(Item item1, Item item2) {
+                        var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
+                        return valueCompare != 0 ? valueCompare : 1;
+                    }
+                });
 
         this.freeItems = new HashMap<>();
     }
 
-    public void setItemsInGroupDiscount(Map<Item, Integer> itemsInGroupDiscount){
+    public void setItemsInGroupDiscount(TreeMap<Item, Integer> itemsInGroupDiscount){
         this.itemsInGroupDiscount = itemsInGroupDiscount;
     }
 
@@ -127,8 +134,8 @@ public class Checkout {
             individualItems += calculateItemPrice(item, itemQuantity);
         }
 
-        /*valueByEntry = valueByEntry == 0 ? Integer.MAX_VALUE : valueByEntry;
-        */valueByItemOrder = valueByItemOrder == 0 ? Integer.MAX_VALUE : valueByItemOrder;
+        valueByEntry = valueByEntry == 0 ? Integer.MAX_VALUE : valueByEntry;
+        valueByItemOrder = valueByItemOrder == 0 ? Integer.MAX_VALUE : valueByItemOrder;
 
         checkoutGroupDiscountValue = Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
 
