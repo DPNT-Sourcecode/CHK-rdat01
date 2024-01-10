@@ -91,8 +91,8 @@ public class Checkout {
     }
 
     private int calculateGroupDiscountValue() {
-        int individualItems = 0,
-            valuesByEntry = 0,
+        int sumOfAllItemsValue = 0,
+            sumByEntriesValue = 0,
             valuesByItemOrder = 0,
             valuesOfDiscount = 0,
             count = 0;
@@ -103,7 +103,14 @@ public class Checkout {
             var itemQuantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
             var currentItemPrice = calculateItemPrice(item, itemQuantity);
-            individualItems += currentItemPrice;
+            sumOfAllItemsValue += currentItemPrice;
+
+            if(itemQuantity >= groupDiscountOffer.getQuantity()){
+                valuesByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
+                        + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
+            } else {
+                valuesByEntry += currentItemPrice;
+            }
 
             boolean isPriceCalculated = false,
                     canApplyDiscount = false;
@@ -145,19 +152,14 @@ public class Checkout {
                 }
             }
 
-            if(itemQuantity >= groupDiscountOffer.getQuantity()){
-                valuesByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
-                        + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
-            } else {
-                valuesByEntry += currentItemPrice;
-            }
+
         }
 
         valuesByEntry = valuesByEntry == 0 ? Integer.MAX_VALUE : valuesByEntry;
         valuesByItemOrder = valuesByItemOrder == 0 ? Integer.MAX_VALUE : valuesByItemOrder;
         valuesOfDiscount = valuesOfDiscount == 0 ? Integer.MAX_VALUE : valuesOfDiscount;
 
-        return Math.min(individualItems, Math.min(valuesByEntry, Math.min(valuesByItemOrder, valuesOfDiscount)));
+        return Math.min(sumOfAllItemsValue, Math.min(valuesByEntry, Math.min(valuesByItemOrder, valuesOfDiscount)));
     }
 }
 
