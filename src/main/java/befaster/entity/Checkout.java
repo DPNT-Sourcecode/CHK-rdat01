@@ -129,6 +129,7 @@ public class Checkout {
                 }
 
                 count = remainderItems > 0 ? remainderItems : 0;
+                valueByItemOrder -= calculateItemPrice(item, remainderItems);
                 appliedDiscount = true;
             }else {
                 if(isPriceCalculated){
