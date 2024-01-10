@@ -102,6 +102,8 @@ public class Checkout {
             count = 0;
         boolean appliedDiscount = false;
 
+        var teste = new TreeMap<>(Comparator.comparing(Item::getPrice)).putAll(itemsInGroupDiscount));
+
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
             var itemQuantity = groupDiscountEntry.getValue();
@@ -156,3 +158,4 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
