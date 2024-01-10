@@ -37,7 +37,9 @@ public class CheckoutSolution {
             checkout.addItemToCheckout(entry.getKey(), entry.getValue());
         }
 
-        checkout.setGroupDiscountOfferCount(groupItemsToCalculate.size());
+        for (var entry : groupItemsToCalculate.entrySet()) {
+            checkout.addItemToGroupItem(entry.getKey().getGroupDiscountSpecialOffer(), entry.getValue());
+        }
 
         var checkoutValue = checkout.calculateCheckoutValue();
 
@@ -154,5 +156,6 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
