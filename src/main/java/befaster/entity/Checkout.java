@@ -103,14 +103,10 @@ public class Checkout {
             var itemQuantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
             var currentItemPrice = calculateItemPrice(item, itemQuantity);
-            sumOfAllItemsValue += currentItemPrice;
 
-            if(itemQuantity >= groupDiscountOffer.getQuantity()){
-                sumByEntriesValue += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
-                        + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
-            } else {
-                sumByEntriesValue += currentItemPrice;
-            }
+            sumOfAllItemsValue += currentItemPrice;
+            sumByEntriesValue += calculateEntryValuePrice(
+                    itemQuantity, item.getPrice(), currentItemPrice, groupDiscountOffer);
 
             boolean isPriceCalculated = false,
                     canApplyDiscount = false;
@@ -162,14 +158,15 @@ public class Checkout {
         return Math.min(sumOfAllItemsValue, Math.min(sumByEntriesValue, Math.min(valuesByItemOrder, valuesOfDiscount)));
     }
 
-    private int calculateEntryValuePrice(int itemQuantity, int , SpecialOffer offer, int currentItemPrice){
+    private int calculateEntryValuePrice(int itemQuantity, int itemBasePrice, int currentItemPrice, SpecialOffer offer){
         var offerQuantity = offer.getQuantity();
 
         if(itemQuantity >= offerQuantity){
             return (itemQuantity / offerQuantity) * offer.getPrice()
-                    + (itemQuantity % offerQuantity) * itemOriginalPrice;
+                    + (itemQuantity % offerQuantity) * itemBasePrice;
         }
         return currentItemPrice;
     }
 }
+
 
