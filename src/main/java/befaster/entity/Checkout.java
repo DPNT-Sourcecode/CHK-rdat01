@@ -138,23 +138,25 @@ public class Checkout {
 
         if(basketQuantity > groupDiscountOffer.getQuantity()){
             var itemsList = new ArrayList<>(itemsInGroupDiscount.keySet());
-            var aux = 0;
+            int aux = 0, newBasketQuantity = 0;
+
             while(basketQuantity / groupDiscountOffer.getQuantity() > 0){
                 for (int i = 0; i < itemsInGroupDiscount.size(); i++) {
-                    itemsInGroupDiscount.pollFirstEntry();
+                    itemsList.remove(0);
                 }
                 aux += groupDiscountOffer.getPrice();
                 basketQuantity -= groupDiscountOffer.getQuantity();
+                newBasketQuantity = basketQuantity >= 0 ? basketQuantity : 0;
             }
 
-            var x = basketQuantity / groupDiscountOffer.getQuantity();
+            /*var x = basketQuantity / groupDiscountOffer.getQuantity();
             for (int i = 0; i < x; i++) {
                 groupDiscountItem = itemsInGroupDiscount.keySet().stream().findFirst();
                 if(!groupDiscountItem.isPresent()){
                     continue;
                 }
                 aux += groupDiscountItem.get().getPrice();
-            }
+            }*/
 
             checkoutGroupDiscountValue = Math.min(aux, checkoutGroupDiscountValue);
         }
@@ -165,6 +167,7 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
 
