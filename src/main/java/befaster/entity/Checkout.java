@@ -117,9 +117,13 @@ public class Checkout {
         if(isFullBasketOffer)
             return numberOfDiscounts * groupDiscountOffer.getPrice();
 
+        int aux = 0;
         var entries = itemsInGroupDiscount.entrySet();
         for(var entry : entries){
-            
+            var stop = entry.getValue() > 0 ? entry.getValue() : 0;
+            if (stop - numberOfRemainingItems) {
+                
+            }
         }
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
@@ -188,6 +192,7 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
 
 
