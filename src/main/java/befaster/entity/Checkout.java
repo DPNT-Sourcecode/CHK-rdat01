@@ -37,19 +37,22 @@ public class Checkout {
             var item = groupDiscountEntry.getKey();
             var quantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
-            int value1 = 0, value2 = 0;
+            int value = Integer.MAX_VALUE;
 
             if(quantity % groupDiscountOffer.getQuantity() == 0){
-                value1 = groupDiscountOffer.getPrice()
+                value = groupDiscountOffer.getPrice()
                         * (quantity / groupDiscountOffer.getQuantity());
             }
 
-            if(quantity % groupDiscountOffer.getQuantity() == 0){
-                value2 = groupDiscountOffer.getPrice()
-                        * (quantity / groupDiscountOffer.getQuantity());
-            }
+            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
+        }
 
-            checkoutGroupDiscountValue = Math.min(value1, value2);
+        var groupDiscountOffer = itemsInGroupDiscount.keySet().stream()
+                .findFirst().get().getGroupDiscountSpecialOffer();
+
+        if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
+            value2 = groupDiscountOffer.getPrice()
+                    * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity());
         }
 
         checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
@@ -111,9 +114,3 @@ public class Checkout {
                 .count() > 0;
     }
 }
-
-
-
-
-
-
