@@ -33,9 +33,13 @@ public class Checkout {
         for (var basketEntry : basket.entrySet()) {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
-
+int counting = 0;
         for (var groupItemEntry : groupItem.entrySet()) {
-            checkoutValue += calculateItemPrice(groupItemEntry.getKey(), groupItemEntry.getValue());
+
+            for (var specialOffer : groupItemEntry.getKey().Spe) {
+
+            }
+            counting++;
         }
 
         return checkoutValue;
