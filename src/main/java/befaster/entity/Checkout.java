@@ -118,10 +118,10 @@ public class Checkout {
                         + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
             }
 
-            if(itemQuantity % groupDiscountOffer.getQuantity() != 0){
+            /*if(itemQuantity % groupDiscountOffer.getQuantity() != 0){
                 count += itemQuantity < groupDiscountOffer.getQuantity()
-                        ? itemQuantity : itemQuantity - groupDiscountOffer.getQuantity();
-            }
+                        ? itemQuantity : itemQuantity % groupDiscountOffer.getQuantity();
+            }*/
 
             individualItems += calculateItemPrice(item, itemQuantity);
         }
@@ -171,6 +171,7 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
 
