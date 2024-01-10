@@ -32,16 +32,20 @@ public class Checkout {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
-        int checkoutGroupDiscountValue = 0;
+        int checkoutGroupDiscountValue = Integer.MAX_VALUE;
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
             var quantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
 
             if(quantity % groupDiscountOffer.getQuantity() == 0){
-                checkoutGroupDiscountValue = groupDiscountOffer.getPrice() * (quantity / groupDiscountOffer.getQuantity());
+                checkoutGroupDiscountValue = groupDiscountOffer.getPrice()
+                        * (quantity / groupDiscountOffer.getQuantity());
             }
         }
+
+        checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
+                ? checkoutGroupDiscountValue : 0;
 
         return checkoutValue + checkoutGroupDiscountValue;
     }
@@ -99,6 +103,7 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
 
