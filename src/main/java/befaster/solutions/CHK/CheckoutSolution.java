@@ -11,8 +11,8 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
         var discountGroup = "STXYZ";
         var itemsList = new HashMap<Character, Item>();
-        HashMap<Item, Integer> itemsNotInGroupDiscount = new HashMap<Item, Integer>(),
-                itemsInGroupDiscount = new HashMap<Item, Integer>();
+        HashMap<Item, Integer> itemsNotInGroupDiscount = new HashMap<>(),
+                itemsInGroupDiscount = new HashMap<>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
 
         createItemsList(itemsList);
@@ -41,7 +41,6 @@ public class CheckoutSolution {
         }
 
         checkout.setItemsInGroupDiscount(itemsInGroupDiscount);
-        checkout.set(itemsInGroupDiscount);
 
         var checkoutValue = checkout.calculateCheckoutValue();
 
@@ -158,4 +157,3 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
-
