@@ -32,13 +32,13 @@ public class Checkout {
         var basketEntrySet = basket.entrySet();
 
         for (var basketEntry : basketEntrySet) {
-            checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
+            checkoutValue += calculateItemPrice(basketEntrySet, basketEntry.getKey(), basketEntry.getValue());
         }
 
         return checkoutValue;
     }
 
-    private int calculateItemPrice(Item item, int quantity) {
+    private int calculateItemPrice(Set<Map.Entry<Item,Integer>> basketEntrySet, Item item, int quantity) {
         var freeItemQuantity = freeItems.getOrDefault(item.getSku(), 0);
         if(freeItemQuantity > 0){
             quantity = freeItemQuantity >= quantity ? 0 : (quantity - freeItemQuantity);
@@ -63,10 +63,10 @@ public class Checkout {
             }
 
             if(item.isInAGroupDiscountSpecialOffer()){
-                var isGroupDiscountAvailable = groupDiscountAvailable.getOrDefault(item.getSku(), false);
+                /*var isGroupDiscountAvailable = groupDiscountAvailable.getOrDefault(item.getSku(), false);
                 if(true){
                     return specialOffer.getPrice();
-                }
+                }*/
 
                 var orderedBasketSkus = basket.keySet().stream()
                         .map(entry -> String.valueOf(entry.getSku()))
@@ -74,6 +74,7 @@ public class Checkout {
 
                 for (var skusDiscountPack : skusDiscountPacks) {
                     if(skusDiscountPack.contains(orderedBasketSkus) || orderedBasketSkus.contains(skusDiscountPack)){
+
                         return specialOffer.getPrice();
                     };
                 }
@@ -85,15 +86,15 @@ public class Checkout {
                 continue;
             }
 
-            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(item, quantity, specialOffer));
+            finalPrice = Math.min(finalPrice, calculateSpecialPriceOffer(basketEntrySet, item, quantity, specialOffer));
         }
 
         return finalPrice;
     }
 
-    private int calculateSpecialPriceOffer(Item item, int quantity, SpecialOffer specialOffer) {
+    private int calculateSpecialPriceOffer(Set<Map.Entry<Item,Integer>> basketEntrySet, Item item, int quantity, SpecialOffer specialOffer) {
         int remainder = quantity % specialOffer.getQuantity();
-        var remainderPrice = calculateItemPrice(item, remainder);
+        var remainderPrice = calculateItemPrice(basketEntrySet, item, remainder);
 
         int divisionResult = quantity / specialOffer.getQuantity();
 
