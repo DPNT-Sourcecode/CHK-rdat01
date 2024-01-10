@@ -127,8 +127,8 @@ public class Checkout {
             individualItems += calculateItemPrice(item, itemQuantity);
         }
 
-        valueByEntry = valueByEntry == 0 ? Integer.MAX_VALUE : valueByEntry;
-        valueByItemOrder = valueByItemOrder == 0 ? Integer.MAX_VALUE : valueByItemOrder;
+        /*valueByEntry = valueByEntry == 0 ? Integer.MAX_VALUE : valueByEntry;
+        */valueByItemOrder = valueByItemOrder == 0 ? Integer.MAX_VALUE : valueByItemOrder;
 
         checkoutGroupDiscountValue = Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
 
@@ -149,7 +149,3 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
-
-
-
-
