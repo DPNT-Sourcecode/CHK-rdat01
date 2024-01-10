@@ -106,8 +106,9 @@ public class Checkout {
             var item = groupDiscountEntry.getKey();
             var itemQuantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
+            count += itemQuantity;
 
-            if(count >= groupDiscountOffer.getPrice()){
+            if(count >= groupDiscountOffer.getQuantity()){
                 valueByItemOrder += (count / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice();
                 count = count % groupDiscountOffer.getQuantity();
             }
@@ -170,5 +171,6 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
