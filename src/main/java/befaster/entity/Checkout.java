@@ -67,7 +67,6 @@ public class Checkout {
 
                 for (var skusDiscountPack : skusDiscountPacks) {
                     if(skusDiscountPack.contains(orderedBasketSkus) || orderedBasketSkus.contains(skusDiscountPack)){
-
                         return specialOffer.getPrice();
                     };
                 }
@@ -114,6 +113,7 @@ public class Checkout {
         return matchingCount / specialOffer.getQuantity();
     }
 }
+
 
 
 
