@@ -88,7 +88,7 @@ public class Checkout {
     }
 
     private int calculateGroupDiscountValue(int basketQuantity) {
-        int checkoutGroupDiscountValue = Integer.MAX_VALUE,
+        int checkoutGroupDiscountValue = 0,
             individualItems = 0,
             valueByEntry = 0,
             valueByItemOrder = 0,
@@ -139,7 +139,7 @@ public class Checkout {
 
         var groupDiscountOffer = groupDiscountItem.get().getGroupDiscountSpecialOffer();
         if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
-            value = groupDiscountOffer.getPrice()
+            int value = groupDiscountOffer.getPrice()
                     * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity())
                     * (basketQuantity / groupDiscountOffer.getQuantity());
 
@@ -149,6 +149,7 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
 
