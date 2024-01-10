@@ -100,6 +100,3 @@ public class Checkout {
                 .count() > 0;
     }
 }
-
-
-
