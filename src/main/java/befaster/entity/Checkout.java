@@ -108,6 +108,12 @@ public class Checkout {
             sumByEntriesValue += calculateEntryValuePrice(
                     itemQuantity, item.getPrice(), currentItemPrice, groupDiscountOffer);
 
+            int applicableDiscountsCount = itemQuantity / groupDiscountOffer.getQuantity();
+
+            if(itemQuantity ){
+
+            }
+            //////
             boolean isPriceCalculated = false,
                     canApplyDiscount = false;
 
@@ -168,5 +174,6 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
 
