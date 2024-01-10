@@ -14,10 +14,10 @@ public class Checkout {
         });
 
         this.itemsInGroupDiscount = new TreeMap<>(
-            new Comparator<Item>() {
+            new Comparator<Integer>() {
                 @Override
-                public int compare(Item item1, Item item2) {
-                    var valueCompare = Integer.compare(item1.getPrice(), item2.getPrice());
+                public int compare(Map.Entry<Item, Integer> entry1, Map.Entry<Item, Integer> entry2) {
+                    var valueCompare = Integer.compare(entry1.getKey().getPrice(), entry2.getKey().getPrice());
                     return valueCompare != 0 ? valueCompare : 1;
                 }
             });
