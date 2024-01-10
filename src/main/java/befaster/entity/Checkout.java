@@ -49,7 +49,7 @@ public class Checkout {
         }
 
         var groupDiscountOffer = itemsInGroupDiscount.keySet().stream()
-                .findFirst().get().getGroupDiscountSpecialOffer();
+                .findFirst().ifPresent(entry -> entry.getGroupDiscountSpecialOffer());
 
         if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
             value = groupDiscountOffer.getPrice()
@@ -117,3 +117,4 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
