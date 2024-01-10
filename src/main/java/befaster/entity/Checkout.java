@@ -97,12 +97,19 @@ public class Checkout {
     private int calculateGroupDiscountValue(int basketQuantity) {
         int checkoutGroupDiscountValue = Integer.MAX_VALUE,
             value = Integer.MAX_VALUE,
-            individualItems = 0;
+            individualItems = 0,
+            valueByEntry = 0,
+            valueByItemOrder = 0;
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
             var itemQuantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
+
+            if(itemQuantity >= groupDiscountOffer.getQuantity()){
+                valueByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
+                        + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
+            }
 
             if(itemQuantity % groupDiscountOffer.getQuantity() == 0){
                 var aux = groupDiscountOffer.getPrice()
@@ -110,7 +117,7 @@ public class Checkout {
 
                 value = Math.min(value, aux);
             }
-            
+
             individualItems += calculateItemPrice(item, itemQuantity);
         }
 
