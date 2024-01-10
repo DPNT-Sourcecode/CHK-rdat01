@@ -103,9 +103,11 @@ public class Checkout {
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
             boolean isPriceCalculated = false;
 
-            if((count + itemQuantity) % groupDiscountOffer.getQuantity() == 0){
+            if(count >= groupDiscountOffer.getQuantity()){
                 count += itemQuantity < groupDiscountOffer.getQuantity()
                         ? itemQuantity : itemQuantity % groupDiscountOffer.getQuantity();
+            }else {
+                
             }
 
             if(appliedDiscount){
@@ -146,3 +148,4 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
     }
 }
+
