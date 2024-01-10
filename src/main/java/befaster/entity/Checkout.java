@@ -38,22 +38,10 @@ public class Checkout {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
-        int counting = 1;
-        for (var groupItemEntry : groupDiscountOffer.entrySet()) {
-            if(groupDiscountOffer.entrySet().stream().count() % 3 == 0){
-                checkoutValue += groupItemEntry.getKey().getPrice();
+        for (var groupDiscountOffer : groupDiscountOffer.values()) {
+            if(groupDiscountCount % groupDiscountOffer.getQuantity() == 0){
+                checkoutValue += groupDiscountOffer.getPrice() * (groupDiscountCount / groupDiscountOffer.getQuantity());
             }
-            counting++;
-        }
-
-        return checkoutValue;
-    }
-
-    public int calculateGroupDiscount(HashMap<Item, Integer> groupItemsToCalculate) {
-        int checkoutValue = 0;
-
-        for (var basketEntry : groupItemsToCalculate.entrySet()) {
-            checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
         return checkoutValue;
@@ -112,5 +100,6 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
