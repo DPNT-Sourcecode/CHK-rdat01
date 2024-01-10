@@ -40,9 +40,8 @@ public class CheckoutSolution {
             checkout.addItemToCheckout(entry.getKey(), entry.getValue());
         }
 
-        for (var entry : itemsInGroupDiscount.entrySet()) {
-            checkout.addItemToCheckout(entry.getKey(), entry.getValue(), groupDiscountCount);
-        }
+        checkout.setGroupDiscounts(itemsInGroupDiscount);
+        checkout.setGroupDiscountCount(groupDiscountCount);
 
         var checkoutValue = checkout.calculateCheckoutValue();
 
@@ -159,6 +158,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 

@@ -5,7 +5,8 @@ import java.util.*;
 public class Checkout {
     private Map<Item, Integer> basket;
     private HashMap<Character, Integer> freeItems;
-    private HashMap<SpecialOffer, Integer> groupDiscountOffer;
+    private HashMap<String, SpecialOffer> groupDiscountOffer;
+    private int groupDiscountCount;
 
     public Checkout(){
         this.basket = new TreeMap<>((item1, item2) -> {
@@ -15,14 +16,19 @@ public class Checkout {
 
         this.freeItems = new HashMap<>();
         this.groupDiscountOffer = new HashMap<>();
+        this.groupDiscountCount = 0;
+    }
+
+    public void setGroupDiscounts(HashMap<String, SpecialOffer> groupDiscount){
+        this.groupDiscountOffer = groupDiscount;
+    }
+
+    public void setGroupDiscountCount(int groupDiscountCount) {
+        this.groupDiscountCount = groupDiscountCount;
     }
 
     public void addItemToCheckout(Item item, int quantity){
         basket.put(item, quantity);
-    }
-
-    public void set(SpecialOffer specialOffer, int quantity){
-        groupDiscountOffer.put(specialOffer, quantity);
     }
 
     public int calculateCheckoutValue() {
@@ -106,4 +112,5 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
