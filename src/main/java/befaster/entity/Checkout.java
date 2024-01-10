@@ -92,9 +92,9 @@ public class Checkout {
 
     private int calculateGroupDiscountValue() {
         int individualItems = 0,
-            valueByEntry = 0,
-            valueByItemOrder = 0,
-            valueOfDiscount = 0,
+            valuesByEntry = 0,
+            valuesByItemOrder = 0,
+            valuesOfDiscount = 0,
             count = 0;
         boolean appliedDiscount = false;
 
@@ -115,7 +115,7 @@ public class Checkout {
             }
 
             if(appliedDiscount){
-                valueByItemOrder += calculateItemPrice(item, itemQuantity);
+                valuesByItemOrder += calculateItemPrice(item, itemQuantity);
                 appliedDiscount = false;
                 isPriceCalculated = true;
             }
@@ -124,35 +124,35 @@ public class Checkout {
                 int numberOfDiscountsToApply = count / groupDiscountOffer.getQuantity();
                 int remainderItems = count % groupDiscountOffer.getQuantity();
 
-                valueOfDiscount += numberOfDiscountsToApply * groupDiscountOffer.getPrice();
+                valuesOfDiscount += numberOfDiscountsToApply * groupDiscountOffer.getPrice();
                 if(numberOfDiscountsToApply > 0){
-                    valueOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
+                    valuesOfDiscount += (count % groupDiscountOffer.getQuantity()) * item.getPrice();
                 }
-                valueByItemOrder += calculateItemPrice(item, itemQuantity);
+                valuesByItemOrder += calculateItemPrice(item, itemQuantity);
                 /*count = remainderItems > 0 ? remainderItems : 0;
                 valueByItemOrder -= calculateItemPrice(item, remainderItems);*/
                 appliedDiscount = true;
             }else {
                 if(isPriceCalculated){
-                    valueByItemOrder += 0;
+                    valuesByItemOrder += 0;
                 } else {
-                    valueByItemOrder += calculateItemPrice(item, itemQuantity);
+                    valuesByItemOrder += calculateItemPrice(item, itemQuantity);
                 }
             }
 
             if(itemQuantity >= groupDiscountOffer.getQuantity()){
-                valueByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
+                valuesByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
                         + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
             } else {
-                valueByEntry += calculateItemPrice(item, itemQuantity);
+                valuesByEntry += calculateItemPrice(item, itemQuantity);
             }
 
             individualItems += calculateItemPrice(item, itemQuantity);
         }
 
-        valueByEntry = valueByEntry == 0 ? Integer.MAX_VALUE : valueByEntry;
-        valueByItemOrder = valueByItemOrder == 0 ? Integer.MAX_VALUE : valueByItemOrder;
+        valuesByEntry = valuesByEntry == 0 ? Integer.MAX_VALUE : valuesByEntry;
+        valuesByItemOrder = valuesByItemOrder == 0 ? Integer.MAX_VALUE : valuesByItemOrder;
 
-        return Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
+        return Math.min(individualItems, Math.min(valuesByEntry, valuesByItemOrder));
     }
 }
