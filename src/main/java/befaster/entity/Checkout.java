@@ -137,7 +137,6 @@ public class Checkout {
             }
 
             if(!appliedDiscount && itemQuantity % groupDiscountOffer.getQuantity() != 0){
-                count = 0;
                 count += itemQuantity < groupDiscountOffer.getQuantity()
                         ? itemQuantity : itemQuantity % groupDiscountOffer.getQuantity();
             }
@@ -158,8 +157,3 @@ public class Checkout {
         return checkoutGroupDiscountValue;
     }
 }
-
-
-
-
-
