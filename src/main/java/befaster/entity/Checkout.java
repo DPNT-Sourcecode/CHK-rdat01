@@ -37,8 +37,7 @@ public class Checkout {
             var item = groupDiscountEntry.getKey();
             var quantity = groupDiscountEntry.getValue();
             var groupDiscountOffer = item.getGroupDiscountSpecialOffer();
-            var value1 = 0;
-            var value2 = 0;
+            int value1 = 0, value2 = 0;
 
             if(quantity % groupDiscountOffer.getQuantity() == 0){
                 value1 = groupDiscountOffer.getPrice()
@@ -112,6 +111,7 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
 
