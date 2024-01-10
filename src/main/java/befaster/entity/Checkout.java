@@ -98,8 +98,8 @@ public class Checkout {
         int checkoutGroupDiscountValue = Integer.MAX_VALUE,
             value = Integer.MAX_VALUE,
             individualItems = 0,
-            valueByEntry = 0,
-            valueByItemOrder = 0,
+            valueByEntry = Integer.MAX_VALUE,
+            valueByItemOrder = Integer.MAX_VALUE,
             count = 0;
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
@@ -120,6 +120,8 @@ public class Checkout {
             if(itemQuantity >= groupDiscountOffer.getQuantity()){
                 valueByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
                         + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
+            } else {
+                valueByEntry += calculateItemPrice(item, itemQuantity);
             }
 
             if(itemQuantity % groupDiscountOffer.getQuantity() != 0){
@@ -145,29 +147,6 @@ public class Checkout {
                     * (basketQuantity / groupDiscountOffer.getQuantity());
 
             checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
-        }
-
-        if(basketQuantity > groupDiscountOffer.getQuantity()){
-            var itemsList = new ArrayList<>(itemsInGroupDiscount.keySet());
-            int aux = 0;
-            while(basketQuantity / groupDiscountOffer.getQuantity() > 0){
-                for (int i = 0; i < itemsInGroupDiscount.size(); i++) {
-                    //itemsInGroupDiscount.pollFirstEntry();
-                }
-                aux += groupDiscountOffer.getPrice();
-                basketQuantity -= groupDiscountOffer.getQuantity();
-            }
-
-            /*var x = basketQuantity / groupDiscountOffer.getQuantity();
-            for (int i = 0; i < x; i++) {
-                groupDiscountItem = itemsInGroupDiscount.keySet().stream().findFirst();
-                if(!groupDiscountItem.isPresent()){
-                    continue;
-                }
-                aux += groupDiscountItem.get().getPrice();
-            }*/
-
-            checkoutGroupDiscountValue = Math.min(aux, checkoutGroupDiscountValue);
         }
 
         checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
