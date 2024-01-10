@@ -49,8 +49,9 @@ public class Item {
     }
 
     public SpecialOffer getGroupDiscountSpecialOffer(){
-        return specialOffers.stream().filter(specialOffer -> specialOffer.isGroupDiscountOffer()).findFirst();
+        return specialOffers.stream().filter(specialOffer -> specialOffer.isGroupDiscountOffer()).findFirst().get();
     }
 }
+
 
 

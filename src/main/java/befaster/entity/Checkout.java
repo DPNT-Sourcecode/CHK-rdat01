@@ -33,10 +33,11 @@ public class Checkout {
         for (var basketEntry : basket.entrySet()) {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
-int counting = 0;
+
+        int counting = 0;
         for (var groupItemEntry : groupItem.entrySet()) {
 
-            for (var specialOffer : groupItemEntry.getKey().Spe) {
+            for (var specialOffer : ) {
 
             }
             counting++;
@@ -108,3 +109,4 @@ int counting = 0;
                 .count() > 0;
     }
 }
+
