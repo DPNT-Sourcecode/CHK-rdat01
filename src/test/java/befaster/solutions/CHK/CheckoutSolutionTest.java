@@ -174,4 +174,19 @@ public class CheckoutSolutionTest {
 
         assertThat(checkoutSolution.checkout(basket), equalTo(65));
     }
+
+    @Test
+    public void givenAValidBasketWithSShouldReturn20() {
+        String basket = "S";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(20));
+    }
+
+    @Test
+    public void givenAValidBasketWithXShouldReturn17() {
+        String basket = "X";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(17));
+    }
 }
+
