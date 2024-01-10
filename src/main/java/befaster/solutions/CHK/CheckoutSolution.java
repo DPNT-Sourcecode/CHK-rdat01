@@ -23,13 +23,13 @@ public class CheckoutSolution {
                 return -1;
             }
 
-            int currentQuantity2 = groupItemsToCalculate.getOrDefault(sku, 0);
+            int currentQuantity2 = groupItemsToCalculate.getOrDefault(itemsList.get(sku), 0);
             if(discountGroup.contains(String.valueOf(sku))){
                 groupItemsToCalculate.put(itemsList.get(sku), currentQuantity2 + 1);
                 continue;
             }
 
-            int currentQuantity = skusAndQuantities.getOrDefault(sku, 0);
+            int currentQuantity = skusAndQuantities.getOrDefault(itemsList.get(sku), 0);
             skusAndQuantities.put(itemsList.get(sku), currentQuantity + 1);
         }
 
@@ -156,3 +156,4 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
