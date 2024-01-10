@@ -106,10 +106,10 @@ public class Checkout {
             sumOfAllItemsValue += currentItemPrice;
 
             if(itemQuantity >= groupDiscountOffer.getQuantity()){
-                valuesByEntry += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
+                sumByEntriesValue += (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
                         + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
             } else {
-                valuesByEntry += currentItemPrice;
+                sumByEntriesValue += currentItemPrice;
             }
 
             boolean isPriceCalculated = false,
@@ -155,10 +155,18 @@ public class Checkout {
 
         }
 
-        valuesByEntry = valuesByEntry == 0 ? Integer.MAX_VALUE : valuesByEntry;
+        sumByEntriesValue = sumByEntriesValue == 0 ? Integer.MAX_VALUE : sumByEntriesValue;
         valuesByItemOrder = valuesByItemOrder == 0 ? Integer.MAX_VALUE : valuesByItemOrder;
         valuesOfDiscount = valuesOfDiscount == 0 ? Integer.MAX_VALUE : valuesOfDiscount;
 
-        return Math.min(sumOfAllItemsValue, Math.min(valuesByEntry, Math.min(valuesByItemOrder, valuesOfDiscount)));
+        return Math.min(sumOfAllItemsValue, Math.min(sumByEntriesValue, Math.min(valuesByItemOrder, valuesOfDiscount)));
+    }
+
+    private int calculateEntryValuePrice(SpecialOffer offer){
+        if(itemQuantity >= groupDiscountOffer.getQuantity()){
+            return (itemQuantity / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice()
+                    + (itemQuantity % groupDiscountOffer.getQuantity()) * item.getPrice();
+        }
+        return currentItemPrice;
     }
 }
