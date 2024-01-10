@@ -146,6 +146,3 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
     }
 }
-
-
-
