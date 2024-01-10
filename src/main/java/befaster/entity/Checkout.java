@@ -110,11 +110,7 @@ public class Checkout {
 
                 value = Math.min(value, aux);
             }
-
-            if(basketQuantity > groupDiscountOffer.getQuantity()){
-
-            }
-
+            
             individualItems += calculateItemPrice(item, itemQuantity);
         }
 
@@ -135,11 +131,24 @@ public class Checkout {
         }
 
         if(basketQuantity > groupDiscountOffer.getQuantity()){
-            int aux = 0, newBasketQuantity = 0;
-
+            var itemsList = new ArrayList<>(itemsInGroupDiscount.keySet());
+            int aux = 0;
             while(basketQuantity / groupDiscountOffer.getQuantity() > 0){
-
+                for (int i = 0; i < itemsInGroupDiscount.size(); i++) {
+                    //itemsInGroupDiscount.pollFirstEntry();
+                }
+                aux += groupDiscountOffer.getPrice();
+                basketQuantity -= groupDiscountOffer.getQuantity();
             }
+
+            /*var x = basketQuantity / groupDiscountOffer.getQuantity();
+            for (int i = 0; i < x; i++) {
+                groupDiscountItem = itemsInGroupDiscount.keySet().stream().findFirst();
+                if(!groupDiscountItem.isPresent()){
+                    continue;
+                }
+                aux += groupDiscountItem.get().getPrice();
+            }*/
 
             checkoutGroupDiscountValue = Math.min(aux, checkoutGroupDiscountValue);
         }
