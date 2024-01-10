@@ -29,7 +29,9 @@ public class Checkout {
     public int calculateCheckoutValue() {
         int checkoutValue = 0;
 
-        for (var basketEntry : basket.entrySet()) {
+        var basketEntrySet = basket.entrySet();
+
+        for (var basketEntry : basketEntrySet) {
             checkoutValue += calculateItemPrice(basketEntry.getKey(), basketEntry.getValue());
         }
 
@@ -63,7 +65,7 @@ public class Checkout {
             if(item.isInAGroupDiscountSpecialOffer()){
                 var isGroupDiscountAvailable = groupDiscountAvailable.getOrDefault(item.getSku(), false);
                 if(true){
-
+                    return specialOffer.getPrice();
                 }
 
                 var orderedBasketSkus = basket.keySet().stream()
@@ -104,8 +106,3 @@ public class Checkout {
                 .count() > 0;
     }
 }
-
-
-
-
-
