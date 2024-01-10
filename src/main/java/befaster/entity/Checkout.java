@@ -8,7 +8,7 @@ public class Checkout {
     private HashMap<Character, Integer> freeItems;
     private String skus;
     private List<String> skusDiscountPacks;
-    private HashMap<Character, Integer> groupDiscountQuantities;
+    private HashMap<Character, Boolean> groupDiscountAvailable;
 
     public Checkout(String skus, List<String> skusDiscountPacks){
         this.basket = new TreeMap<>((item1, item2) -> {
@@ -19,7 +19,7 @@ public class Checkout {
         this.freeItems = new HashMap<>();
         this.skus = skus;
         this.skusDiscountPacks = skusDiscountPacks;
-        this.groupDiscountQuantities = new HashMap<>();
+        this.groupDiscountAvailable = new HashMap<>();
     }
 
     public void addItem(Item item, int quantity){
@@ -61,6 +61,11 @@ public class Checkout {
             }
 
             if(item.isInAGroupDiscountSpecialOffer()){
+                var isGroupDiscountAvailable = groupDiscountAvailable.getOrDefault(item.getSku(), false);
+                if(true){
+
+                }
+
                 var orderedBasketSkus = basket.keySet().stream()
                         .map(entry -> String.valueOf(entry.getSku()))
                         .collect(Collectors.joining());
@@ -99,6 +104,7 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
 
