@@ -128,11 +128,18 @@ public class Checkout {
             checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
         }
 
+        if(basketQuantity > groupDiscountOffer.getQuantity()){
+            var x  = basketQuantity - groupDiscountOffer.getQuantity();
+
+            checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
+        }
+
         checkoutGroupDiscountValue = checkoutGroupDiscountValue != Integer.MAX_VALUE
                 ? checkoutGroupDiscountValue : 0 + individualItems;
 
         return checkoutGroupDiscountValue;
     }
 }
+
 
 
