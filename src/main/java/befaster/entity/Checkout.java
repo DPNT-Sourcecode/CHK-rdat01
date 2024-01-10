@@ -25,7 +25,7 @@ public class Checkout {
         basket.put(item, quantity);
     }
 
-    public int calculateCheckoutValue() {
+    public int calculateCheckoutValue(int basketQuantity) {
         int checkoutValue = 0;
 
         for (var basketEntry : basket.entrySet()) {
@@ -57,7 +57,7 @@ public class Checkout {
         if(itemsInGroupDiscount.size() % groupDiscountOffer.getQuantity() == 0){
             value = groupDiscountOffer.getPrice()
                 * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity())
-                    * (itemsInGroupDiscount.size() / groupDiscountOffer.getQuantity());
+                    * (basketQuantity / groupDiscountOffer.getQuantity());
 
             checkoutGroupDiscountValue = Math.min(value, checkoutGroupDiscountValue);
         }
@@ -121,6 +121,7 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
 
