@@ -14,7 +14,7 @@ public class CheckoutSolution {
         var skusAndQuantities = new HashMap<Item, Integer>();
         var basketList = skus.trim().replaceAll("\\p{C}", "").toCharArray();
         var itemsList = new HashMap<Character, Item>();
-        var groupItemsToCalculate = new HashMap<Item, Integer>();
+        var groupItemsToCalculate = new HashMap<SpecialOffer, Integer>();
 
         createItemsList(itemsList);
 
@@ -25,7 +25,7 @@ public class CheckoutSolution {
 
             int currentQuantity2 = groupItemsToCalculate.getOrDefault(itemsList.get(sku), 0);
             if(discountGroup.contains(String.valueOf(sku))){
-                groupItemsToCalculate.put(itemsList.get(sku), currentQuantity2 + 1);
+                groupItemsToCalculate.put(itemsList.get(sku).getGroupDiscountSpecialOffer(), currentQuantity2 + 1);
                 continue;
             }
 
@@ -37,6 +37,7 @@ public class CheckoutSolution {
             checkout.addItemToCheckout(entry.getKey(), entry.getValue());
         }
 
+        int count = 0;
         for (var entry : groupItemsToCalculate.entrySet()) {
             checkout.addItemToGroupItem(entry.getKey().getGroupDiscountSpecialOffer(), entry.getValue());
         }
@@ -156,6 +157,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
