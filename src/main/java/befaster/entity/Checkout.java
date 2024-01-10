@@ -19,7 +19,11 @@ public class Checkout {
         this.groupDiscountAvailable = new HashMap<>();
     }
 
-    public void addItem(Item item, int quantity){
+    public void addItemToCheckout(Item item, int quantity){
+        basket.put(item, quantity);
+    }
+
+    public void addItemToGroupItem(Item item, int quantity){
         basket.put(item, quantity);
     }
 
@@ -96,6 +100,7 @@ public class Checkout {
                 .count() > 0;
     }
 }
+
 
 
 

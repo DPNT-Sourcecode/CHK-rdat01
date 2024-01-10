@@ -34,7 +34,11 @@ public class CheckoutSolution {
         }
 
         for (var entry : skusAndQuantities.entrySet()) {
-            checkout.addItem(itemsList.get(entry.getKey()), entry.getValue());
+            checkout.addItemToCheckout(entry.getKey(), entry.getValue());
+        }
+
+        for (var entry : groupItemsToCalculate.entrySet()) {
+            checkout.addItemToCheckout(entry.getKey(), entry.getValue());
         }
 
         var checkoutValue = checkout.calculateCheckoutValue();
@@ -153,6 +157,7 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+
 
 
 
