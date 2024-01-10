@@ -119,7 +119,7 @@ public class Checkout {
 
         var entries = itemsInGroupDiscount.entrySet();
         for(var entry : entries){
-            entries.remove(entry);
+            
         }
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
@@ -188,5 +188,6 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
 
