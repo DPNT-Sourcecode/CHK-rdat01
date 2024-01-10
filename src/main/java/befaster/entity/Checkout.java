@@ -119,7 +119,7 @@ public class Checkout {
                 isPriceCalculated = true;
             }
 
-            if(canApplyDiscount){
+            if(canApplyDiscount || count >= groupDiscountOffer.getQuantity()){
                 int numberOfDiscounts = count / groupDiscountOffer.getQuantity();
                 int remainderItems = count % groupDiscountOffer.getQuantity();
 
@@ -155,3 +155,4 @@ public class Checkout {
         return Math.min(individualItems, Math.min(valueByEntry, valueByItemOrder));
     }
 }
+
