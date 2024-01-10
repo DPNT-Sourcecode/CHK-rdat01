@@ -96,8 +96,14 @@ public class Checkout {
             valuesByItemOrder = 0,
             valuesOfDiscount = 0,
             count = 0,
-            lastCount = 0;
+            lastCount = 0,
+            entryValuesSum = 0;
         boolean appliedDiscount = false;
+
+        for(int entryValue : itemsInGroupDiscount.values())
+            entryValuesSum += entryValue;
+
+        if(entryValuesSum)
 
         for (var groupDiscountEntry : itemsInGroupDiscount.entrySet()) {
             var item = groupDiscountEntry.getKey();
