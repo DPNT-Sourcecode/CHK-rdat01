@@ -91,27 +91,21 @@ public class Checkout {
     }
 
     private int calculateGroupDiscountValue() {
-        int sumOfAllItemsPrice = 0, sumOfAllItemsQuantity = 0, aux = 0;
-        var itemsSet = itemsInGroupDiscount.entrySet();
+        int sumOfAllItemsPrice = 0, sumOfAllItemsQuantity = 0;
 
-        var firstEntry = itemsInGroupDiscount.entrySet().stream().findFirst().get();
-        var groupDiscountOffer = firstEntry.getKey().getGroupDiscountSpecialOffer();
-
-        var numberOfDiscounts = sumOfAllItemsQuantity / groupDiscountOffer.getQuantity();
-        var numberOfRemainingItems = sumOfAllItemsQuantity % groupDiscountOffer.getQuantity();
-
-        for(var entry : itemsSet){
-            aux += entry.getValue();
-            if(aux < numberOfRemainingItems){
-                itemsSet.remove(entry);
-            }
-
+        for(var entry : itemsInGroupDiscount.entrySet()){
             sumOfAllItemsPrice += calculateItemPrice(entry.getKey(), entry.getValue());
             sumOfAllItemsQuantity += entry.getValue();
         }
 
         if(sumOfAllItemsQuantity == 0)
             return 0;
+
+        var firstEntry = itemsInGroupDiscount.entrySet().stream().findFirst().get();
+        var groupDiscountOffer = firstEntry.getKey().getGroupDiscountSpecialOffer();
+
+        var numberOfDiscounts = sumOfAllItemsQuantity / groupDiscountOffer.getQuantity();
+        var numberOfRemainingItems = sumOfAllItemsQuantity % groupDiscountOffer.getQuantity();
 
         if(numberOfDiscounts <= 0){
             return sumOfAllItemsPrice;
@@ -121,12 +115,18 @@ public class Checkout {
         if(isFullBasketOffer)
             return numberOfDiscounts * groupDiscountOffer.getPrice();
 
-        int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0;
+        int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0, x = 0;
         boolean wasProcessed = false;
+        var itemsSet = itemsInGroupDiscount.entrySet();
 
-        for(var entry : itemsInGroupDiscount.entrySet()){
+        for(var entry : itemsSet){
             if(numberOfRemainingItems < 0)
                 break;
+
+            if(x <){
+
+            }
+
             i = entry.getValue();
 
             processedItemsCount += entry.getValue();
@@ -165,6 +165,7 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
 
