@@ -94,7 +94,7 @@ public class Checkout {
         int sumOfAllItemsPrice = 0, sumOfAllItemsQuantity = 0;
 
         for(var entry : itemsInGroupDiscount.entrySet()){
-            sumOfAllItemsPrice += entry.getKey().getPrice() * entry.getValue();
+            sumOfAllItemsPrice += calculateItemPrice(entry.getKey(), entry.getValue());
             sumOfAllItemsQuantity += entry.getValue();
         }
 
@@ -108,7 +108,7 @@ public class Checkout {
         var numberOfRemainingItems = sumOfAllItemsQuantity % groupDiscountOffer.getQuantity();
 
         if(numberOfDiscounts <= 0){
-            return calculateItemPrice(firstEntry.getKey(), firstEntry.getValue());
+            return sumOfAllItemsPrice;
         }
 
         var isFullBasketOffer = numberOfRemainingItems == 0 ? true : false;
@@ -136,4 +136,5 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
 
