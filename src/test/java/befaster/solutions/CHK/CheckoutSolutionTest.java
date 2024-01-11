@@ -209,4 +209,19 @@ public class CheckoutSolutionTest {
 
         assertThat(checkoutSolution.checkout(basket), equalTo(1602));
     }
+
+    @Test
+    public void givenAValidBasketWithABCDEFGHIJKLMNOPQRSTUVWShouldReturn795() {
+        String basket = "ABCDEFGHIJKLMNOPQRSTUVW";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(795));
+    }
+
+    @Test
+    public void givenAValidBasketWithCXYZYZCShouldReturn122() {
+        String basket = "CXYZYZC";
+
+        assertThat(checkoutSolution.checkout(basket), equalTo(122));
+    }
 }
+
