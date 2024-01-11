@@ -135,6 +135,10 @@ public class Checkout {
                 i--;
             }
 
+            if(wasProcessed){
+                processedItemsCount = 0;
+            }
+
             if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
                 if(numberOfRemainingItems - entry.getValue() > 0){
                     numberOfRemainingItems -= entry.getValue();
@@ -145,7 +149,7 @@ public class Checkout {
             }
         }
 
-        return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
+        return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
 
