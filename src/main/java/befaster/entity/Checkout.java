@@ -91,22 +91,21 @@ public class Checkout {
     }
 
     private int calculateGroupDiscountValue() {
-        int entryValuesSum = 0, sumOfAllItemsValue = 0;
+        int sumOfAllItemsPrice = 0, sumOfAllItemsQuantity = 0;
 
         for(var entry : itemsInGroupDiscount.entrySet()){
-
-
-            entryValuesSum += entry.getValue();
+            sumOfAllItemsPrice += entry.getKey().getPrice() * entry.getValue();
+            sumOfAllItemsQuantity += entry.getValue();
         }
 
-        if(entryValuesSum == 0)
+        if(sumOfAllItemsQuantity == 0)
             return 0;
 
         var firstEntry = itemsInGroupDiscount.entrySet().stream().findFirst().get();
         var groupDiscountOffer = firstEntry.getKey().getGroupDiscountSpecialOffer();
 
-        var numberOfDiscounts = entryValuesSum / groupDiscountOffer.getQuantity();
-        var numberOfRemainingItems = entryValuesSum % groupDiscountOffer.getQuantity();
+        var numberOfDiscounts = sumOfAllItemsQuantity / groupDiscountOffer.getQuantity();
+        var numberOfRemainingItems = sumOfAllItemsQuantity % groupDiscountOffer.getQuantity();
 
         if(numberOfDiscounts <= 0){
             return calculateItemPrice(firstEntry.getKey(), firstEntry.getValue());
@@ -124,7 +123,7 @@ public class Checkout {
 
             processedItemsCount += entry.getValue();
 
-            if(processedItemsCount > entryValuesSum - numberOfRemainingItems) {
+            if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
                 if(numberOfRemainingItems - entry.getValue() > 0){
                     numberOfRemainingItems -= entry.getValue();
                 }
@@ -137,3 +136,4 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
