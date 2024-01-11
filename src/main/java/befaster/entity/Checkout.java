@@ -115,7 +115,7 @@ public class Checkout {
         if(isFullBasketOffer)
             return numberOfDiscounts * groupDiscountOffer.getPrice();
 
-        int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0, xpto = 0;
+        int processedItemsCount = 0, remainingItemsSum = 0, currentItemQuantity = 0, y = 0;
         boolean wasProcessed = false;
 
         for(var entry : itemsInGroupDiscount.entrySet()){
@@ -128,9 +128,9 @@ public class Checkout {
                 processedItemsCount += entry.getValue();
             }
 
-            i = entry.getValue();
+            currentItemQuantity = entry.getValue();
 
-            while(i > 0 && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
+            while(currentItemQuantity > 0 && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
                 if(sumOfAllItemsQuantity == processedItemsCount){
                     y += entry.getKey().getPrice();
                     break;
@@ -146,13 +146,14 @@ public class Checkout {
                     wasProcessed = true;
                 }
 
-                i--;
+                currentItemQuantity--;
             }
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
 
