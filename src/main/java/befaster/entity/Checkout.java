@@ -115,27 +115,22 @@ public class Checkout {
         if(isFullBasketOffer)
             return numberOfDiscounts * groupDiscountOffer.getPrice();
 
-        int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0, qtd = 0;
+        int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0, xpto = 0;
         boolean wasProcessed = false;
 
         for(var entry : itemsInGroupDiscount.entrySet()){
             if(numberOfRemainingItems < 0)
                 break;
 
-            var qtdItem = entry.getValue();
-
-            while(qtdItem + processedItemsCount > processedItemsCount){
-                if(entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity()){
-                    var currentDiscountsQuantity = processedItemsCount / groupDiscountOffer.getQuantity();
-                    remainingItemsSum += currentDiscountsQuantity * groupDiscountOffer.getPrice();
-                    numberOfDiscounts = 0;
-                    wasProcessed = true;
-                    break;
-                }
-                processedItemsCount++;
+            if(wasProcessed){
+                processedItemsCount += 0;
+            } else {
+                processedItemsCount += entry.getValue();
             }
 
-            /*while(qtdItem >= processedItemsCount && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
+            i = entry.getValue();
+
+            while(i > 0 && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
                 if(sumOfAllItemsQuantity - processedItemsCount < numberOfRemainingItems){
                     var currentDiscountsQuantity = processedItemsCount / groupDiscountOffer.getQuantity();
                     remainingItemsSum += currentDiscountsQuantity * groupDiscountOffer.getPrice();
@@ -150,12 +145,13 @@ public class Checkout {
                 if(sumOfAllItemsQuantity == processedItemsCount){
                     break;
                 }
-            }*/
+            }
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
 
