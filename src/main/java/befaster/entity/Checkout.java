@@ -121,13 +121,13 @@ public class Checkout {
         Collections.reverse(itemsList);
 
         for (int j = 0; j < itemsList.size(); j++) {
-            if(numberOfRemainingItems < 0)
+            if(numberOfRemainingItems <= 0)
                 break;
 
             var itemEntry = itemsList.get(0);
 
             if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems){
-break;
+                break;
             }
 
             i = itemEntry.getValue();
@@ -211,10 +211,3 @@ break;
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
-
-
-
-
-
-
-
