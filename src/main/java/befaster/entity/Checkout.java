@@ -91,22 +91,27 @@ public class Checkout {
     }
 
     private int calculateGroupDiscountValue() {
-        int sumOfAllItemsPrice = 0, sumOfAllItemsQuantity = 0;
+        int sumOfAllItemsPrice = 0, sumOfAllItemsQuantity = 0, aux = 0;
         var itemsSet = itemsInGroupDiscount.entrySet();
-
-        for(var entry : itemsSet){
-            sumOfAllItemsPrice += calculateItemPrice(entry.getKey(), entry.getValue());
-            sumOfAllItemsQuantity += entry.getValue();
-        }
-
-        if(sumOfAllItemsQuantity == 0)
-            return 0;
 
         var firstEntry = itemsInGroupDiscount.entrySet().stream().findFirst().get();
         var groupDiscountOffer = firstEntry.getKey().getGroupDiscountSpecialOffer();
 
         var numberOfDiscounts = sumOfAllItemsQuantity / groupDiscountOffer.getQuantity();
         var numberOfRemainingItems = sumOfAllItemsQuantity % groupDiscountOffer.getQuantity();
+
+        for(var entry : itemsSet){
+            aux += entry.getValue();
+            if(aux < numberOfRemainingItems){
+                itemsSet.remove(entry);
+            }
+
+            sumOfAllItemsPrice += calculateItemPrice(entry.getKey(), entry.getValue());
+            sumOfAllItemsQuantity += entry.getValue();
+        }
+
+        if(sumOfAllItemsQuantity == 0)
+            return 0;
 
         if(numberOfDiscounts <= 0){
             return sumOfAllItemsPrice;
@@ -160,5 +165,6 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
