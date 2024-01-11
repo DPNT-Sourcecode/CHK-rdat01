@@ -128,7 +128,7 @@ public class Checkout {
             while(i > 0 && processedItemsCount > groupDiscountOffer.getQuantity()){
                 if(processedItemsCount > groupDiscountOffer.getQuantity()){
                     y += entry.getKey().getPrice();
-                    remainingItemsSum += groupDiscountOffer.getPrice();
+                    remainingItemsSum += (processedItemsCount / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice();
                     processedItemsCount--;
                     wasProcessed = true;
                     numberOfRemainingItems--;
@@ -154,5 +154,6 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
