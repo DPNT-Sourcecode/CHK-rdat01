@@ -135,7 +135,7 @@ public class Checkout {
 
             if(aux >= y && ignore) {
                 ignore = false;
-                sum+= calculateItemPrice(entry.getKey(), Math.abs(numberOfRemainingItems - entry.getValue()));
+                sum+= calculateItemPrice(entry.getKey(), numberOfRemainingItems);
                 numberOfRemainingItems -= entry.getValue();
             }
         }
