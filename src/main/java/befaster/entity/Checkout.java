@@ -131,6 +131,8 @@ public class Checkout {
                     remainingItemsSum += groupDiscountOffer.getPrice();
                     processedItemsCount--;
                     wasProcessed = true;
+                    numberOfRemainingItems--;
+                    numberOfDiscounts--;
                 }
                 i--;
             }
@@ -152,4 +154,5 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
