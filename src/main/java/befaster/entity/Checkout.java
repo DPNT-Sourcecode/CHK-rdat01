@@ -131,7 +131,7 @@ public class Checkout {
             i = entry.getValue();
 
             while(i > 0 && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
-                if(sumOfAllItemsQuantity - processedItemsCount <= numberOfRemainingItems){
+                if(sumOfAllItemsQuantity - processedItemsCount < numberOfRemainingItems){
                     var currentDiscountsQuantity = processedItemsCount / groupDiscountOffer.getQuantity();
                     remainingItemsSum += currentDiscountsQuantity * groupDiscountOffer.getPrice();
                     numberOfDiscounts = 0;
@@ -142,15 +142,6 @@ public class Checkout {
                 wasProcessed = true;
                 processedItemsCount++;
                 i--;
-            }
-
-            if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
-                if(numberOfRemainingItems - entry.getValue() > 0){
-                    numberOfRemainingItems -= entry.getValue();
-                }
-
-                remainingItemsSum += calculateItemPrice(entry.getKey(), numberOfRemainingItems);
-                numberOfRemainingItems -= entry.getValue();
             }
         }
 
