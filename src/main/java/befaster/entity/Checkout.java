@@ -120,6 +120,9 @@ public class Checkout {
                 break;
 
             processedItemsCount += entry.getValue();
+            if(processedItemsCount > groupDiscountOffer.getQuantity()){
+                
+            }
 
             if(processedItemsCount > entryValuesSum - numberOfRemainingItems) {
                 if(numberOfRemainingItems - entry.getValue() > 0){
