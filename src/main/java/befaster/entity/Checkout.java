@@ -138,9 +138,11 @@ public class Checkout {
                     y += entry.getKey().getPrice();
                     numberOfRemainingItems--;
                     processedItemsCount--;
+                } else {
+                    processedItemsCount++;
                 }
+
                 wasProcessed = true;
-                processedItemsCount++;
                 i--;
                 if(sumOfAllItemsQuantity == processedItemsCount){
                     break;
