@@ -92,14 +92,10 @@ public class Checkout {
 
     private int calculateGroupDiscountValue() {
         int sumOfAllItemsPrice = 0, sumOfAllItemsQuantity = 0;
+        var itemsSet = itemsInGroupDiscount.entrySet();
 
-        for(var entry : itemsInGroupDiscount.entrySet()){
+        for(var entry : itemsSet){
             sumOfAllItemsPrice += calculateItemPrice(entry.getKey(), entry.getValue());
-            sumOfAllItemsQuantity += entry.getValue();
-        }
-
-        for (int i = 0; i < itemsInGroupDiscount.size(); i++) {
-            sumOfAllItemsPrice += calculateItemPrice(itemsInGroupDiscount.getKey(), entry.getValue());
             sumOfAllItemsQuantity += entry.getValue();
         }
 
@@ -164,4 +160,5 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
