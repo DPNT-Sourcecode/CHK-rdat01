@@ -115,63 +115,12 @@ public class Checkout {
         if(isFullBasketOffer)
             return numberOfDiscounts * groupDiscountOffer.getPrice();
 
-        int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0, x = 0;
+        int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0;
         boolean wasProcessed = false;
-        var itemsList = new ArrayList<>(itemsInGroupDiscount.entrySet());
-        Collections.reverse(itemsList);
 
-        for (int j = 0; j < itemsList.size(); j++) {
+        for(var entry : itemsInGroupDiscount.entrySet()){
             if(numberOfRemainingItems <= 0)
                 break;
-
-            var itemEntry = itemsList.get(0);
-
-            if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems){
-                break;
-            }
-
-            i = itemEntry.getValue();
-
-            processedItemsCount += itemEntry.getValue();
-
-            if(numberOfRemainingItems <= i && wasProcessed){
-                y += itemEntry.getKey().getPrice() * itemEntry.getValue();
-                wasProcessed = false;
-            }
-
-            while(i > 0 && processedItemsCount > groupDiscountOffer.getQuantity()){
-                if(processedItemsCount > groupDiscountOffer.getQuantity()){
-                    y += itemEntry.getKey().getPrice();
-                    remainingItemsSum += (processedItemsCount / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice();
-                    processedItemsCount--;
-                    wasProcessed = true;
-                    numberOfRemainingItems--;
-                    numberOfDiscounts--;
-                }
-                i--;
-            }
-
-            if(wasProcessed){
-                processedItemsCount = 0;
-            }
-
-            if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
-                if(numberOfRemainingItems - itemEntry.getValue() > 0){
-                    numberOfRemainingItems -= itemEntry.getValue();
-                }
-
-                remainingItemsSum += calculateItemPrice(itemEntry.getKey(), numberOfRemainingItems);
-                numberOfRemainingItems -= itemEntry.getValue();
-            }
-        }
-
-        /*for(var entry : itemsSet){
-            if(numberOfRemainingItems < 0)
-                break;
-
-            if(x <){
-
-            }
 
             i = entry.getValue();
 
@@ -206,7 +155,7 @@ public class Checkout {
                 remainingItemsSum += calculateItemPrice(entry.getKey(), numberOfRemainingItems);
                 numberOfRemainingItems -= entry.getValue();
             }
-        }*/
+        }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
