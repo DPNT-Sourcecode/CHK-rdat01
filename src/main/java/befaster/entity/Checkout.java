@@ -117,7 +117,7 @@ public class Checkout {
 
         int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0, x = 0;
         boolean wasProcessed = false;
-        var itemsList = new ArrayList<Map.Entry<Item, Integer>>(itemsInGroupDiscount.entrySet());
+        var itemsList = new ArrayList<>(itemsInGroupDiscount.entrySet());
 
         for (int j = 0; j < itemsList.size(); j++) {
             if(numberOfRemainingItems < 0)
@@ -125,8 +125,8 @@ public class Checkout {
 
             var itemEntry = itemsList.get(0);
 
-            if(x <){
-
+            if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems){
+break;
             }
 
             i = itemEntry.getValue();
@@ -210,6 +210,7 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
 
