@@ -133,7 +133,7 @@ public class Checkout {
             aux += entry.getValue();
             var y = entryValuesSum - numberOfRemainingItems;
 
-            if(aux >= y && ignore) {
+            if(aux > y && ignore) {
                 ignore = false;
                 if(numberOfRemainingItems - entry.getValue() > 0){
                     numberOfRemainingItems -= entry.getValue();
@@ -211,4 +211,5 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
