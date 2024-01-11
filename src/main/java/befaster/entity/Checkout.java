@@ -125,10 +125,11 @@ public class Checkout {
                 break;
 
             aux += entry.getValue();
-            if(aux != entryValuesSum - numberOfRemainingItems)
+            var y = entryValuesSum - numberOfRemainingItems;
+            if(aux < y)
                 continue;
 
-            sum+= calculateItemPrice(entry.getKey(), entry.getValue());
+            sum+= calculateItemPrice(entry.getKey(), Math.abs(y));
             numberOfRemainingItems -= entry.getValue();
         }
 
@@ -200,4 +201,5 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
