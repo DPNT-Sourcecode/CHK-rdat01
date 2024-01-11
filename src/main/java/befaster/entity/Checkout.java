@@ -142,11 +142,15 @@ public class Checkout {
                 wasProcessed = true;
                 processedItemsCount++;
                 i--;
+                if(sumOfAllItemsQuantity == processedItemsCount){
+                    break;
+                }
             }
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
