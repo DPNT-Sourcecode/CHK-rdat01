@@ -91,10 +91,13 @@ public class Checkout {
     }
 
     private int calculateGroupDiscountValue() {
-        int entryValuesSum = 0;
+        int entryValuesSum = 0, sumOfAllItemsValue = 0;
 
-        for(var entryValue : itemsInGroupDiscount.values())
-            entryValuesSum += entryValue;
+        for(var entry : itemsInGroupDiscount.entrySet()){
+
+
+            entryValuesSum += entry.getValue();
+        }
 
         if(entryValuesSum == 0)
             return 0;
