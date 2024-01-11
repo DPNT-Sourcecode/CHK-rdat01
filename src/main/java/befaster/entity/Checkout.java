@@ -118,6 +118,9 @@ public class Checkout {
         int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0;
         boolean wasProcessed = false;
 
+        var itemsXXX = new ArrayList<>(itemsInGroupDiscount.entrySet());
+        Collections.reverse(itemsXXX);
+
         for(var entry : itemsInGroupDiscount.entrySet()){
             if(numberOfRemainingItems <= 0)
                 break;
@@ -131,7 +134,7 @@ public class Checkout {
                 wasProcessed = false;
             }
 
-            while(i > 0 && processedItemsCount > groupDiscountOffer.getQuantity()){
+            while(i > 0 && processedItemsCount <= sumOfAllItemsQuantity - remainingItemsSum){
                 if(processedItemsCount > groupDiscountOffer.getQuantity()){
                     y += entry.getKey().getPrice();
                     remainingItemsSum += (processedItemsCount / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice();
@@ -160,3 +163,4 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
