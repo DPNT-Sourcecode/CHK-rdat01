@@ -151,7 +151,3 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + individualItemsPrice;
     }
 }
-
-
-
-
