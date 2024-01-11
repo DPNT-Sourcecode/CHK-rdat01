@@ -126,11 +126,6 @@ public class Checkout {
                 continue;
             }
 
-            if(processedItemsCount + entry.getValue() == groupDiscountOffer.getQuantity()){
-                //talvez colocar = 0
-                continue;
-            }
-
             if(processedItemsCount + entry.getValue() > groupDiscountOffer.getQuantity()){
                 processedItemsCount += entry.getValue();
                 numberOfRemainingItems = processedItemsCount + entry.getValue() - groupDiscountOffer.getQuantity();
@@ -142,12 +137,14 @@ public class Checkout {
                 }
 
                 remainingItemsSum += calculateItemPrice(entry.getKey(), numberOfRemainingItems);
+                processedItemsCount -= entry.getValue();
             }
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
 
 
 
