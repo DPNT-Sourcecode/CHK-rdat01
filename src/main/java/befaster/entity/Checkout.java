@@ -128,14 +128,15 @@ public class Checkout {
                     numberOfRemainingItems -= entry.getValue();
                 }
 
-                remainingItemsSum += calculateItemPrice(entry.getKey(), x);
-                numberOfRemainingItems -= x;
+                remainingItemsSum += calculateItemPrice(entry.getKey(), numberOfRemainingItems);
+                numberOfRemainingItems -= entry.getValue();
             }
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
 
 
 
