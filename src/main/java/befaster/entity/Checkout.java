@@ -124,14 +124,12 @@ public class Checkout {
 
             i = entry.getValue();
 
-            processedItemsCount += entry.getValue();
-
             if(numberOfRemainingItems <= i && wasProcessed){
                 y += entry.getKey().getPrice() * entry.getValue();
                 y += xpto;
             }
 
-            while(i > 0 && processedItemsCount > groupDiscountOffer.getQuantity()){
+            while(i > 0 && entry.getValue() > groupDiscountOffer.getQuantity()){
                 if(sumOfAllItemsQuantity - processedItemsCount <= numberOfRemainingItems){
                     xpto = entry.getKey().getPrice();
                     remainingItemsSum += (processedItemsCount / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice();
@@ -146,6 +144,8 @@ public class Checkout {
 
             if(wasProcessed){
                 processedItemsCount = 0;
+            } else {
+                processedItemsCount += entry.getValue();
             }
 
             if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
