@@ -131,7 +131,9 @@ public class Checkout {
             }
 
             if(processedItemsCount + entry.getValue() > groupDiscountOffer.getQuantity()){
-                processedItemsCount -= groupDiscountOffer.getQuantity();
+                processedItemsCount = processedItemsCount + entry.getValue() - groupDiscountOffer.getQuantity();
+            } else {
+                processedItemsCount += entry.getValue();
             }
 
             if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
@@ -142,11 +144,10 @@ public class Checkout {
                 remainingItemsSum += calculateItemPrice(entry.getKey(), x);
                 numberOfRemainingItems -= x;
             }
-
-            processedItemsCount += entry.getValue();
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
 
