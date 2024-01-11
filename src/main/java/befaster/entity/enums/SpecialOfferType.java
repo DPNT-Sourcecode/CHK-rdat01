@@ -6,4 +6,3 @@ public enum SpecialOfferType {
     SAME_ITEM_FREE,
     GROUP_DISCOUNT
 }
-

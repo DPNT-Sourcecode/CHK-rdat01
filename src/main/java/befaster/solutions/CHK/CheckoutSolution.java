@@ -35,12 +35,11 @@ public class CheckoutSolution {
         }
 
         var checkout = new Checkout();
+        checkout.setItemsInGroupDiscount(itemsInGroupDiscount);
 
         for (var entry : itemsNotInGroupDiscount.entrySet()) {
             checkout.addItemToCheckout(entry.getKey(), entry.getValue());
         }
-
-        checkout.setItemsInGroupDiscount(itemsInGroupDiscount);
 
         return checkout.calculateCheckoutValue();
     }
@@ -155,4 +154,3 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
-
