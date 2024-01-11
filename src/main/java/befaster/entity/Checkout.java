@@ -132,7 +132,7 @@ public class Checkout {
 
             while(i > 0 && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
                 if(sumOfAllItemsQuantity == processedItemsCount){
-                    y += entry.getKey().getPrice(); //Falta multiplicar
+                    y += entry.getKey().getPrice();
                     break;
                 }
 
@@ -153,5 +153,6 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
