@@ -42,9 +42,7 @@ public class CheckoutSolution {
 
         checkout.setItemsInGroupDiscount(itemsInGroupDiscount);
 
-        var checkoutValue = checkout.calculateCheckoutValue();
-
-        return checkoutValue;
+        return checkout.calculateCheckoutValue();
     }
 
     private void createItemsList(HashMap<Character, Item> itemsList){
@@ -157,3 +155,4 @@ public class CheckoutSolution {
         itemsList.put(itemZ.getSku(), itemZ);
     }
 }
+

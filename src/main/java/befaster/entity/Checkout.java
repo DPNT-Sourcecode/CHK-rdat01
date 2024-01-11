@@ -120,12 +120,12 @@ public class Checkout {
                 break;
 
             processedItemsCount += entry.getValue();
-            var y = entryValuesSum - numberOfRemainingItems;
 
-            if(processedItemsCount > y) {
+            if(processedItemsCount > entryValuesSum - numberOfRemainingItems) {
                 if(numberOfRemainingItems - entry.getValue() > 0){
                     numberOfRemainingItems -= entry.getValue();
                 }
+
                 remainingItemsSum += calculateItemPrice(entry.getKey(), numberOfRemainingItems);
                 numberOfRemainingItems -= entry.getValue();
             }
@@ -134,6 +134,7 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
 
 
 
