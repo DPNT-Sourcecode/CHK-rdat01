@@ -115,13 +115,16 @@ public class Checkout {
         if(isFullBasketOffer)
             return numberOfDiscounts * groupDiscountOffer.getPrice();
 
-        int processedItemsCount = 0, remainingItemsSum = 0, x = 0;
+        int processedItemsCount = 0, remainingItemsSum = 0, x = 0, numberOfDiscounts2 = 0, numberOfRemainingItems2 = 0;
 
         for(var entry : itemsInGroupDiscount.entrySet()){
             if(numberOfRemainingItems < 0)
                 break;
 
             processedItemsCount += entry.getValue();
+
+            numberOfDiscounts = processedItemsCount / groupDiscountOffer.getQuantity();
+            numberOfRemainingItems = processedItemsCount % groupDiscountOffer.getQuantity();
 
             if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
                 if(numberOfRemainingItems - entry.getValue() > 0){
@@ -136,9 +139,3 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
-
-
-
-
-
-
