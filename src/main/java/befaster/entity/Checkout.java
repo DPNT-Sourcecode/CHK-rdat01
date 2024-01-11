@@ -128,7 +128,7 @@ public class Checkout {
                     numberOfRemainingItems -= entry.getValue();
                 }
 
-                remainingItemsSum += calculateItemPrice(entry.getKey(), numberOfRemainingItems);
+                remainingItemsSum += calculateItemPrice(entry.getKey(), numberOfRemainingItems % entry.getValue());
                 numberOfRemainingItems -= entry.getValue();
             }
         }
@@ -136,3 +136,4 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
