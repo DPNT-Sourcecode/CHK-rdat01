@@ -120,7 +120,7 @@ int x = numberOfRemainingItems;
                 break;
 
             processedItemsCount += entry.getValue();
-            if(processedItemsCount % groupDiscountOffer.getQuantity() > 0){
+            if(processedItemsCount / groupDiscountOffer.getQuantity() > 0){
                 x--;
             }
 
@@ -137,5 +137,6 @@ int x = numberOfRemainingItems;
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
 
 
