@@ -126,13 +126,9 @@ public class Checkout {
 
             while(i > 0 && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
                 if(sumOfAllItemsQuantity - processedItemsCount <= numberOfRemainingItems){
-                    xpto = entry.getKey().getPrice();
                     remainingItemsSum += (processedItemsCount / groupDiscountOffer.getQuantity()) * groupDiscountOffer.getPrice();
-                    processedItemsCount--;
-                    numberOfRemainingItems--;
-                    numberOfDiscounts--;
+                    numberOfDiscounts--; //AQUI TALVEZ METER ZERO
                     y += entry.getKey().getPrice() * entry.getValue();
-                    y += xpto;
                 }
                 wasProcessed = true;
                 processedItemsCount++;
@@ -158,5 +154,6 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
