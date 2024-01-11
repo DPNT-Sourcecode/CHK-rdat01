@@ -132,8 +132,7 @@ public class Checkout {
             }
 
             if(processedItemsCount + entry.getValue() > groupDiscountOffer.getQuantity()){
-                //talvez colocar = 0
-                continue;
+                
             }
 
             if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
@@ -149,6 +148,7 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
 
 
 
