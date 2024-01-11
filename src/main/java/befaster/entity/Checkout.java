@@ -115,7 +115,7 @@ public class Checkout {
         if(isFullBasketOffer)
             return numberOfDiscounts * groupDiscountOffer.getPrice();
 
-        int processedItemsCount = 0, remainingItemsSum = 0;
+        int processedItemsCount = 0, remainingItemsSum = 0, x = 0;
 
         for(var entry : itemsInGroupDiscount.entrySet()){
             if(numberOfRemainingItems < 0)
@@ -132,14 +132,15 @@ public class Checkout {
                     numberOfRemainingItems -= entry.getValue();
                 }
 
-                remainingItemsSum += calculateItemPrice(entry.getKey(), numberOfRemainingItems);
-                numberOfRemainingItems -= entry.getValue();
+                remainingItemsSum += calculateItemPrice(entry.getKey(), x);
+                numberOfRemainingItems -= x;
             }
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
 
 
 
