@@ -98,6 +98,11 @@ public class Checkout {
             sumOfAllItemsQuantity += entry.getValue();
         }
 
+        for (int i = 0; i < itemsInGroupDiscount.size(); i++) {
+            sumOfAllItemsPrice += calculateItemPrice(itemsInGroupDiscount.getKey(), entry.getValue());
+            sumOfAllItemsQuantity += entry.getValue();
+        }
+
         if(sumOfAllItemsQuantity == 0)
             return 0;
 
@@ -159,3 +164,4 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
