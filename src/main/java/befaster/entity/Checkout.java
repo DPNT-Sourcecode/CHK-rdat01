@@ -138,6 +138,7 @@ public class Checkout {
                     y += entry.getKey().getPrice();
                 }
                 wasProcessed = true;
+                processedItemsCount++;
                 i--;
             }
 
@@ -154,6 +155,7 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
 
