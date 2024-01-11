@@ -128,9 +128,9 @@ public class Checkout {
                 processedItemsCount += entry.getValue();
             }
 
-            boolean continu = entry.getValue() > 0;
+            i = entry.getValue();
 
-            while(continu && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
+            while(i > 0 && (entry.getValue() > groupDiscountOffer.getQuantity() || processedItemsCount > groupDiscountOffer.getQuantity())){
                 if(sumOfAllItemsQuantity - processedItemsCount < numberOfRemainingItems){
                     var currentDiscountsQuantity = processedItemsCount / groupDiscountOffer.getQuantity();
                     remainingItemsSum += currentDiscountsQuantity * groupDiscountOffer.getPrice();
@@ -141,11 +141,12 @@ public class Checkout {
                 }
                 wasProcessed = true;
                 processedItemsCount++;
-                continu = numberOfRemainingItems != 0 ? true : false;
+                i--;
             }
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
