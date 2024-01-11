@@ -120,7 +120,7 @@ public class Checkout {
         int aux = 0;
         int sum = 0;
         var entries = itemsInGroupDiscount.entrySet();
-        boolean calculateRemainingItems = false;
+        boolean ignore = true;
 
         for(var entry : entries){
             if(numberOfRemainingItems < 0)
@@ -129,10 +129,9 @@ public class Checkout {
             aux += entry.getValue();
             var y = entryValuesSum - numberOfRemainingItems;
 
-            if(aux < y || calculateRemainingItems) {
-            } else {
-                calculateRemainingItems = true;
-                sum+= calculateItemPrice(entry.getKey(), Math.abs(y));
+            if(aux >= y && ignore) {
+                ignore = false;
+                sum+= calculateItemPrice(entry.getKey(), Math.abs(numberOfRemainingItems - entry.getValue()));
                 numberOfRemainingItems -= entry.getValue();
             }
         }
@@ -205,6 +204,7 @@ public class Checkout {
         return currentItemPrice;
     }
 }
+
 
 
 
