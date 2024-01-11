@@ -118,6 +118,7 @@ public class Checkout {
         int processedItemsCount = 0, remainingItemsSum = 0, i = 0, y = 0, x = 0;
         boolean wasProcessed = false;
         var itemsList = new ArrayList<>(itemsInGroupDiscount.entrySet());
+        Collections.reverse(itemsList);
 
         for (int j = 0; j < itemsList.size(); j++) {
             if(numberOfRemainingItems < 0)
@@ -210,6 +211,7 @@ break;
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
 
