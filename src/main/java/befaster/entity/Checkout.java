@@ -121,8 +121,6 @@ public class Checkout {
             if(numberOfRemainingItems < 0)
                 break;
 
-            processedItemsCount += entry.getValue();
-
             x = entry.getValue();
 
             if(x == numberOfRemainingItems){
@@ -131,10 +129,9 @@ public class Checkout {
             } else if (x < numberOfRemainingItems) {
                 x = numberOfRemainingItems - x;
             }
-            boolean uuu = false;
-            if(processedItemsCount > groupDiscountOffer.getQuantity()){
-                processedItemsCount -= groupDiscountOffer.getQuantity();
 
+            if(processedItemsCount + entry.getValue() > groupDiscountOffer.getQuantity()){
+                processedItemsCount -= groupDiscountOffer.getQuantity();
             }
 
             if(processedItemsCount > sumOfAllItemsQuantity - numberOfRemainingItems) {
@@ -145,8 +142,11 @@ public class Checkout {
                 remainingItemsSum += calculateItemPrice(entry.getKey(), x);
                 numberOfRemainingItems -= x;
             }
+
+            processedItemsCount += entry.getValue();
         }
 
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum;
     }
 }
+
