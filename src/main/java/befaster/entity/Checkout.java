@@ -122,7 +122,7 @@ public class Checkout {
             if(numberOfRemainingItems < 0)
                 break;
 
-            if(wasProcessed){
+            if(!wasProcessed){
                 processedItemsCount += 0;
             } else {
                 processedItemsCount += entry.getValue();
@@ -151,6 +151,7 @@ public class Checkout {
         return numberOfDiscounts * groupDiscountOffer.getPrice() + remainingItemsSum + y;
     }
 }
+
 
 
 
